@@ -1,0 +1,95 @@
+<html>
+<head>
+    <title> Cadastro </title>
+    <style>
+        .classOne{
+            display: flex;
+            align-items: center;
+            flex-direction: column-reverse;
+            background-color: #FFBD59;
+            color: #0C2D4D;
+        }
+        .cadastrar{
+            border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+            padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
+            border-radius: 15px;
+            display: flex;
+            align-items: stretch;
+            flex-wrap: nowrap;
+            flex-direction: column;
+            color: #0C2D4D;
+            font-family: Roboto ;
+            width: 400px;
+            margin: auto;
+            margin-top: 30px;
+            text-align: center;
+        }
+        .button{
+           color: yellow;
+           background-color:#0C2D4D;
+            height: 50px;
+            width: 400px;
+            font-size: 20px;
+            font-family: Helvetica; 
+            border-radius: 10px;
+        }
+        .row{
+            display: flex;
+            justify-content: space-between;
+            margin-top: 15px;
+        }
+        input{
+            border-color: #11BFE8;
+            width: 300px;
+            border-radius: 5px;
+            box-shadow: none;
+        }
+        .cadastrar h1{
+           margin-top: 5px;
+        margin-bottom: 5px;
+        }
+        .cadastrar hr{
+             border: 1px solid;
+            border-color:#FFA500;
+            width: 120%;
+            left: -40px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    <header>
+    <%= content_tag :div, class: "classOne" do %>
+    <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>
+    <% end %> 
+    </header>
+     <%= content_tag :div, class: "cadastrar" do %>
+     <h1> Quero me cadastrar </h1>
+     <hr>
+        <%= content_tag :div, class: "row" do %>   
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" name="nome">
+        <%end%>
+        <%= content_tag :div, class: "row" do %> 
+            <label for="nome">Sobrenome:</label>
+            <input type="text" id="sobrenome" sobrename="sobrenome">
+        <%end%>
+        <%= content_tag :div, class: "row" do %> 
+            <label for="nome">email:</label>
+            <input type="text" id="email" email="email">
+        <%end%>
+        <%= content_tag :div, class: "row" do %> 
+            <label for="nome">Senha:</label>
+            <input type="text" id="senha" senha="senha">
+        <%end%>
+        <%= content_tag :div, class: "row" do %> 
+            <%= button_to "Criar conta", nil, class: "button" %>
+        <%end%>
+    <% end %>
+</body>
+<footer>
+<h2> Outro roda pé </h2>
+
+</footer>
+
+</html>

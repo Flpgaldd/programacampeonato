@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "home#index"
 
-  get "/home", to: "home#index  "
+  get "/home", to: "home#index"
+
+  get "/register", to: "cadastro#register"
 end
