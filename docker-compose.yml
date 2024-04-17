@@ -1,0 +1,29 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    command: bin/rails server -b 0.0.0.0 -p 3001
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+    environment:
+      DATABASE_URL: postgres://felipe:root@db/app_campeonatos_development
+      SECRET_KEY_BASE: your_secret_key_base
+    volumes:
+      - .:/rails
+
+  db:
+    image: postgres:latest
+    environment:
+      POSTGRES_USER: felipe
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: app_campeonatos_development
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:

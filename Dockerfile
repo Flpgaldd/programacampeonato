@@ -8,10 +8,11 @@ FROM registry.docker.com/library/ruby:$RUBY_VERSION-slim as base
 WORKDIR /rails
 
 # Set production environment
-ENV RAILS_ENV="production" \
+ENV RAILS_ENV="development" \
     BUNDLE_DEPLOYMENT="1" \
     BUNDLE_PATH="/usr/local/bundle" \
-    BUNDLE_WITHOUT="development"
+    BUNDLE_WITHOUT="development"\
+    SECRET_KEY_BASE=your_secret_key_base
 
 
 # Throw-away build stage to reduce size of final image
@@ -19,7 +20,11 @@ FROM base as build
 
 # Install packages needed to build gems
 RUN apt-get update -qq && \
-    apt-get install --no-install-recommends -y build-essential git libvips pkg-config
+    apt-get install --no-install-recommends -y build-essential git libvips pkg-config 
+
+RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
+
+RUN apt-get update && apt-get install -y libpq-dev
 
 # Install application gems
 COPY Gemfile Gemfile.lock ./
@@ -44,6 +49,8 @@ FROM base
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y curl libsqlite3-0 libvips && \
     rm -rf /var/lib/apt/lists /var/cache/apt/archives
+
+RUN apt-get update && apt-get install -y libpq-dev
 
 # Copy built artifacts: gems, application
 COPY --from=build /usr/local/bundle /usr/local/bundle

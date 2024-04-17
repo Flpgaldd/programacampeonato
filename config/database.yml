@@ -82,4 +82,4 @@ production:
   database: app_campeonatos_production
   username: felipe
   # password: <%= ENV["API_EXAMPLE_DATABASE_PASSWORD"] %>
-  password: 12345678
+  password: root
