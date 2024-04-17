@@ -2,55 +2,15 @@
 <html>
     <head>
         <title> ChampionList </title>
-        <style>
-         .classOne{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                align-content: flex-start;
-                background-color: #FFBD59;
-             }   
-        .body{
-            height: 700px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            background-color: white;
-             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            }
-        .button{
-            background-color: #11BFE8;
-            height: 50px;
-            width: 125px;
-            font-size: 20px;
-            font-family: Helvetica;
-        }
-        .roda-pe{
-            color:  black ;
-            background-color: #FFBD59; 
-            height: 110px;
-            width: 2000px
-             }
-    </style>
     </head>
     <body>
-    <header>
-    <%= content_tag :div, class: "classOne" do %>
-    <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>
-    <%= button_to "Faça login", nil, class: "button" %>
-    <% end %> 
-    </header>
-    <%= content_tag :div, class: "body" do %>
-    <%= content_tag :div, class: "body-2" do %>
-    <h1> ChampionList </h1>
-    <%end%>
-    <p> esta vai ser a pagina home<p>
-    <% end %> 
-    </body>
-    <footer>
-         <%= content_tag :div, class: "roda-pe" do %>
-        <h2> Aqui sera o roda pé </h2>
+        <%= render 'shared/header' %>
+        <%= content_tag :div, class: "body" do %>
+        <%= content_tag :div, class: "body-2" do %>
+        <h1> Categorias de esportes: </h1>
         <%end%>
-    </footer>
+        <button> PUBG: Battlegrounds </button>
+        <% end %>
+        <%= render "shared/footer"%>
+    </body>
 </html>

@@ -1,0 +1,184 @@
+<style>
+         .classOne{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                align-content: flex-start;
+                background-color: #FFBD59;
+             }
+        .body{
+            height: 100%%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+        .button{
+            color: yellow;
+            background-color: #0C2D4D;
+            height: 50px;
+            width: 100px;
+            font-size: 20px;
+            font-family: Helvetica;
+        }
+        .roda-pe{
+            color:  black ;
+            background-color: #FFBD59; 
+            height: 110px;
+            width: 2000px
+             }
+               .content{
+                height: 100%;
+            }
+            .cadastrar{
+                border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+                padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
+                padding-top: 0px;
+                border-radius: 15px;
+                display: flex;
+                align-items: stretch;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                color: #0C2D4D;
+                font-family: Roboto ;
+                height: 330px;
+                width: 425px;
+                margin: auto;
+                margin-top: 30px;
+                text-align: center;
+            }
+            .login{
+                border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+                padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
+                padding-top: 30px;
+                border-radius: 15px;
+                display: flex;
+                align-items: stretch;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                color: #0C2D4D;
+                font-family: Roboto ;
+                height: 225px;
+                width: 425px;
+                margin: auto;
+                margin-top: 30px;
+                text-align: center;
+            }
+            .login h1{
+                margin-top: 0px;
+                font-size: 25px;
+                font-family: Helvetica;
+            }
+            .register{
+                color: yellow;
+                background-color:#0C2D4D;
+                height: 50px;
+                width: 400px;
+                font-size: 20px;
+               font-family: system-ui; 
+                border-radius: 10px;
+            }
+            .row{
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 5px;
+                margin-top: 15px;
+                align-items: center;}
+            label{
+                font-size: 20px;
+                }
+            input{
+                border-color: #11BFE8;
+                height: 25px;
+                width: 300px;
+                border-radius: 5px;
+                box-shadow: none;
+            }   
+            .cadastrar h1{
+                display: flex;
+                justify-content: flex-start;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                font-size: 28px;
+            }
+            .cadastrar hr{
+                border: 1px solid;
+                border-color:#FFA500;
+                width: 119%;
+                left: -40px;    
+                position: relative;
+                }
+                .new_user{
+                    font-family: system-ui;
+                }
+                .nome_usuario{
+                    display: flex;
+                    font-family: system-ui;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .foto_usuario{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .dropbtn {
+                background-color: #FFBD59;
+                color: white;
+                padding: 16px;
+                font-size: 16px;
+                border: none;
+                cursor: pointer;
+                }
+
+                /* Estilo para o conteúdo do dropdown */
+                .dropdown-content {
+                display: none;
+                position: absolute;
+                background-color: #f9f9f9;
+                min-width: 160px;
+                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+                z-index: 1;
+                }
+
+                /* Estilo para os links dentro do dropdown */
+                .dropdown-content a {
+                color: black;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                }
+
+                /* Estilo para os links quando o mouse passa por cima */
+                .dropdown-content a:hover {
+                background-color: #f1f1f1;
+                }
+
+                /* Mostra o conteúdo do dropdown quando o mouse passa por cima do botão */
+                .dropdown:hover .dropdown-content {
+                display: block;
+                }
+    </style>
+    <header>
+        <%= content_tag :div, class: "classOne" do %>
+            <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>
+            <% if current_user %>
+                <%= content_tag :div, class: "nome_usuario" do %>
+                        <%= content_tag :div, class: "foto_usuario" do %>
+                            <%= image_tag "Foto de perfil2.png", style: "width: 55px;" %>
+                        <div class="dropdown">
+                            <span  class="dropbtn"><%= current_user.name%></span>
+                            <i class="fa fa-caret-down"></i>
+                            <div class="dropdown-content">
+                                <%= button_to "Sair", sign_out_path, method: :delete, form_class: "logout-form dropbtn"%>
+                            </div>
+                        </div>
+                        <%end%>
+                <%end%> 
+            <% else %>
+                <%= button_to "Criar conta", "/register", method: :get, class: "button" %>
+            <% end %>
+        <% end %> 
+    </header>
