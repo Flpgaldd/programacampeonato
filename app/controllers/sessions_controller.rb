@@ -9,6 +9,7 @@ class SessionsController < ApplicationController
           session[:user_id] = @user.id
           redirect_to @user
     else
+      flash[:alert]= "Suas credencias estão invalidas!"
         render 'new'
     end
   end

@@ -3,6 +3,9 @@
      <%= content_tag :div, class: "login" do %>
      <h1>Faça seu login!!!</h1>
         <%= form_for :session, url: sign_in_path do |f| %>
+        <% if flash[:alert] %>
+        <div class="alert"><%= flash[:alert] %></div>
+        <% end %>
         <%= content_tag :div, class: "row" do %> 
             <%= f.label "Email:" %>
             <%= f.email_field :email, pattern: "[A-Za-z\@.]+", required: true %>
