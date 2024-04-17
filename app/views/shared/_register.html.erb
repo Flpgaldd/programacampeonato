@@ -1,0 +1,106 @@
+   <style>
+            .content{
+                height: 100%;
+            }
+            .cadastrar{
+                border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+                padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
+                padding-top: 0px;
+                border-radius: 15px;
+                display: flex;
+                align-items: stretch;
+                flex-wrap: nowrap;
+                flex-direction: column;
+                color: #0C2D4D;
+                font-family: Roboto ;
+                height: 350px;
+                width: 425px;
+                margin: auto;
+                margin-top: 30px;
+                text-align: center;
+            }
+            .register{
+                color: yellow;
+                background-color:#0C2D4D;
+                height: 50px;
+                width: 400px;
+                font-size: 20px;
+                font-family: Helvetica; 
+                border-radius: 10px;
+            }
+            .row{
+                display: flex;
+                justify-content: space-between;
+                margin-bottom: 5px;
+                margin-top: 15px;
+                align-items: center;}
+            label{
+                font-size: 20px;
+                }
+            input{
+                border-color: #11BFE8;
+                height: 25px;
+                width: 300px;
+                border-radius: 5px;
+                box-shadow: none;
+            }   
+            .cadastrar h1{
+                display: flex;
+                justify-content: flex-start;
+                margin-top: 0px;
+                margin-bottom: 0px;
+                font-size: 28px;
+            }
+            .cadastrar hr{
+                border: 1px solid;
+                border-color:#FFA500;
+                width: 119%;
+                left: -40px;    
+                position: relative;
+            }
+        </style>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                document.getElementById("senha").addEventListener("click", function() {
+                var senhaInput = document.getElementById("senha2");
+                if (senhaInput.type === "password") {
+                    senhaInput.type = "text";
+                } else {
+                    senhaInput.type = "password";
+                }
+                });
+            });
+        </script>
+ <div class= "content">
+            <%= content_tag :div, class: "cadastrar" do %>
+                <h1> Quero me cadastrar </h1>
+                <hr>
+               <%= form_with model: @user, url: users_path, method: "post" do |form| %>
+                    <%= content_tag :div, class: "row" do %> 
+                        <%= form.label "nome:" %>
+                        <%= form.text_field :name, pattern: "[A-Za-z\s']+", required: true %>
+                    <% end %>
+                   <%= content_tag :div, class: "row" do %> 
+                        <%= form.label "Sobrenome:" %>
+                        <%= form.text_field :middle_name, pattern: "[A-Za-z\s']+", required: true %>
+                    <% end %>
+                    <%= content_tag :div, class: "row" do %> 
+                        <%= form.label "Email:" %>
+                        <%= form.email_field :email, pattern: "[A-Za-z\@.]+", required: true %>
+                    <% end %>
+                    <%= content_tag :div, class: "row" do %> 
+                        <%= form.label "Senha:" %>
+                        <%= form.password_field :password, pattern: "[A-Za-z 0-9 s@.]+", minlength:8, id: "senha2", required: true %>
+                    <% end %>
+                    <%= form.check_box :exibir_senha, id: "senha" %>
+                    <%= form.label :exibir_senha, "Exibir senha", for: "senha" %>
+                
+                    <%= content_tag :div, class: "row" do %> 
+                        <%= form.submit "Criar conta", class: "register" %>
+                    <%end%>
+                    <%= content_tag :div, class: "new_user" do %>
+                    <p>Já tem uma conta? <%= link_to "Faça login", login_path %></p>
+                     <%end%>
+                <% end %>
+            <% end %>
+</div>

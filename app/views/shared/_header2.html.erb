@@ -1,0 +1,38 @@
+<style>
+         .classOne{
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                align-content: flex-start;
+                background-color: #FFBD59;
+             }   
+        .body{
+            height: 100%%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-color: white;
+             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+        .button{
+            color: yellow;
+            background-color: #0C2D4D;
+            height: 50px;
+            width: 125px;
+            font-size: 20px;
+            font-family: Helvetica;
+        }
+        .roda-pe{
+            color:  black ;
+            background-color: #FFBD59; 
+            height: 110px;
+            width: 2000px
+             }
+    </style>
+<header>
+    <%= content_tag :div, class: "classOne" do %>
+    <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>
+    <%= button_to "Faça login", login_path, method: :get, class: "button" %>
+    <% end %> 
+</header>   

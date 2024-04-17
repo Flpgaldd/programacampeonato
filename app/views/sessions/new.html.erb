@@ -1,0 +1,24 @@
+<%= render 'shared/header' %>
+<div class= "content">
+     <%= content_tag :div, class: "login" do %>
+     <h1>Faça seu login!!!</h1>
+        <%= form_for :session, url: sign_in_path do |f| %>
+        <%= content_tag :div, class: "row" do %> 
+            <%= f.label "Email:" %>
+            <%= f.email_field :email, pattern: "[A-Za-z\@.]+", required: true %>
+        <% end %>
+
+       <%= content_tag :div, class: "row" do %> 
+            <%= f.label "Senha:" %>
+            <%= f.password_field :password, pattern: "[A-Za-z 0-9 s@.]+", minlength:8, id: "senha2", required: true %>
+        <% end %>
+        <%= content_tag :div, class: "row" do %> 
+            <%= f.submit "Login", class: "register" %>
+        <%end%>
+            <%= content_tag :div, class: "new_user" do %>
+                <p>Novo usuario? <%= link_to "Cadastre-se", new_user_path %></p>
+            <%end%>
+        <% end %>
+    <%end%>
+</div>
+<%= render "shared/footer"%>
