@@ -8,12 +8,19 @@
                 background-color: #FFBD59;
              }
         .body{
-            height: 100%%;
+            height: 100%;
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             align-items: center;
             background-color: white;
-             font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            justify-content: space-between;
+            flex-wrap: nowrap;
+        }
+            .body-2{
+                display: flex;
+                flex-direction: column;
+                align-items: center;
             }
         .button{
             color: yellow;
@@ -125,7 +132,7 @@
                     align-items: center;
                 }
                 .dropbtn {
-                background-color: #FFBD59;
+                background-color: none;
                 color: white;
                 padding: 16px;
                 font-size: 16px;
@@ -161,30 +168,82 @@
                 display: block;
                 }
                 .alert{
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: row;
                     font-family: system-ui;
                     color: red;
                     background-color: #feefd0;
                     border-color: #fde9bd
                 }
+                .header{
+                width: 13%;
+                font-family: system-ui;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+                }
+                .button2{
+                    color: yellow;
+                    background-color: #0C2D4D;
+                    height: 50px;
+                    width: 150  px;
+                    font-size: 20px;
+                    font-family: Helvetica;
+                }
+                .Visualizar_campeonatos{
+                    font-family: system-ui;
+                    display: flex;
+                    justify-content: center;
+                    flex-direction: row;
+                    flex-wrap: nowrap;
+                    align-items: center;
+                }
+                .selecao{
+                margin-bottom: 20px;
+                }
+                .flash {
+                background-color: #ff0000;
+                color: #ffffff;
+                padding: 10px;
+                text-align: center;
+                }
+                .pubg{
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                }
+                .form{
+                margin-bottom: 5px;
+                }
+                .pubg select{
+                margin-bottom: 20px;
+                }
     </style>
     <header>
         <%= content_tag :div, class: "classOne" do %>
-            <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>
-            <% if current_user %>
-                <%= content_tag :div, class: "nome_usuario" do %>
-                        <%= content_tag :div, class: "foto_usuario" do %>
-                            <%= image_tag "Foto de perfil2.png", style: "width: 55px;" %>
-                        <div class="dropdown">
-                            <span  class="dropbtn"><%= current_user.name%></span>
-                            <i class="fa fa-caret-down"></i>
-                            <div class="dropdown-content">
-                                <%= button_to "Sair", sign_out_path, method: :delete, form_class: "logout-form dropbtn"%>
+            <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>  
+            <%= content_tag :div, class: "header" do %>
+            <a href="/home"> Home </a> 
+            <a href="/login"> Login </a>  
+                <% if current_user %>
+                    <%= content_tag :div, class: "nome_usuario" do %>
+                            <%= content_tag :div, class: "foto_usuario" do %>
+                                <%= image_tag "Foto de perfil2.png", style: "width: 55px;" %>
+                            <div class="dropdown">
+                                <span  class="dropbtn"><%= current_user.name%></span>
+                                <i class="fa fa-caret-down"></i>
+                                <div class="dropdown-content">
+                                    <%= button_to "Sair", sign_out_path, method: :delete, form_class: "logout-form dropbtn"%>
+                                </div>
                             </div>
-                        </div>
-                        <%end%>
-                <%end%> 
-            <% else %>
-                <%= button_to "Criar conta", "/register", method: :get, class: "button" %>
-            <% end %>
+                            <%end%>
+                    <%end%> 
+                <% else %>
+                    <%= button_to "Criar conta", "/register", method: :get, class: "button" %>
+                <% end %>
+            <%end%>
         <% end %> 
     </header>

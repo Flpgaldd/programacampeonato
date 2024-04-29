@@ -29,10 +29,23 @@
             height: 110px;
             width: 2000px
              }
+             .header{
+                width: 15%;
+                font-family: system-ui;
+                display: flex;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                justify-content: space-between;
+                align-items: center;
+                }
     </style>
 <header>
     <%= content_tag :div, class: "classOne" do %>
     <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>
-    <%= button_to "Faça login", login_path, method: :get, class: "button" %>
+    <%= content_tag :div, class: "header" do %>
+        <a href="/home"> Home </a> 
+        <a href="/champions"> Campeonatos </a>
+        <%= button_to "Faça login", login_path, method: :get, class: "button" %>
+        <%end%>  
     <% end %> 
 </header>   

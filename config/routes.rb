@@ -17,4 +17,6 @@ Rails.application.routes.draw do
   post '/register', to: 'users#create'
 
   get '/login', to: 'sessions#new', as: 'login'
+
+  get '/champions', to: 'champions#campeonato', as: 'champions'
 end

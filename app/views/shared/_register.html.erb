@@ -86,13 +86,13 @@
                     <% end %>
                     <%= content_tag :div, class: "row" do %> 
                         <%= form.label "Email:" %>
-                        <%= form.email_field :email, pattern: "[A-Za-z\@.]+", required: true %>
+                        <%= form.email_field :email, pattern: "[[A-Za-z 0-9 s@.]+", required: true %>
                     <% end %>
                     <%= content_tag :div, class: "row" do %> 
                         <%= form.label "Senha:" %>
                         <%= form.password_field :password, pattern: "[A-Za-z 0-9 s@.]+", minlength:8, id: "senha2", required: true %>
                     <% end %>
-                    <%= form.check_box :exibir_senha, id: "senha" %>
+                    <input type="checkbox" id="senha" name="exibir_senha" value="1">
                     <%= form.label :exibir_senha, "Exibir senha", for: "senha" %>
                 
                     <%= content_tag :div, class: "row" do %> 

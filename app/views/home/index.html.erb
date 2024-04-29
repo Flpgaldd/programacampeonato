@@ -6,11 +6,25 @@
     <body>
         <%= render 'shared/header' %>
         <%= content_tag :div, class: "body" do %>
-        <%= content_tag :div, class: "body-2" do %>
-        <h1> Categorias de esportes: </h1>
-        <%end%>
-        <button> PUBG: Battlegrounds </button>
+                <%= content_tag :div, class: "notices" do%>
+                    <h1>Noticias</h1>
+                <%end%>
+                <%= content_tag :div, class: "body-2" do %>
+                        <%= content_tag :div, class: "body-3" do%>
+                            <h1> Quer montar seu campeonato? </h1>
+                            <hr>
+                        <%end%>
+                    <h2>Clique aqui</h2>
+                    <%= button_to "Criar campeonatos", "/champions", method: :get, class: "button2", id: "createChampionshipButton" %>
+                <%end%>
+                <h1> Usuario </h1>
         <% end %>
+        <% if flash[:alert] %>
+        <div class="alert"><%= flash[:alert] %></div>
+        <% end %>
+        <%= content_tag :div, class: "Visualizar_campeonatos" do%>
+        <h1> Campeonatos recentes </h1>
+        <%end%>
         <%= render "shared/footer"%>
     </body>
 </html>

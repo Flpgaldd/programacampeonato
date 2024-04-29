@@ -1,0 +1,26 @@
+<html>
+    <head>
+    <title> Champions </title>
+    </head>
+    
+    <body>
+    <%= render 'shared/header' %>
+    <div class= " pubg ">
+    <h1> PUBG:Battlegrounds</h1>
+    <%= form_with model: @user, url: users_path, method: "post", class: "form" do |form| %>
+        <%= form.label "Nome:" %>
+        <%= form.text_field :name, pattern: "[A-Za-z\s']+", required: true %>
+        <h3> Tipo: </h3>
+        <select name="Tipo">
+        <option value="squad">Squad</option>
+        <option value="duo">Duo</option>
+        <option value="solo">Solo</option>
+        </select>
+    <%end%>
+        <%= button_to "Terminar seleção", "/campeonatos", method: :get, class:"button2" %>
+    </div>
+    <%= render "shared/footer"%>
+    </body>
+
+
+</html>
