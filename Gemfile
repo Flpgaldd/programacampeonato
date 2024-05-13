@@ -54,7 +54,7 @@ group :development do
   gem "web-console"
   gem "rspec-rails"
   gem "factory_bot_rails"
-
+  gem "pry"
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 

@@ -1,12 +1,28 @@
-<style>
-    .roda-pe{
-        color:  black ;
-        height: 110px;
-        width: 100%;
-    }
-</style>
 <footer>
     <%= content_tag :div, class: "roda-pe" do %>
-            <h2> Aqui sera o roda pé </h2>
-    <%end%>
-</footer> 
+    <div class="social">
+        <div class="social2">
+            <div class="insta"></div>
+                <a href="https://www.instagram.com/c.foxgames99/"target= "blank">
+                    <%= image_tag "instagram2.png", style: "width: 30px;" %>
+                </a>
+                <a href="https://contate.me/champion_list" target= "blank">
+                    <%= image_tag "whatsapp.png", style: "width: 30px;" %>
+                </a>
+                <a href="https://discord.gg/KnfqTbAs" target= "blank">
+                    <%= image_tag "discord.png", style: "width: 30px;" %>
+                </a>
+            </div>
+        </div>
+    </div>
+    <%end%> 
+    <hr>
+    <div class="footer1">
+        <div class="logo-footer">
+            <%= image_tag "Championlist4.png", style: "width: 300px;" %>
+        </div>
+        <div class="criadores">
+            <p>Este site foi feito por: <a href="https://www.instagram.com/flpgald/" target= "blank"> Flpfox </a></p>
+        </div>
+    </div>
+</footer>

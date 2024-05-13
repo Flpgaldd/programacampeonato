@@ -11,7 +11,7 @@ Rails.application.routes.draw do
   # root "posts#index"
   root "home#index"
 
-  get "/home", to: "home#index"
+  get "/home", to: "home#index", as: "home"
  resources :users
   get '/register', to: 'users#new'
   post '/register', to: 'users#create'
@@ -19,4 +19,10 @@ Rails.application.routes.draw do
   get '/login', to: 'sessions#new', as: 'login'
 
   get '/champions', to: 'champions#campeonato', as: 'champions'
+
+  get '/perfil', to: 'perfil#usuario', as: 'perfil'
+
+  resources :champions
+
+  resources :champions, only: [:create]
 end

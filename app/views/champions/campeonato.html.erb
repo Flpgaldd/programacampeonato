@@ -35,7 +35,7 @@
                 </div>   
                 <div class= "selecao">
                     <h3> Qual é o tipo de partida? </h3>
-                    <select name="Tipo">
+                    <select name="championship[game_type]">
                     <option value="squad">Squad</option>
                     <option value="duo">Duo</option>
                     <option value="solo">Solo</option>
@@ -67,8 +67,11 @@
             </div>
 
             <div id="tab3" class="tab-content">
-                <%= button_to "Encerrar criação do evento", "/campeonatos", method: :get, class:"button2" %>
-            </div>
+                <form action="/campeonatos" method="post" class="form">
+                  <!-- Inclua aqui os campos de formulário para outras informações, se houver -->
+                  <%= button_tag "Encerrar criação do evento", type: :submit, class: "button2" %>
+                </form>
+              </div>
             <script>
                 function openTab(tabName) {
                 var i, tabContent;
