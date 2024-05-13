@@ -13,7 +13,7 @@
                 flex-direction: column;
                 color: #0C2D4D;
                 font-family: Roboto ;
-                height: 350px;
+                height: auto;
                 width: 425px;
                 margin: auto;
                 margin-top: 30px;
@@ -58,6 +58,9 @@
                 left: -40px;    
                 position: relative;
             }
+            #error_explanation div {
+                list-style-type: none;
+              }
         </style>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
@@ -71,26 +74,35 @@
                 });
             });
         </script>
- <div class= "content">
+            <div class= "content">
             <%= content_tag :div, class: "cadastrar" do %>
                 <h1> Quero me cadastrar </h1>
                 <hr>
+                <% if @user.errors.any? %>
+                    <div id="error_explanation", class="alert">
+                        <ul>
+                            <% @user.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                        </ul>
+                    </div> 
+                <% end %>
                <%= form_with model: @user, url: users_path, method: "post" do |form| %>
                     <%= content_tag :div, class: "row" do %> 
                         <%= form.label "nome:" %>
-                        <%= form.text_field :name, pattern: "[A-Za-z\s']+", required: true %>
+                        <%= form.text_field :name, pattern: "[A-Za-z\s']+" %>
                     <% end %>
                    <%= content_tag :div, class: "row" do %> 
                         <%= form.label "Sobrenome:" %>
-                        <%= form.text_field :middle_name, pattern: "[A-Za-z\s']+", required: true %>
+                        <%= form.text_field :middle_name, pattern: "[A-Za-z\s']+" %>
                     <% end %>
                     <%= content_tag :div, class: "row" do %> 
                         <%= form.label "Email:" %>
-                        <%= form.email_field :email, pattern: "[[A-Za-z 0-9 s@.]+", required: true %>
+                        <%= form.email_field :email %>
                     <% end %>
                     <%= content_tag :div, class: "row" do %> 
                         <%= form.label "Senha:" %>
-                        <%= form.password_field :password, pattern: "[A-Za-z 0-9 s@.]+", minlength:8, id: "senha2", required: true %>
+                        <%= form.password_field :password, pattern: "[A-Za-z 0-9 s@.]+", id: "senha2" %>
                     <% end %>
                     <input type="checkbox" id="senha" name="exibir_senha" value="1">
                     <%= form.label :exibir_senha, "Exibir senha", for: "senha" %>

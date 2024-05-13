@@ -7,7 +7,7 @@
         <%= render 'shared/header' %>
         <%= content_tag :div, class: "body" do %>
                 <%= content_tag :div, class: "notices" do%>
-                    <h1>Noticias</h1>
+                    <h2>Noticías recentes</h2>
                 <%end%>
                 <%= content_tag :div, class: "body-2" do %>
                         <%= content_tag :div, class: "body-3" do%>
@@ -17,7 +17,10 @@
                     <h2>Clique aqui</h2>
                     <%= button_to "Criar campeonatos", "/champions", method: :get, class: "button2", id: "createChampionshipButton" %>
                 <%end%>
-                <h1> Usuario </h1>
+                <div class="Usuario">
+                <h2>Entre no seu perfil!!!</h2>
+                <%= button_to "Perfil de usuario", "/perfil", method: :get, class: "button2"%>
+                </div>
         <% end %>
         <% if flash[:alert] %>
         <div class="alert"><%= flash[:alert] %></div>

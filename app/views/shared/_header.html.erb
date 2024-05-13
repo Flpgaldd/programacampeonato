@@ -1,332 +1,411 @@
 <style>
-         .classOne{
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                align-content: flex-start;
-                background-color: #FFBD59;
-             }
+        .classOne{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-around;
+        align-content: flex-start;
+        background-color: #FFBD59;
+        }
+        .Classtwo{
+            display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        align-items: center;
+         }
+         .Classtwo h1{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         }
+         .Classtwo h2{
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+         }
+        .Classtwo button{
+                color: yellow;
+                background-color: #0C2D4D;
+                font-size: 20px;
+                font-family: Helvetica;
+                border-color: #11BFE8;
+                height: 60px;
+                width: 300px;
+                border-radius: 5px;
+                box-shadow: none;
+            }
         .body{
             height: 100%;
             display: flex;
             flex-direction: row;
             align-items: center;
             background-color: white;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            justify-content: space-between;
+            font-family: "inlander";
+            color: #003d7b;
             flex-wrap: nowrap;
+            justify-content: space-around;
         }
-            .body-2{
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-            }
+        .body-2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
         .button{
-            color: yellow;
-            background-color: #0C2D4D;
-            height: 50px;
-            width: 100px;
-            font-size: 20px;
-            font-family: Helvetica;
+        color: yellow;
+        background-color: #0C2D4D;
+        height: 50px;
+        width: 100px;
+        font-size: 20px;
+        font-family: Helvetica;
+        }
+        .footer{
+        background: #000;
+        color: hsla(0, 0%, 100%, .7);
+        position: relative;
         }
         .roda-pe{
-            color:  black ;
-            background-color: #FFBD59; 
-            height: 110px;
-            width: 2000px
-             }
-               .content{
-                height: 100%;
-            }
-            .cadastrar{
-                border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
-                padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
-                padding-top: 0px;
-                border-radius: 15px;
-                display: flex;
-                align-items: stretch;
-                flex-wrap: nowrap;
-                flex-direction: column;
-                color: #0C2D4D;
-                font-family: Roboto ;
-                height: 330px;
-                width: 425px;
-                margin: auto;
-                margin-top: 30px;
-                text-align: center;
-            }
-            .login{
-                border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
-                padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
-                padding-top: 30px;
-                border-radius: 15px;
-                display: flex;
-                align-items: stretch;
-                flex-wrap: nowrap;
-                flex-direction: column;
-                color: #0C2D4D;
-                font-family: Roboto ;
-                height: 225px;
-                width: 425px;
-                margin: auto;
-                margin-top: 30px;
-                text-align: center;
-            }
-            .login h1{
-                margin-top: 0px;
-                font-size: 25px;
-                font-family: Helvetica;
-            }
-            .register{
-                color: yellow;
-                background-color:#0C2D4D;
-                height: 50px;
-                width: 400px;
-                font-size: 20px;
-               font-family: system-ui; 
-                border-radius: 10px;
-            }
-            .row{
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 5px;
-                margin-top: 15px;
-                align-items: center;}
-            label{
-                font-size: 20px;
-                }
-            input{
-                border-color: #11BFE8;
-                height: 25px;
-                width: 300px;
-                border-radius: 5px;
-                box-shadow: none;
-            }   
-            .cadastrar h1{
-                display: flex;
-                justify-content: flex-start;
-                margin-top: 0px;
-                margin-bottom: 0px;
-                font-size: 28px;
-            }
-            .cadastrar hr{
-                border: 1px solid;
-                border-color:#FFA500;
-                width: 119%;
-                left: -40px;    
-                position: relative;
-                }
-                .new_user{
-                    font-family: system-ui;
-                }
-                .nome_usuario{
-                    display: flex;
-                    font-family: system-ui;
-                    flex-direction: column;
-                    align-items: center;
-                }
-                .foto_usuario{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-                .dropbtn {
-                background-color: none;
-                color: white;
-                padding: 16px;
-                font-size: 16px;
-                border: none;
-                cursor: pointer;
-                }
-
-                /* Estilo para o conteúdo do dropdown */
-                .dropdown-content {
-                display: none;
-                position: absolute;
-                background-color: #f9f9f9;
-                min-width: 160px;
-                box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-                z-index: 1;
-                }
-
-                /* Estilo para os links dentro do dropdown */
-                .dropdown-content a {
-                color: black;
-                padding: 12px 16px;
-                text-decoration: none;
-                display: block;
-                }
-
-                /* Estilo para os links quando o mouse passa por cima */
-                .dropdown-content a:hover {
-                background-color: #f1f1f1;
-                }
-
-                /* Mostra o conteúdo do dropdown quando o mouse passa por cima do botão */
-                .dropdown:hover .dropdown-content {
-                display: block;
-                }
-                .alert{
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: row;
-                    font-family: system-ui;
-                    color: red;
-                    background-color: #feefd0;
-                    border-color: #fde9bd
-                }
-                .header{
-                width: 13%;
-                font-family: system-ui;
-                display: flex;
-                flex-direction: row;
-                flex-wrap: nowrap;
-                justify-content: space-between;
-                align-items: center;
-                }
-                .button2{
-                    color: yellow;
-                    background-color: #0C2D4D;
-                    height: 50px;
-                    width: 150  px;
-                    font-size: 20px;
-                    font-family: Helvetica;
-                }
-                .Visualizar_campeonatos{
-                    font-family: system-ui;
-                    display: flex;
-                    justify-content: center;
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                    align-items: center;
-                }
-                .flash {
-                background-color: #ff0000;
-                color: #ffffff;
-                padding: 10px;
-                text-align: center;
-                }
-                .form{
-                margin-bottom: 10px;
-                }
-                .pubg{
-                    display: flex;
-                    flex-direction: column;
-                    align-items: center;
-                }
-                .selecao{
-                   display: flex;
-                    flex-direction: row;
-                    flex-wrap: nowrap;
-                    justify-content: flex-start;
-                    align-items: center;
-                }
-                .selecao h3{
-                    margin-bottom: 0px;
-                    margin-top: 0px;
-                }
-                .selecao select{
-                    margin-left: 10px;
-                    width:30%;
-                    height:30px;
-                }
-                .data{
-                    margin-bottom: 30px;
-                    display: flex;
-                    flex-direction: column;
-                    align-items: flex-start;
-                }
-                .data1{
-                    margin-bottom: 20px;
-                }
-                .tabs{
-                    left: -40px;
-                    width: 119%;
-                    height: 7%;
-                    margin-bottom: 20px;
-                    background: #F8D89D;
-                    position:relative;
-                    border-radius: 12px;
-                }
-                .tab-content {
-                display: none;
-                }
-
-                .tab-content.active {
-                display: block;
-                }
-                .tabs button{
-                    width: 125px;
-                    height: 35px;
-                    border-color: #FFB938;
-                    background: #F8D89D;
-                    position: relative;
-                    border-radius: 12px;
-                }
-                .tabs button:hover {
-                    background-color: #FFC107; /* Altere a cor de fundo no hover */
-                }
-                .descricao textarea{
-                        height: 100px;
-                        width: 400px;
-                }
-                .regras textarea{
-                        height: 100px;
-                        width: 400px;
-                }
-                .adicionais textarea{
-                        height: 100px;
-                        width: 400px;
-                }
-                .campeonato{
-                        border: 2px solid #FFA500;
-                        padding: 40px;
-                        padding-top: 0px;
-                        border-radius: 15px;
-                        display: flex;
-                        align-items: stretch;
-                        flex-wrap: nowrap;
-                        flex-direction: column;
-                        color: #0C2D4D;
-                        font-family: Roboto;
-                        height: 500px;
-                        width: 425px;
-                        margin: auto;
-                        margin-top: 30px;
-                        text-align: center;
-                }
-                .campeonato hr{
-                border: 1px solid;
-                border-color:#FFA500;
-                width: 100%;
-                left: 0px;    
-                position: relative;
-                margin-top: 0px;
-                }
+            margin-top: 20px;
+        background-color: #f49d19;
+        -moz-column-gap: 20px;
+        column-gap: 20px;
+        display: flex;
+        justify-content: center;
+        padding: 32px;
+        row-gap: 20px;
+        }
+        .footer1{
+        background: #f49d19;
+        align-items: center;
+        -moz-column-gap: 20px;
+        column-gap: 20px;
+        display: flex;
+        height: 350px;
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 3000px;
+        padding-left: 40px;
+        padding-right: 40px;
+        transition: .2s ease-in-out;
+        flex-direction: column;
+        flex-wrap: nowrap;
+        }
+        .hr1{
+        color: #f49d19;
+        }
+        .content{
+        height: 100%;
+        }
+        .cadastrar{
+        border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+        padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
+        padding-top: 0px;
+        border-radius: 15px;
+        display: flex;
+        align-items: stretch;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        color: #0C2D4D;
+        font-family: Roboto ;
+        height: auto;
+        width: 425px;
+        margin: auto;
+        margin-top: 30px;
+        text-align: center;
+        }
+        .login{
+        border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+        padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
+        padding-top: 30px;
+        border-radius: 15px;
+        display: flex;
+        align-items: stretch;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        color: #0C2D4D;
+        font-family: Roboto ;
+        height: 225px;
+        width: 425px;
+        margin: auto;
+        margin-top: 30px;
+        text-align: center;
+        }
+        .login h1{
+        margin-top: 0px;
+        font-size: 25px;
+        font-family: Helvetica;
+        }
+        .register{
+        color: yellow;
+        background-color:#0C2D4D;
+        height: 50px;
+        width: 400px;
+        font-size: 20px;
+        font-family: system-ui;
+        border-radius: 10px;
+        }
+        .row{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        margin-top: 15px;
+        align-items: center;}
+        label{
+        font-size: 20px;
+        }
+        input{
+        border-color: #11BFE8;
+        height: 25px;
+        width: 300px;
+        border-radius: 5px;
+        box-shadow: none;
+        }
+        .cadastrar h1{
+        display: flex;
+        justify-content: flex-start;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 28px;
+        }
+        .cadastrar hr{
+        border: 1px solid;
+        border-color:#FFA500;
+        width: 119%;
+        left: -40px;
+        position: relative;
+        }
+        .new_user{
+        font-family: system-ui;
+        }
+        .nome_usuario{
+        display: flex;
+        font-family: system-ui;
+        flex-direction: column;
+        align-items: center;
+        }
+        .foto_usuario{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+        .dropbtn {
+        background-color: none;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        border: none;
+        cursor: pointer;
+        }
+        /* Estilo para o conteúdo do dropdown */
+        .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        }
+        /* Estilo para os links dentro do dropdown */
+        .dropdown-content a {
+        color: black;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        }
+        /* Estilo para os links quando o mouse passa por cima */
+        .dropdown-content a:hover {
+        background-color: #f1f1f1;
+        }
+        /* Mostra o conteúdo do dropdown quando o mouse passa por cima do botão */
+        .dropdown:hover .dropdown-content {
+        display: block;
+        }
+        .alert{
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        font-family: system-ui;
+        color: red;
+        background-color: #feefd0;
+        border-color: #fde9bd
+        }
+        .alert li{
+            list-style-type: none;
+        }
+        .header{
+        width: 13%;
+        font-family: system-ui;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        }
+        .button2{
+        color: yellow;
+        background-color: #0C2D4D;
+        height: 50px;
+        width: 150  px;
+        font-size: 20px;
+        font-family: Helvetica;
+        }
+        .Visualizar_campeonatos{
+        font-family: system-ui;
+        display: flex;
+        justify-content: center;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        align-items: center;
+        }
+        .flash {
+        background-color: #ff0000;
+        color: #ffffff;
+        padding: 10px;
+        text-align: center;
+        }
+        .form{
+        margin-bottom: 10px;
+        }
+        .pubg{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        }
+        .selecao{
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: flex-start;
+        align-items: center;
+        }
+        .selecao h3{
+        margin-bottom: 0px;
+        margin-top: 0px;
+        }
+        .selecao select{
+        margin-left: 10px;
+        width:30%;
+        height:30px;
+        }
+        .data{
+        margin-bottom: 30px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        }
+        .data1{
+        margin-bottom: 20px;
+        }
+        .tabs{
+        left: -40px;
+        width: 119%;
+        height: 7%;
+        margin-bottom: 20px;
+        background: #F8D89D;
+        position:relative;
+        border-radius: 12px;
+        }
+        .tab-content {
+        display: none;
+        }
+        .tab-content.active {
+        display: block;
+        }
+        .tabs button{
+        width: 125px;
+        height: 35px;
+        border-color: #FFB938;
+        background: #F8D89D;
+        position: relative;
+        border-radius: 12px;
+        }
+        .tabs button:hover {
+        background-color: #FFC107; /* Altere a cor de fundo no hover */
+        }
+        .descricao textarea{
+        height: 100px;
+        width: 400px;
+        }
+        .regras textarea{
+        height: 100px;
+        width: 400px;
+        }
+        .adicionais textarea{
+        height: 100px;
+        width: 400px;
+        }
+        .campeonato{
+        border: 2px solid #FFA500;
+        padding: 40px;
+        padding-top: 0px;
+        border-radius: 15px;
+        display: flex;
+        align-items: stretch;
+        flex-wrap: nowrap;
+        flex-direction: column;
+        color: #0C2D4D;
+        font-family: Roboto;
+        height: 500px;
+        width: 425px;
+        margin: auto;
+        margin-bottom: 20px;
+        margin-top: 30px;
+        text-align: center;
+        }
+        .campeonato hr{
+        border: 1px solid;
+        border-color:#FFA500;
+        width: 100%;
+        left: 0px;
+        position: relative;
+        margin-top: 0px;
+        }
+        .social{
+        width: 800px;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        }
+        .social2{
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 130px;
+        justify-content: space-between;
+        }
+        .criadores{
+        font-family: Helvetica;
+        font-size: 20px;
+        }
+        .Usuario{
+            display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-wrap: nowrap;
+        }
     </style>
     <header>
         <%= content_tag :div, class: "classOne" do %>
-            <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>  
+           <a href="/home">
+                <%= image_tag "championlist.png", style: "width: 125px;" %>
+            </a>
             <%= content_tag :div, class: "header" do %>
-            <a href="/home"> Home </a> 
-            <a href="/login"> Login </a>  
+            <a href="/home"> Home </a>
+            <a href="/login"> Login </a>
                 <% if current_user %>
                     <%= content_tag :div, class: "nome_usuario" do %>
                             <%= content_tag :div, class: "foto_usuario" do %>
+                            <a href="/perfil">
                                 <%= image_tag "Foto de perfil2.png", style: "width: 55px;" %>
+                            </a>
                             <div class="dropdown">
                                 <span  class="dropbtn"><%= current_user.name%></span>
                                 <i class="fa fa-caret-down"></i>
                                 <div class="dropdown-content">
                                     <%= button_to "Sair", sign_out_path, method: :delete, form_class: "logout-form dropbtn"%>
+                                    <%= button_to "Perfil", perfil_path, method: :get, form_class: "logout-form dropbtn    "%>
                                 </div>
                             </div>
                             <%end%>
-                    <%end%> 
+                    <%end%>
                 <% else %>
                     <%= button_to "Criar conta", "/register", method: :get, class: "button" %>
                 <% end %>
             <%end%>
-        <% end %> 
+        <% end %>
     </header>

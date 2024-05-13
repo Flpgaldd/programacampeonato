@@ -9,43 +9,10 @@
                 align-content: flex-start;
                 background-color: #FFBD59;
              }
-             .Classtwo{
-                display: flex;
-            flex-direction: column;
-            flex-wrap: wrap;
-            align-items: center;
-             }
-             .Classtwo h1{
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-             }
-             .Classtwo h2{
-                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-             }
-        .roda-pe{
-            color:  black ;
-            background-color: #FFBD59; 
-            height: 110px;
-            width: 2000px
-             }
-     .button{
-            color: yellow;
-            background-color: #0C2D4D;
-            font-size: 20px;
-            font-family: Helvetica;
-            border-color: #11BFE8;
-            height: 60px;
-            width: 300px;
-            border-radius: 5px;
-            box-shadow: none;
-        }
 </style>
 </head>
 <body>
-<header>
-    <%= content_tag :div, class: "classOne" do %>
-    <%= image_tag "Championlist.png", style: "heigth 125px; width: 125px;" %>
-    <% end %> 
-</header>
+   <%= render 'shared/header' %>
  <%= content_tag :div, class: "Classtwo" do %>
 <h1> Você já esta cadastrado </h1>
 <h2> Por favor, vá para a pagina home!!! </h2>
