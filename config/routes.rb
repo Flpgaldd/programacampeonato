@@ -18,7 +18,6 @@ Rails.application.routes.draw do
 
   get '/login', to: 'sessions#new', as: 'login'
 
-  get '/champions', to: 'champions#campeonato', as: 'champions'
 
   get '/perfil', to: 'perfil#usuario', as: 'perfil'
 

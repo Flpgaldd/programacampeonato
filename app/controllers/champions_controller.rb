@@ -1,12 +1,20 @@
+
+require "pry"
 class ChampionsController < ApplicationController
   before_action :authorize
-  def create
-    @champions = Champions.new(champions_params)
+  def new
 
-    if @champions.save
-      redirect_to @champions, notice: 'Campeonato criado com sucesso!'
-    else
-      render :new
+  end
+  def index
+
+  end
+  def create
+    binding.pry
+    @champions = Champions.new(championship_params)
+      if @champions.save
+        redirect_to @champions, flash: {success: "Campeonato criado com sucesso!!"}
+      else
+        render :new
     end
   end
 
@@ -14,14 +22,10 @@ class ChampionsController < ApplicationController
 
     end
 
-    def campeonato
-
-    end
-
     private
 
     def championship_params
-      params.require(:champions).permit(:name, :start_date, :end_date, :game_type, :description, :rules, :additional_info)
+      params.permit(:name, :start_date, :end_date, :game_type, :description, :rules, :additional_info)
     end
 
 end
