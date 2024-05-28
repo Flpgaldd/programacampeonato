@@ -1,0 +1,115 @@
+<html>
+        <head>
+        <title> Champions </title>
+        </head>
+                
+        <body>
+        <%= render 'shared/header' %>
+            <div class= " pubg ">
+                <h1> Campeonatos</h1>
+                <div class= "campeonato">
+                        <div class="tabs">
+                            <button id="tab1Button" class="tab-button selected"  onclick="openTab('tab1')">Informações</button>
+                            <button id="tab1Button" class="tab-button"  onclick="openTab('tab2')">Descrição</button>
+                            <button id="tab1Button" class="tab-button"  onclick="openTab('tab3')">Encerrar</button>
+                            <hr>
+                        </div>
+                        <% if @champions.present? %>
+                            <% if @champions.errors.any? %>
+                                <div id="error_explanation", class="alert">
+                                    <ul>
+                                        <% @champions.errors.full_messages.each do |message| %>
+                                            <li><%= message %></li>
+                                        <% end %>
+                                    </ul>
+                                </div> 
+                            <% end %>
+                        <% end %>
+                        <%= form_with model: @champions, url: champions_path, method: "post", class: "form" do |form| %>
+                            <div id="tab1" class="tab-content">
+                                <h1> Bem-vindo!!! </h1>
+                                <div class= "nome">
+                                    <%= form.label "Escreva o nome do evento:" %>
+                                    <%= form.text_field :name, pattern: "[A-Za-z\s']+"  %>
+                                </div>
+                                <div class= "data">
+                                        <div class= "data1">
+                                            <%= form.label "Data de Início:"%>
+                                            <%= form.date_field :start_date, required: true %>
+                                        </div>
+                                        <div class= "data2">
+                                            <%= form.label "Data de Término:"%>
+                                            <%=form.date_field :end_date, required: true %>
+                                        </div>
+                                </div> 
+                                <div class= "selecao">
+                                    <h3> Local de partida: </h3>
+                                    <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']] %>
+                                </div>
+                            </div>
+
+                            <div id="tab2" class="tab-content">
+                                <div class= "descricao">
+                                    <%= form.label "descricao"%>
+                                    <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                                </div>
+                                <div class= "regras">
+                                    <%= form.label "Regras"%>
+                                    <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                                </div>  
+                                <div class= "adicionais">
+                                    <%= form.label "Adicionais"%>
+                                    <%= form.text_area :additional_info, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                                </div>
+                            </div>
+                            <div id="tab3" class="tab-content">
+                                <!-- Inclua aqui os campos de formulário para outras informações, se houver -->
+                                <%= form.submit "Encerrar criação do evento", class: "button2" %>
+                            </div>
+                        <%end%>
+                            <script>
+                                
+                                function openTab(tabName) {
+                                var i, tabContent;
+                                tabContent = document.getElementsByClassName("tab-content");
+                                for (i = 0; i < tabContent.length; i++) {
+                                    tabContent[i].classList.remove("active");
+                                }
+                                document.getElementById(tabName).classList.add("active");
+                                }
+                                function openTab(tabId) {
+                                    // Remove a classe 'selected' de todos os botões de aba
+                                    document.querySelectorAll('.tab-button').forEach(function (button) {
+                                        button.classList.remove('selected');
+                                    });
+
+                                    // Adiciona a classe 'selected' ao botão correspondente
+                                    var tabButton = document.getElementById(tabId + 'Button');
+                                    if (tabButton) {
+                                        tabButton.classList.add('selected');
+                                    }
+
+                                    // Esconde todos os conteúdos de aba
+                                    document.querySelectorAll('.tab-content').forEach(function (content) {
+                                        content.style.display = 'none';
+                                    });
+
+                                    // Exibe o conteúdo da aba correspondente
+                                    var tabContent = document.getElementById(tabId);
+                                    if (tabContent) {
+                                        tabContent.style.display = 'block';
+                                    }
+                                }
+
+                                // Abre a primeira aba por padrão ao carregar a página
+                                window.onload = function() {
+                                    openTab('tab1');
+                                };
+                            </script>
+                </div>
+            </div>
+                <%= render "shared/footer"%>
+                </body>
+
+
+</html>
