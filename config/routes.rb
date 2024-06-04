@@ -21,6 +21,7 @@ Rails.application.routes.draw do
 
   get '/perfil', to: 'perfil#usuario', as: 'perfil'
 
+
   resources :champions
 
   resources :champions, only: [:create]
