@@ -1,115 +1,336 @@
-<html>
-        <head>
-        <title> Champions </title>
-        </head>
-                
-        <body>
-        <%= render 'shared/header' %>
-            <div class= " pubg ">
-                <h1> Campeonatos</h1>
-                <div class= "campeonato">
-                        <div class="tabs">
-                            <button id="tab1Button" class="tab-button selected"  onclick="openTab('tab1')">Informações</button>
-                            <button id="tab1Button" class="tab-button"  onclick="openTab('tab2')">Descrição</button>
-                            <button id="tab1Button" class="tab-button"  onclick="openTab('tab3')">Encerrar</button>
-                            <hr>
-                        </div>
-                        <% if @champions.present? %>
-                            <% if @champions.errors.any? %>
-                                <div id="error_explanation", class="alert">
-                                    <ul>
-                                        <% @champions.errors.full_messages.each do |message| %>
-                                            <li><%= message %></li>
-                                        <% end %>
-                                    </ul>
-                                </div> 
-                            <% end %>
-                        <% end %>
-                        <%= form_with model: @champions, url: champions_path, method: "post", class: "form" do |form| %>
-                            <div id="tab1" class="tab-content">
-                                <h1> Bem-vindo!!! </h1>
-                                <div class= "nome">
-                                    <%= form.label "Escreva o nome do evento:" %>
-                                    <%= form.text_field :name, pattern: "[A-Za-z\s']+"  %>
-                                </div>
-                                <div class= "data">
-                                        <div class= "data1">
-                                            <%= form.label "Data de Início:"%>
-                                            <%= form.date_field :start_date, required: true %>
-                                        </div>
-                                        <div class= "data2">
-                                            <%= form.label "Data de Término:"%>
-                                            <%=form.date_field :end_date, required: true %>
-                                        </div>
-                                </div> 
-                                <div class= "selecao">
-                                    <h3> Local de partida: </h3>
-                                    <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']] %>
-                                </div>
-                            </div>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>Champions</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-transform: capitalize;
+            background-color: white;
+            color: #003d7b;
+            flex-wrap: nowrap;
+        }
 
-                            <div id="tab2" class="tab-content">
-                                <div class= "descricao">
-                                    <%= form.label "descricao"%>
-                                    <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
-                                </div>
-                                <div class= "regras">
-                                    <%= form.label "Regras"%>
-                                    <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
-                                </div>  
-                                <div class= "adicionais">
-                                    <%= form.label "Adicionais"%>
-                                    <%= form.text_area :additional_info, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
-                                </div>
-                            </div>
-                            <div id="tab3" class="tab-content">
-                                <!-- Inclua aqui os campos de formulário para outras informações, se houver -->
-                                <%= form.submit "Encerrar criação do evento", class: "button2" %>
-                            </div>
-                        <%end%>
-                            <script>
-                                
-                                function openTab(tabName) {
-                                var i, tabContent;
-                                tabContent = document.getElementsByClassName("tab-content");
-                                for (i = 0; i < tabContent.length; i++) {
-                                    tabContent[i].classList.remove("active");
-                                }
-                                document.getElementById(tabName).classList.add("active");
-                                }
-                                function openTab(tabId) {
-                                    // Remove a classe 'selected' de todos os botões de aba
-                                    document.querySelectorAll('.tab-button').forEach(function (button) {
-                                        button.classList.remove('selected');
-                                    });
+        .progress {
+            margin-top: 10px;
+            position: absolute;
+            top: 15vh;
+            width: 0%;
+            height: 10px;
+            background-color: #2183DD;
+            transition: width .2s;
+        }
 
-                                    // Adiciona a classe 'selected' ao botão correspondente
-                                    var tabButton = document.getElementById(tabId + 'Button');
-                                    if (tabButton) {
-                                        tabButton.classList.add('selected');
-                                    }
+        .progress--1 { width: 20%; }
+        .progress--2 { width: 40%; }
+        .progress--3 { width: 60%; }
+        .progress--4 { width: 100%; }
 
-                                    // Esconde todos os conteúdos de aba
-                                    document.querySelectorAll('.tab-content').forEach(function (content) {
-                                        content.style.display = 'none';
-                                    });
+        .progress--complete { width: 100vw; }
 
-                                    // Exibe o conteúdo da aba correspondente
-                                    var tabContent = document.getElementById(tabId);
-                                    if (tabContent) {
-                                        tabContent.style.display = 'block';
-                                    }
-                                }
+        .progress__bg {
+            position: absolute;
+            width: 100vw;
+            height: 10px;
+            background-color: #E5E5E5;
+            z-index: -1;
+        }
 
-                                // Abre a primeira aba por padrão ao carregar a página
-                                window.onload = function() {
-                                    openTab('tab1');
-                                };
-                            </script>
-                </div>
+        .progress__step {
+            position: absolute;
+            top: -8px;
+            left: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .progress__step--1 { left: calc(20vw - 9px); }
+        .progress__step--2 { left: calc(40vw - 9px); }
+        .progress__step--3 { left: calc(60vw - 9px); }
+        .progress__step--4 { left: calc(80vw - 9px); }
+
+        .progress__step--active {
+            color: none;
+            font-weight: none;
+        }
+
+        .progress__step--complete .progress__indicator {
+            background-color: #009900;
+            border-color: #2183DD;
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress__step--complete .progress__indicator .fa {
+            display: block;
+        }
+
+        .progress__step--complete .progress__label {
+            font-weight: 600;
+            color: #009900;
+        }
+
+        .progress__indicator {
+            width: 25px;
+            height: 25px;
+            border: 2px solid #808080;
+            border-radius: 50%;
+            background-color: #FFFFFF;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .progress__indicator .fa {
+            display: none;
+            font-size: 16px;
+            color: white;
+        }
+
+        .progress__label {
+            position: absolute;
+            top: 40px;
+        }
+
+        .progress__actions {
+            position: absolute;
+            top: 75px;
+            left: 10px;
+            display: flex;
+            align-items: center;
+            width: max-content;
+        }
+
+        .btn {
+            width: fit-content;
+            padding: 5px 8px;
+            background-color: #FFFFFF;
+            border: 1px solid #808080;
+            border-radius: 5px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .btn:nth-child(2) {
+            margin: 0 10px;
+        }
+
+        .tabs {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: 100px; /* Adjust this value to fit your layout */
+            width: 800px;
+            height: 550px;
+            margin-bottom: 20px;
+            background: rgb(255, 255, 255);
+            box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
+            position:relative;
+            border-radius: 12px;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 10px;
+            width: 50%;
+            text-align: center;
+            margin: 0 auto;
+        }
+
+        .tab-content.active {
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            flex-wrap: nowrap;
+            align-items: center;
+            width: 400px;
+        }
+        .tabela{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .tab-content.active h1{
+            
+        }
+    </style>
+</head>
+<body>
+    <%= render 'shared/header3' %>
+    <div id="app" class="progress">
+        <div class="progress__bg"></div>
+        <div class="progress__step progress__step--1">
+            <div class="progress__indicator">
+                <i class="fa fa-check"></i>
             </div>
-                <%= render "shared/footer"%>
-                </body>
+            <div class="progress__label">Etapa 1</div>
+        </div>
+        <div class="progress__step progress__step--2">
+            <div class="progress__indicator">
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="progress__label">Etapa 2</div>
+        </div>
+        <div class="progress__step progress__step--3">
+            <div class="progress__indicator">
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="progress__label">Etapa 3</div>
+        </div>
+        <div class="progress__step progress__step--4">
+            <div class="progress__indicator">
+                <i class="fa fa-check"></i>
+            </div>
+            <div class="progress__label">Encerrar</div>
+        </div>
+        <div class="progress__actions">
+            <div class="btn" onclick="nextStep(false)">Back</div>
+            <div class="btn" onclick="nextStep(true)">Next</div>
+            <div>
+                Step: <span id="current-step">Start</span>
+            </div>
+        </div>
+    </div>
+    <% if @champions.present? %>
+    <% if @champions.errors.any? %>
+        <div id="error_explanation", class="alert">
+            <ul>
+                <% @champions.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                <% end %>
+            </ul>
+        </div> 
+    <% end %>
+<% end %>
+<div class="tabela">
+            <%= form_with model: @champions, url: champions_path, method: "post", class: "form" do |form| %>
+                <div class="tabs">
+                    <div class="tab-content active" id="tab-1">
+                        <h1> Bem-vindo!!! </h1>
+                            <div class= "nome">
+                                <%= form.label "Escreva o nome do evento:" %>
+                                <%= form.text_field :name, pattern: "[A-Za-z\s']+"  %>
+                            </div>
+                            <div class= "data">
+                                    <div class= "data1">
+                                        <%= form.label "Data de Início:"%>
+                                        <%= form.date_field :start_date, required: true %>
+                                    </div>
+                                    <div class= "data2">
+                                        <%= form.label "Data de Término:"%>
+                                        <%=form.date_field :end_date, required: true %>
+                                    </div>
+                            </div> 
+                            <div class= "selecao">
+                                <h3> Local de partida: </h3>
+                                <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']] %>
+                            </div>
+                            </div>
 
+                            <div class="tab-content" id="tab-2"> <div class= "descricao">
+                            <%= form.label "descricao"%>
+                            <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                        </div>
+                        <div class= "regras">
+                            <%= form.label "Regras"%>
+                            <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                        </div>  
+                        <div class= "adicionais">
+                            <%= form.label "Adicionais"%>
+                            <%= form.text_area :additional_info, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                        </div>
+                        </div>
+                        <div class="tab-content" id="tab-3">Content for Step 3</div>
+                            <div class="tab-content" id="tab-4"><%= form.submit "Encerrar criação do evento", class: "button2" %>
+                            </div>
+                        </div>
+                        
+                </div>
+            <%end%>
+</div>
+<%= render "shared/footer"%>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentStep = 1;
+            const steps = ['Etapa 1', 'Etapa 2', 'Etapa 3', 'Encerrar'];
+            
+            function updateProgress() {
+                const progress = document.querySelector('#app');
+                progress.className = 'progress progress--' + currentStep;
+                document.getElementById('current-step').innerText = steps[currentStep - 1];
+                openTab('tab-'+currentStep);
+                for (let i = 1; i <= steps.length; i++) {
+                    const stepElement = document.querySelector('.progress__step--' + i);
+                    const tabElement = document.getElementById('tab-' + i);
+                    stepElement.classList.remove('progress__step--complete', 'progress__step--active');
+                    tabElement.classList.remove('active');
+                    
+                    if (i <= currentStep) {
+                        stepElement.classList.add('progress__step--complete');
+                    }
+                    if (i === currentStep) {
+                        stepElement.classList.add('progress__step--active');
+                        tabElement.classList.add('active');
+                    }
+                }
+            }
 
+            window.nextStep = function(forward) {
+                if (forward) {
+                    currentStep = Math.min(currentStep + 1, steps.length);
+                } else {
+                    currentStep = Math.max(currentStep - 1, 1);
+                }
+               
+                updateProgress();
+            }
+
+            updateProgress();
+        });
+        function openTab(tabName) {
+          var i, tabContent;
+          tabContent = document.getElementsByClassName("tab-content");
+          for (i = 0; i < tabContent.length; i++) {
+              tabContent[i].classList.remove("active");
+          }
+          document.getElementById(tabName).classList.add("active");
+          }
+          function openTab(tabId) {
+              // Remove a classe 'selected' de todos os botões de aba
+              document.querySelectorAll('.tab-button').forEach(function (button) {
+                  button.classList.remove('selected');
+              });
+
+              // Adiciona a classe 'selected' ao botão correspondente
+              var tabButton = document.getElementById(tabId + 'Button');
+              if (tabButton) {
+                  tabButton.classList.add('selected');
+              }
+
+              // Esconde todos os conteúdos de aba
+              document.querySelectorAll('.tab-content').forEach(function (content) {
+                  content.style.display = 'none';
+              });
+
+              // Exibe o conteúdo da aba correspondente
+              var tabContent = document.getElementById(tabId);
+              if (tabContent) {
+                  tabContent.style.display = 'block';
+              }
+          }
+
+          // Abre a primeira aba por padrão ao carregar a página
+          window.onload = function() {
+              openTab('tab-1');
+          };
+    </script>
+</body>
 </html>
