@@ -124,12 +124,9 @@
         }
 
         .tabs {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
             margin-top: 100px; /* Adjust this value to fit your layout */
             width: 800px;
-            height: 550px;
+            height: 500px;
             margin-bottom: 20px;
             background: rgb(255, 255, 255);
             box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
@@ -147,9 +144,6 @@
 
         .tab-content.active {
             height: auto;
-            display: flex;
-            flex-direction: column;
-            flex-wrap: nowrap;
             align-items: center;
             width: 400px;
         }
@@ -159,8 +153,13 @@
             justify-content: center;
         }
         .tab-content.active h1{
-            
+            font-size: 50px;
+            margin-bottom: 50px;
         }
+        .data2{
+            margin-bottom: 50px;
+        }
+        
     </style>
 </head>
 <body>
@@ -236,7 +235,7 @@
                             </div>
 
                             <div class="tab-content" id="tab-2"> <div class= "descricao">
-                            <%= form.label "descricao"%>
+                            <%= form.label "Descrição"%>
                             <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
                         </div>
                         <div class= "regras">

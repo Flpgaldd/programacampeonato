@@ -8,7 +8,7 @@
         <% end %>
         <%= content_tag :div, class: "row" do %> 
             <%= f.label "Email:" %>
-            <%= f.email_field :email, pattern: "[A-Za-z\@.]+", required: true %>
+            <%= f.email_field :email, pattern: "[A-Za-z0-9@.]+", required: true %>
         <% end %>
 
        <%= content_tag :div, class: "row" do %> 
