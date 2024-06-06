@@ -22,7 +22,11 @@ Rails.application.routes.draw do
   get '/perfil', to: 'perfil#usuario', as: 'perfil'
 
 
-  resources :champions
+  get  '/champions/new', to: "champions#new", as: "champions_new"
 
-  resources :champions, only: [:create]
+  post '/champions', to: "champions#create", as: "champions"
+
+  get '/champions/:id', to: "champions#show", as: "champion"
+
+  get '/champions/', to: "champions#index", as: "champions_index"
 end
