@@ -3,17 +3,9 @@ require "pry"
 class ChampionsController < ApplicationController
   before_action :authorize
   def new
-
+@champions = Champions.new
   end
   def index
-    @steps = [
-      { label: 'Step 1' },
-      { label: 'Step 2' },
-      { label: 'Step 3' },
-      { label: 'Step 4' },
-      { label: 'Step 5' }
-    ]
-    @current_step = @steps.first
   end
 
   helper_method :progress_classes, :step_classes, :next_step_js
@@ -30,7 +22,6 @@ class ChampionsController < ApplicationController
     "nextStep(#{back})"
   end
   def create
-    binding.pry
     @champions = Champions.new(championship_params)
       if @champions.save
         redirect_to @champions, flash: {success: "Campeonato criado com sucesso!!"}
@@ -46,7 +37,7 @@ class ChampionsController < ApplicationController
     private
 
     def championship_params
-      params.permit(:name, :start_date, :end_date, :game_type, :description, :rules, :additional_info)
+      params.require(:champions).permit(:name, :start_date, :end_date, :game_type, :description, :rules, :additional_info)
     end
 
 end
