@@ -161,7 +161,7 @@
             margin-bottom: 50px;
         }
         .data2{
-            margin-bottom: 50px;
+            margin-bottom: 30px;
         }
     </style>
 </head>
@@ -185,7 +185,7 @@
             <div class="progress__indicator">
                 <i class="fa fa-check"></i>
             </div>
-            <div class="progress__label">Pontuação</div>
+            <div class="progress__label">Tipo</div>
         </div>
         <div class="progress__step progress__step--4">
             <div class="progress__indicator">
@@ -242,7 +242,16 @@
                         <%= form.text_area :additional_info, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
                     </div>
                 </div>    
-                    <div class="tab-content" id="tab-3">Aqui vai conter o tipo de Pontuação que vai ter.</div>
+                    <div class="tab-content" id="tab-3">
+                        <div class= "selecao">
+                            <h3> Tipo de campeonato: </h3>
+                            <%= form.select :game_type1, [['Selecione', ''], ['Mata-mata', 'mata-mata'], ['Classificatórias', 'classificatórias']] %>
+                        </div>
+                        <div class= "selecao">
+                            <h3> Tipo de partida: </h3>
+                            <%= form.select :game_type2, [['Selecione', ''], ['Solo', 'solo'], ['Duo', 'duo'],['Squad', 'squad']] %>
+                        </div>
+                    </div>
                     
                     <div class="tab-content" id="tab-4"><%= form.submit "Encerrar criação do evento", class: "button2" %>
                     </div>

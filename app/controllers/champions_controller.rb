@@ -6,6 +6,7 @@ class ChampionsController < ApplicationController
 @champions = Champions.new
   end
   def index
+    @champions = Champions.all
   end
 
   helper_method :progress_classes, :step_classes, :next_step_js
@@ -31,7 +32,7 @@ class ChampionsController < ApplicationController
   end
 
     def show
-
+      @champions = Champions.find(params[:id])
     end
 
     private

@@ -28,6 +28,9 @@
         <%= content_tag :div, class: "Visualizar_campeonatos" do%>
         <h1> Campeonatos recentes </h1>
         <%end%>
+        <div class="button3">
+        <%= button_to "Campeonatos criados", "/champions", method: :get, class: "button2"%>
+        </div>
         <%= render "shared/footer"%>
     </body>
 </html>

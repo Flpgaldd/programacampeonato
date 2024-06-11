@@ -5,7 +5,18 @@
 </head>
 <body>
     <%= render 'shared/header' %>
-    <h1>Parte onde os campeonatos irão ser exibidos</h1>
+    <div class="lista">
+    <h1>Lista de Campeonatos</h1>
+    </div>      
+<ul>
+  <% @champions.each do |champion| %>
+    <div class="campeonato1">
+        <h2>
+            <%=champion.name %>
+        </h2>
+    </div>
+  <% end %>
+</ul>
     <%= render "shared/footer"%>
 </body>
 </html>
