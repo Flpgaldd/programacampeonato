@@ -179,13 +179,13 @@
             <div class="progress__indicator">
                 <i class="fa fa-check"></i>
             </div>
-            <div class="progress__label">Informações</div>
+            <div class="progress__label">Tipo</div>
         </div>
         <div class="progress__step progress__step--3">
             <div class="progress__indicator">
                 <i class="fa fa-check"></i>
             </div>
-            <div class="progress__label">Tipo</div>
+            <div class="progress__label">Informações adicionais</div>
         </div>
         <div class="progress__step progress__step--4">
             <div class="progress__indicator">
@@ -229,31 +229,63 @@
                             <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']] %>
                         </div>
                     </div>
-                    <div class="tab-content" id="tab-2"> <div class= "descricao">
-                        <%= form.label "Descrição"%>
-                        <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
-                    </div>
-                    <div class= "regras">
-                        <%= form.label "Regras"%>
-                        <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
-                    </div>  
-                    <div class= "adicionais">
-                        <%= form.label "Adicionais"%>
-                        <%= form.text_area :additional_info, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
-                    </div>
-                </div>    
-                    <div class="tab-content" id="tab-3">
+                    <div class="tab-content" id="tab-2">
+                        <%= image_tag "championlist.png", style: "width: 125px;" %>
                         <div class= "selecao">
-                            <h3> Tipo de campeonato: </h3>
-                            <%= form.select :game_type1, [['Selecione', ''], ['Mata-mata', 'mata-mata'], ['Classificatórias', 'classificatórias']] %>
+                            <h3> Tipo de visão: </h3>
+                            <div class="tipo_visao">
+                                <div class="tpp">
+                                <%= form.radio_button :vision, 'tpp', id: 'tpp', class: 'input2' %>
+                                <%= form.label :vision, 'Tpp', for: 'tpp' %>
+                            </div>
+                            <div class="fpp">
+                                <%= form.radio_button :vision, 'fpp', id: 'fpp', class: 'input2' %>
+                                <%= form.label :vision, 'Fpp', for: 'fpp' %>
+                            </div>
+                              </div>
                         </div>
                         <div class= "selecao">
                             <h3> Tipo de partida: </h3>
-                            <%= form.select :game_type2, [['Selecione', ''], ['Solo', 'solo'], ['Duo', 'duo'],['Squad', 'squad']] %>
+                            <div class="tipo_partida">
+                                <div class="squad">
+                                <%= form.radio_button :team, 'squad', id: 'squad', class: 'input2' %>
+                                <%= form.label :vision, 'Squad', for: 'squad' %>
+                            </div>
+                            <div class="duo">
+                                <%= form.radio_button :team, 'duo', id: 'duo', class: 'input2' %>
+                                <%= form.label :vision, 'Duo', for: 'duo' %>
+                            </div>
+                            <div class="solo">
+                                <%= form.radio_button :team, 'solo', id: 'solo', class: 'input2' %>
+                                <%= form.label :vision, 'Solo', for: 'solo' %>
+                            </div>
+                              </div>
+                              <div class= "selecao1">
+                                <h3> Quantidade de partidas: </h3>
+                                <%= form.select :match_total, [['Selecione', ''], ['6 partidas', '6'], ['8 partidas', '8'], ['10 partidas', '10']] %>
+                            </div>
+                        </div>
+                </div>    
+                
+                    <div class="tab-content" id="tab-3">
+                        <%= image_tag "championlist.png", style: "width: 125px;" %>
+                        <div class= "descricao">
+                            <%= form.label "Descrição"%>
+                            <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                        <div class= "regras">
+                            <%= form.label "Regras"%>
+                            <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                        </div>  
+                        </div>
+                        <div class= "selecao2">
+                            <h3> Terá premiação? </h3>
+                            <%= form.select :premiation, [['Selecione', 'selecione'], ['Sim', 'sim'], ['Não', 'não']] %>
                         </div>
                     </div>
                     
-                    <div class="tab-content" id="tab-4"><%= form.submit "Encerrar criação do evento", class: "button2" %>
+                    <div class="tab-content" id="tab-4">
+                        <%= image_tag "championlist.png", style: "width: 125px;" %>
+                        <%= form.submit "Encerrar criação do evento", class: "button2" %>
                     </div>
                     <div class="progress__actions">
                         <div class="btn" onclick="nextStep(false)">Back</div>
