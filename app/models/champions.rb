@@ -1,8 +1,12 @@
 class Champions < ApplicationRecord
 
+
   validate :validate_presence_of_fields
   validate :validate_year
   validate :validate_end_date_after_start_date
+
+  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
+  validates_attachment_content_type :image, content_type: /\Aimage\/.*\z/
 
   private
 
@@ -14,6 +18,7 @@ class Champions < ApplicationRecord
     errors.add(:base, "O local de partida é obrigatório") if game_type.blank?
     errors.add(:base, "Tipo de visão é obrigatório") if vision.blank?
     errors.add(:base, "Tipo de partida é obrigatório") if team.blank?
+    errors.add(:base, "Tipo de pontuação é obrigatório") if pontuation.blank?
   end
 
   # Validate that the year of the dates is either the current year or the next years

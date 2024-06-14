@@ -2,11 +2,20 @@
 <hmtl>
     <head>
         <title> Champions </title>
+        <style>
+            .imagem img{
+                width: 250px;   
+            }
+        </style>
     </head>
 <body>
     <%= render 'shared/header' %>
     <%= content_tag :div, class: "Classtwo" do %>
         <h1>Campeonato criado com sucesso!!!</h1>
+
+        <div class="imagem">
+            <%= image_tag @champions.image.url(:medium) %>
+        </div>
         <h2>Crie mais campeonatos!!!</h2>
         <%= button_to "Criar mais campeonatos", "/champions/new", method: :get, class: "button2"%>
         <h2>Ou acesse os campeonatos já criados!!!</h2>
