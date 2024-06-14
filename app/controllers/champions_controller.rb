@@ -38,7 +38,7 @@ class ChampionsController < ApplicationController
     private
 
     def championship_params
-      params.require(:champions).permit(:name, :start_date, :end_date, :game_type, :vision, :team, :match_total, :description, :rules, :premiation )
+      params.require(:champions).permit(:name, :start_date, :end_date, :game_type, :vision, :pontuation, :team, :match_total, :description, :rules, :premiation, :image )
     end
 
 end

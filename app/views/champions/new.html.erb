@@ -163,6 +163,9 @@
         .data2{
             margin-bottom: 30px;
         }
+        #location_input_container {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -195,7 +198,7 @@
         </div>
     </div>
 <div class="tabela">
-            <%= form_with model: @champions, url: champions_path, method: "post", class: "form" do |form| %>
+            <%= form_with model: @champions, url: champions_path, html: { multipart: true }, method: "post", class: "form" do |form| %>
                 <div class="tabs">
                     <% if @champions.present? %>
                         <% if @champions.errors.any? %>
@@ -228,6 +231,10 @@
                             <h3> Local de partida: </h3>
                             <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']] %>
                         </div>
+                        <div id="location_input_container">
+                            <%= form.label :location, "Local:" %>
+                            <%= form.text_field :location, id: 'location_input' %>
+                          </div>
                     </div>
                     <div class="tab-content" id="tab-2">
                         <%= image_tag "championlist.png", style: "width: 125px;" %>
@@ -243,6 +250,10 @@
                                 <%= form.label :vision, 'Fpp', for: 'fpp' %>
                             </div>
                               </div>
+                              <div class= "selecao1">
+                                <h3> Tipo de pontuação: </h3>
+                                <%= form.select :pontuation, [['Selecione', ''], ['Apartir da 8° posição', 'Apartir da 8° posição(Padrão)'], ['Apartir da 16° posição', 'Apartir da 16° posição']] %>
+                            </div>
                         </div>
                         <div class= "selecao">
                             <h3> Tipo de partida: </h3>
@@ -285,6 +296,10 @@
                     
                     <div class="tab-content" id="tab-4">
                         <%= image_tag "championlist.png", style: "width: 125px;" %>
+                        <div class="image">
+                            <%= form.file_field :image, id: 'image_input' %>
+                            <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
+                        </div>
                         <%= form.submit "Encerrar criação do evento", class: "button2" %>
                     </div>
                     <div class="progress__actions">
@@ -335,6 +350,16 @@
             }
 
             updateProgress();
+            const selectElement = document.getElementById('game_type_select');
+            const locationInputContainer = document.getElementById('location_input_container');
+
+            selectElement.addEventListener('change', function() {
+                if (selectElement.value === 'presencial') {
+                    locationInputContainer.style.display = 'block';
+                } else {
+                    locationInputContainer.style.display = 'none';
+                }
+            });
         });
         function openTab(tabName) {
           var i, tabContent;
@@ -372,6 +397,25 @@
           window.onload = function() {
               openTab('tab-1');
           };
+          document.addEventListener('DOMContentLoaded', function() {
+            const imageInput = document.getElementById('image_input');
+            const imagePreview = document.getElementById('image_preview');
+        
+            imageInput.addEventListener('change', function(event) {
+              const file = event.target.files[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                  imagePreview.src = e.target.result;
+                  imagePreview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+              } else {
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+              }
+            });
+          });   
     </script>
 </body>
 </html>
