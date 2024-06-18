@@ -10,6 +10,7 @@ class Champions < ApplicationRecord
 
   private
 
+
   # Validate presence of required fields
   def validate_presence_of_fields
     errors.add(:base, "Nome é obrigatório") if name.blank?

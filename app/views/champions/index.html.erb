@@ -1,22 +1,60 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Champions</title>
+    <style>
+        .imagem img {
+            width: 80%; /* Define a largura da imagem, ajuste conforme necessário */
+            height: auto; /* Mantém a proporção da imagem */
+            display: block;
+            transition: transform 0.3s ease;
+        }
+        .imagem{
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            width: 250px;
+            height: 200px;
+        }
+        .imagem:hover img {
+            transform: scale(1.2); /* Ajuste o valor de escala conforme necessário */
+          }
+        .champion-container {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            height: 225px;
+        }
+
+        .champion-container .campeonato1 {
+            margin-left: 20px; /* Espaçamento entre imagem e nome do campeonato */
+        }
+    </style>
 </head>
 <body>
     <%= render 'shared/header' %>
-    <div class="lista">
-    <h1>Lista de Campeonatos</h1>
-    </div>      
+    <div class="lista2">
+        <h1>Lista de Campeonatos</h1>
+    </div> 
+    <div class="lista">   
 <ul>
   <% @champions.each do |champion| %>
-    <div class="campeonato1">
+  <li class="champion-container">
+    <div class="imagem zoom-image" onclick="window.location.href='<%= champion_path(champion) %>';">
+        <% if champion.image.present? %>
+            <%= image_tag champion.image.url(:medium), alt: champion.name  %>
+        <% end %>
+    </div>
+  <div class="campeonato1" onclick="window.location.href='<%= champion_path(champion) %>';">
         <h2>
-            <%=champion.name %>
+            <%=champion.name%>
         </h2>
     </div>
   <% end %>
 </ul>
+</div>  
     <%= render "shared/footer"%>
 </body>
 </html>

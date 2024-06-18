@@ -1,28 +1,42 @@
 <!DOCTYPE html>
-<hmtl>
+<html>
     <head>
         <title> Champions </title>
         <style>
             .imagem img{
                 width: 250px;   
             }
+            .button4{
+                display: flex;
+                justify-content: space-between;
+                flex-direction: row;
+                flex-wrap: nowrap;
+                width: 1700px;
+                      }
         </style>
     </head>
 <body>
     <%= render 'shared/header' %>
     <%= content_tag :div, class: "Classtwo" do %>
-        <h1>Campeonato criado com sucesso!!!</h1>
-
+    <div class="button4">
+        <%= button_to "Criar mais campeonatos", "/champions/new", method: :get, class: "button2"%>
+        <%= button_to "Campeonatos criados", "/champions/", method: :get, class: "button2"%>
+    </div>
         <div class="imagem">
             <%= image_tag @champions.image.url(:medium) %>
         </div>
-        <h2>Crie mais campeonatos!!!</h2>
-        <%= button_to "Criar mais campeonatos", "/champions/new", method: :get, class: "button2"%>
-        <h2>Ou acesse os campeonatos já criados!!!</h2>
-        <%= button_to "Campeonatos criados", "/champions/", method: :get, class: "button2"%>
+        <div class="Info"></div>
+            <h1><%= @champions.name %></h1>
+                <h3>Data de Início: <%= @champions.start_date %></h3>
+                <h3>Data de Término: <%= @champions.end_date %></h3>
+                <h3>Tipo de Jogo: <%= @champions.game_type %></h3>
+                <h3>Tipo de Visão: <%= @champions.vision %></h3>
+                <h3>Tipo de Time: <%= @champions.team %></h3>
+                <h3>Quantidade de Partidas: <%= @champions.match_total %></h3>
+                <h3>Premiação: <%= @champions.premiation %></h3>          
     <%end%>
     <%= render "shared/footer"%>    
 </body>
 
 
-</hmtl>
+</html>
