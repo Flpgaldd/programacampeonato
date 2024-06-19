@@ -12,6 +12,7 @@
                 flex-direction: row;
                 flex-wrap: nowrap;
                 width: 1700px;
+                margin-top: 10px;
                       }
         </style>
     </head>
@@ -19,8 +20,8 @@
     <%= render 'shared/header' %>
     <%= content_tag :div, class: "Classtwo" do %>
     <div class="button4">
-        <%= button_to "Criar mais campeonatos", "/champions/new", method: :get, class: "button2"%>
-        <%= button_to "Campeonatos criados", "/champions/", method: :get, class: "button2"%>
+            <%= button_to "Criar mais campeonatos", "/champions/new", method: :get, class: "button2"%>
+            <%= button_to "Campeonatos criados", "/champions/", method: :get, class: "button2"%>
     </div>
         <div class="imagem">
             <%= image_tag @champions.image.url(:medium) %>

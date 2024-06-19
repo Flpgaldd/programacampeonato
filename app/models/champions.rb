@@ -1,5 +1,5 @@
 class Champions < ApplicationRecord
-
+  belongs_to :user
 
   validate :validate_presence_of_fields
   validate :validate_year
