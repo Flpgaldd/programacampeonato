@@ -37,6 +37,10 @@
                 border-radius: 5px;
                 box-shadow: none;
             }
+        .button:hover button{
+            color: yellow;
+            background-color:  #2b84dd;
+        }
         .body{
             height: 100%;
             display: flex;
@@ -250,6 +254,11 @@
         width: 150  px;
         font-size: 20px;
         font-family: Helvetica;
+        border-radius: 10%;
+        }
+        .button2:hover{
+            color: yellow;
+            background-color:  #2b84dd;
         }
         .Visualizar_campeonatos{
             font-family: system-ui;
@@ -388,10 +397,12 @@
             margin-left: 780px;
             text-align: center;
             cursor: pointer;
+            transition: transform 0.3s ease;
             }
             .campeonato1:hover{
                 color: #f49d19;
                 background-color: #ffdd9f;
+                transform: scale(1.2);
             }
             .lista{
                 display: flex;
