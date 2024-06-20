@@ -1,1 +1,423 @@
-<h1>Vou editar os campeonatos aqui</h1>
+<html>
+    <head>
+        <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+        <title>
+            Editar campeonatos
+        </title>
+        <style>
+            body {
+                font-family: Arial;
+                text-transform: capitalize;
+                background-color: white;
+                color: #003d7b;
+                flex-wrap: nowrap;
+            }
+    
+            .progress {
+                margin-top: 10px;
+                position: absolute;
+                top: 15vh;
+                height: 10px;
+                background-color: #2183DD;
+                transition: width .2s;
+            }
+    
+            .progress--1 { width: 20%; }
+            .progress--2 { width: 40%; }
+            .progress--3 { width: 60%; }
+            .progress--4 { width: 100%; }
+    
+            .progress--complete { width: 100vw; }
+    
+            .progress__bg {
+                position: absolute;
+                width: 100vw;
+                height: 10px;
+                background-color: #E5E5E5;
+                z-index: -1;
+            }
+    
+            .progress__step {
+                position: absolute;
+                top: -8px;
+                left: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                text-align: center;
+            }
+    
+            .progress__step--1 { left: calc(20vw - 9px); }
+            .progress__step--2 { left: calc(40vw - 9px); }
+            .progress__step--3 { left: calc(60vw - 9px); }
+            .progress__step--4 { left: calc(80vw - 9px); }
+    
+            .progress__step--active {
+                color: none;
+                font-weight: none;
+            }
+    
+            .progress__step--complete .progress__indicator {
+                background-color: #009900;
+                border-color: #2183DD;
+                color: #FFFFFF;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .progress__step--complete .progress__indicator .fa {
+                display: block;
+            }
+    
+            .progress__step--complete .progress__label {
+                font-weight: 600;
+                color: #009900;
+            }
+    
+            .progress__indicator {
+                width: 25px;
+                height: 25px;
+                border: 2px solid #808080;
+                border-radius: 50%;
+                background-color: #FFFFFF;
+                margin-bottom: 10px;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+    
+            .progress__indicator .fa {
+                display: none;
+                font-size: 16px;
+                color: white;
+            }
+    
+            .progress__label {
+                position: absolute;
+                top: 40px;
+            }
+    
+            .progress__actions {
+                position: relative;
+                display: flex;
+                width: 97%;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                margin-left: 10px;
+            }
+     
+    
+            .btn {
+                width: fit-content;
+    
+                padding: 5px 8px;
+                font-size: 20px;
+                color:black;
+                background-color: #4acfd9;
+                box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
+                border-radius: 8px;
+                cursor: pointer;
+                user-select: none;
+            }
+    
+            .btn:nth-child(2) {
+                margin: 0 10px;
+            }
+    
+            .tabs {
+                margin-top: 100px; /* Adjust this value to fit your layout */
+                width: 800px;
+                height: auto;
+                padding-bottom: 10px;
+                margin-bottom: 20px;
+                background: rgb(255, 255, 255);
+                box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
+                position:relative;
+                border-radius: 12px;
+            }
+    
+            .tab-content {
+                display: none;
+                padding: 10px;
+                width: 50%;
+                text-align: center;
+                margin: 0 auto;
+            }
+            .tab-content.active {
+                height: 425px;
+                align-items: center;
+                width: 400px;
+            }
+            .tabela{
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+            }
+            .tab-content.active h1{
+                font-size: 50px;
+                margin-bottom: 50px;
+            }
+            .data2{
+                margin-bottom: 30px;
+            }
+            #location_input_container {
+                display: none;
+            }
+        </style>
+    </head>
+    <body>
+        <%= render 'shared/header3' %>   
+        <div id="app" class="progress">
+            <div class="progress__bg"></div>
+            <div class="progress__step progress__step--1">
+                <div class="progress__indicator">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="progress__label">Nome</div>
+            </div>
+            <div class="progress__step progress__step--2">
+                <div class="progress__indicator">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="progress__label">Tipo</div>
+            </div>
+            <div class="progress__step progress__step--3">
+                <div class="progress__indicator">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="progress__label">Informações adicionais</div>
+            </div>
+            <div class="progress__step progress__step--4">
+                <div class="progress__indicator">
+                    <i class="fa fa-check"></i>
+                </div>
+                <div class="progress__label">Encerrar</div>
+            </div>
+        </div>
+    <div class="tabela">
+        <%= form_with model: @champion, url: champions_update_path, html: { multipart: true }, method: "put", class: "form" do |form| %>
+                    <div class="tabs">
+                        <% if @champion.present? %>
+                            <% if @champion.errors.any? %>
+                                <div id="error_explanation", class="alert">
+                                    <ul>
+                                        <% @champion.errors.full_messages.each do |message| %>
+                                            <li><%= message %></li>
+                                        <% end %>
+                                    </ul>
+                                </div> 
+                            <% end %>
+                        <% end %>
+                        <div class="tab-content active" id="tab-1">
+                            <%= image_tag "championlist.png", style: "width: 125px;" %>
+                            <div class= "nome">
+                                <%= form.label "Nome do evento:" %>
+                                <%= form.text_field :name, pattern: "[A-Za-z\s']+", required:true%>
+                            </div>
+                            <div class= "data">
+                                    <div class= "data1">
+                                        <%= form.label "Data de Início:"%>
+                                        <%= form.date_field :start_date, required:true %>
+                                    </div>
+                                    <div class= "data2">
+                                        <%= form.label "Data de Término:"%>
+                                        <%=form.date_field :end_date, required: true%>
+                                    </div>
+                            </div> 
+                            <div class= "selecao">
+                                <h3> Local de partida: </h3>
+                                <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']], required:true %>
+                            </div>
+                            <div id="location_input_container">
+                                <%= form.label :location, "Local:" %>
+                                <%= form.text_field :location, id: 'location_input', required: true %>
+                              </div>
+                        </div>
+                        <div class="tab-content" id="tab-2">
+                            <%= image_tag "championlist.png", style: "width: 125px;" %>
+                            <div class= "selecao">
+                                <h3> Tipo de visão: </h3>
+                                <div class="tipo_visao">
+                                    <div class="tpp">
+                                    <%= form.radio_button :vision, 'tpp', id: 'tpp', class: 'input2' %>
+                                    <%= form.label :vision, 'Tpp', for: 'tpp', required: true %>
+                                </div>
+                                <div class="fpp">
+                                    <%= form.radio_button :vision, 'fpp', id: 'fpp', class: 'input2' %>
+                                    <%= form.label :vision, 'Fpp', for: 'fpp', required: true %>
+                                </div>
+                                  </div>
+                                  <div class= "selecao1">
+                                    <h3> Tipo de pontuação: </h3>
+                                    <%= form.select :pontuation, [['Selecione', ''], ['Apartir da 8° posição', 'Apartir da 8° posição(Padrão)'], ['Apartir da 16° posição', 'Apartir da 16° posição']], required: true %>
+                                </div>
+                            </div>
+                            <div class= "selecao">
+                                <h3> Tipo de partida: </h3>
+                                <div class="tipo_partida">
+                                    <div class="squad">
+                                    <%= form.radio_button :team, 'squad', id: 'squad', class: 'input2' %>
+                                    <%= form.label :vision, 'Squad', for: 'squad', required: true %>
+                                </div>
+                                <div class="duo">
+                                    <%= form.radio_button :team, 'duo', id: 'duo', class: 'input2' %>
+                                    <%= form.label :vision, 'Duo', for: 'duo', required: true %>
+                                </div>
+                                <div class="solo">
+                                    <%= form.radio_button :team, 'solo', id: 'solo', class: 'input2' %>
+                                    <%= form.label :vision, 'Solo', for: 'solo', required: true %>
+                                </div>
+                                  </div>
+                                  <div class= "selecao1">
+                                    <h3> Quantidade de partidas: </h3>
+                                    <%= form.select :match_total, [['Selecione', ''], ['6 partidas', '6'], ['8 partidas', '8'], ['10 partidas', '10']], required: true %>
+                                </div>
+                            </div>
+                    </div>    
+                    
+                        <div class="tab-content" id="tab-3">
+                            <%= image_tag "championlist.png", style: "width: 125px;" %>
+                            <div class= "descricao">
+                                <%= form.label "Descrição"%>
+                                <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto", required: true %>
+                            <div class= "regras">
+                                <%= form.label "Regras"%>
+                                <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto", required: true %>
+                            </div>  
+                            </div>
+                            <div class= "selecao2">
+                                <h3> Terá premiação? </h3>
+                                <%= form.select :premiation, [['Selecione', 'selecione'], ['Sim', 'sim'], ['Não', 'não']], required: true %>
+                            </div>
+                        </div>
+                        
+                        <div class="tab-content" id="tab-4">
+                            <%= image_tag "championlist.png", style: "width: 125px;" %>
+                            <div class="image">
+                                <%= form.file_field :image, id: 'image_input', required:true %>
+                                <%= image_tag @champion.image.url(:medium), id: 'image_preview', style: 'max-width: 200px; display: block;' %>
+                            </div>
+                            <div class="actions">
+                                <%= form.submit "Atualizar Campeonato", type: "button",  class: "button2", required: true %>
+                              </div>
+                        </div>
+                        <div class="progress__actions">
+                            <div class="btn" onclick="nextStep(false)">Back</div>
+                            <div class="botão1">
+                                <div class="btn" onclick="nextStep(true)">Next</div>
+                            </div>
+    
+                        </div>
+                    </div>
+                <%end%>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let currentStep = 1;
+            const steps = ['Nome', 'Informações', 'Não tem informações ainda', 'Encerrar'];
+            
+            function updateProgress() {
+                const progress = document.querySelector('#app');
+                progress.className = 'progress progress--' + currentStep;
+               //document.getElementById('current-step').innerText = steps[currentStep - 1];
+                openTab('tab-'+currentStep);
+                for (let i = 1; i <= steps.length; i++) {
+                    const stepElement = document.querySelector('.progress__step--' + i);
+                    const tabElement = document.getElementById('tab-' + i);
+                    stepElement.classList.remove('progress__step--complete', 'progress__step--active');
+                    tabElement.classList.remove('active');
+                    
+                    if (i <= currentStep) {
+                        stepElement.classList.add('progress__step--complete');
+                    }
+                    if (i === currentStep) {
+                        stepElement.classList.add('progress__step--active');
+                        tabElement.classList.add('active');
+                    }
+                }
+            }
+
+            window.nextStep = function(forward) {
+                if (forward) {
+                    currentStep = Math.min(currentStep + 1, steps.length);
+                } else {
+                    currentStep = Math.max(currentStep - 1, 1);
+                }
+               
+                updateProgress();
+            }
+
+            updateProgress();
+            const selectElement = document.getElementById('game_type_select');
+            const locationInputContainer = document.getElementById('location_input_container');
+
+            selectElement.addEventListener('change', function() {
+                if (selectElement.value === 'presencial') {
+                    locationInputContainer.style.display = 'block';
+                } else {
+                    locationInputContainer.style.display = 'none';
+                }
+            });
+        });
+        function openTab(tabName) {
+          var i, tabContent;
+          tabContent = document.getElementsByClassName("tab-content");
+          for (i = 0; i < tabContent.length; i++) {
+              tabContent[i].classList.remove("active");
+          }
+          document.getElementById(tabName).classList.add("active");
+          }
+          function openTab(tabId) {
+              // Remove a classe 'selected' de todos os botões de aba
+              document.querySelectorAll('.tab-button').forEach(function (button) {
+                  button.classList.remove('selected');
+              });
+
+              // Adiciona a classe 'selected' ao botão correspondente
+              var tabButton = document.getElementById(tabId + 'Button');
+              if (tabButton) {
+                  tabButton.classList.add('selected');
+              }
+
+              // Esconde todos os conteúdos de aba
+              document.querySelectorAll('.tab-content').forEach(function (content) {
+                  content.style.display = 'none';
+              });
+
+              // Exibe o conteúdo da aba correspondente
+              var tabContent = document.getElementById(tabId);
+              if (tabContent) {
+                  tabContent.style.display = 'block';
+              }
+          }
+
+          // Abre a primeira aba por padrão ao carregar a página
+          window.onload = function() {
+              openTab('tab-1');
+          };
+          document.addEventListener('DOMContentLoaded', function() {
+            const imageInput = document.getElementById('image_input');
+            const imagePreview = document.getElementById('image_preview');
+        
+            imageInput.addEventListener('change', function(event) {
+              const file = event.target.files[0];
+              if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                  imagePreview.src = e.target.result;
+                  imagePreview.style.display = 'block';
+                }
+                reader.readAsDataURL(file);
+              } else {
+                imagePreview.src = '';
+                imagePreview.style.display = 'none';
+              }
+            });
+          });   
+    </script>  
+    </body>
+</html>

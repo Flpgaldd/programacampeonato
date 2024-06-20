@@ -38,7 +38,7 @@
     <%end%>
     <div class="button4">
         <% if current_user == @champions.user %>
-            <%= button_to "Editar Campeonato", champions_put_path(@champions),method: :put, class: "button2" %>
+            <%= button_to "Editar Campeonato", champions_edit_path(@champions),method: :get, class: "button2" %>
         <%end%>
     </div>  
     <%= render "shared/footer"%>    
