@@ -36,6 +36,11 @@
                 <h3>Quantidade de Partidas: <%= @champions.match_total %></h3>
                 <h3>Premiação: <%= @champions.premiation %></h3>          
     <%end%>
+    <div class="button4">
+        <% if current_user == @champions.user %>
+            <%= button_to "Editar Campeonato", champions_put_path(@champions),method: :put, class: "button2" %>
+        <%end%>
+    </div>  
     <%= render "shared/footer"%>    
 </body>
 
