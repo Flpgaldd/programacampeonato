@@ -3,10 +3,10 @@ require "pry"
 class ChampionsController < ApplicationController
   before_action :authorize
   def new
-@champions = Champions.new
+    @champions = Champion.new
   end
   def index
-    @champions = Champions.all
+    @champions = Champion.all
   end
 
   helper_method :progress_classes, :step_classes, :next_step_js
@@ -23,7 +23,7 @@ class ChampionsController < ApplicationController
     "nextStep(#{back})"
   end
   def create
-    @champions = Champions.new(championship_params)
+    @champions = current_user.champions.new(championship_params)
       if @champions.save
         redirect_to @champions, flash: {success: "Campeonato criado com sucesso!!"}
       else
@@ -32,13 +32,16 @@ class ChampionsController < ApplicationController
   end
 
     def show
-      @champions = Champions.find(params[:id])
+      @champions = Champion.find(params[:id])
+    end
+
+    def edit
     end
 
     private
 
     def championship_params
-      params.require(:champions).permit(:name, :start_date, :end_date, :game_type, :vision, :pontuation, :team, :match_total, :description, :rules, :premiation, :image )
+      params.require(:champion).permit(:name, :start_date, :end_date, :game_type, :vision, :pontuation, :team, :match_total, :description, :rules, :premiation, :image )
     end
 
 end

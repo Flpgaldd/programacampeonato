@@ -1,4 +1,4 @@
-class Champions < ApplicationRecord
+class Champion < ActiveRecord::Base
   belongs_to :user
 
   validate :validate_presence_of_fields

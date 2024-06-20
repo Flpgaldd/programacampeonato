@@ -1,6 +1,6 @@
 require 'pry'
 class User < ActiveRecord::Base
-  has_many :champions
+  has_many :champions, dependent: :destroy
   has_secure_password
 
   VALID_EMAIL_FORMAT= /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i

@@ -29,4 +29,6 @@ Rails.application.routes.draw do
   get '/champions/:id', to: "champions#show", as: "champion"
 
   get '/champions/', to: "champions#index", as: "champions_index"
+
+  put '/champions/edit/:id', to: "champions#edit", as: "champions_put"
 end
