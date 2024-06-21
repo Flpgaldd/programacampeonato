@@ -199,7 +199,7 @@
             </div>
         </div>
     <div class="tabela">
-        <%= form_with model: @champion, url: champions_update_path(@champion), html: { multipart: true }, method: :post, class: "form" do |form| %>
+        <%= form_with model: @champion, url: champions_update_path(@champion), html: { multipart: true }, method: :put, class: "form" do |form| %>
                     <div class="tabs">
                         <% if @champion.present? %>
                             <% if @champion.errors.any? %>
