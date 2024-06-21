@@ -32,5 +32,5 @@ Rails.application.routes.draw do
 
   get '/champions/edit/:id', to: "champions#edit", as: "champions_edit"
 
-  put '/champions/update', to: "champions#update", as: "champions_update"
+  post '/champions/update/:id', to: "champions#update", as: "champions_update"
 end

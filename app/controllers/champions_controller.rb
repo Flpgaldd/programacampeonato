@@ -36,11 +36,13 @@ class ChampionsController < ApplicationController
     end
 
     def edit
-      @champion = Champion.find(params[:id])
+       @champion = Champion.find(params[:id])
     end
 
     def update
-      if @champions.update(championship_params)
+      @champions = Champion.find(params[:id])
+      
+      if @champions
         redirect_to @champions, notice: 'Campeonato atualizado com sucesso.'
       else
         render :edit
