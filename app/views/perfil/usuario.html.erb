@@ -1,10 +1,14 @@
 <html>
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Perfil de usuario
+    </title>
 </head>
 <body>
     <%= render 'shared/header' %>
-    <h1>Aqui vai ter as informações do user</h1>
+    <h1><%= current_user.name%></h1>
     <%= render "shared/footer"%>   
 </body>
 

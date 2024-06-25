@@ -199,7 +199,7 @@
             </div>
         </div>
     <div class="tabela">
-        <%= form_with model: @champion, url: champions_update_path, html: { multipart: true }, method: "put", class: "form" do |form| %>
+        <%= form_with model: @champion, url: champions_update_path, html: { multipart: true }, method: :patch, class: "form" do |form| %>
                     <div class="tabs">
                         <% if @champion.present? %>
                             <% if @champion.errors.any? %>
@@ -215,27 +215,23 @@
                         <div class="tab-content active" id="tab-1">
                             <%= image_tag "championlist.png", style: "width: 125px;" %>
                             <div class= "nome">
-                                <%= form.label "Nome do evento:" %>
-                                <%= form.text_field :name, pattern: "[A-Za-z\s']+", required:true%>
+                                <%= form.label :name, "Nome do evento" %>
+                                <%= form.text_field :name, required: true %>
                             </div>
                             <div class= "data">
                                     <div class= "data1">
-                                        <%= form.label "Data de Início:"%>
-                                        <%= form.date_field :start_date, required:true %>
+                                        <%= form.label :start_date, "Data de Início:"%>
+                                        <%= form.date_field :start_date %>
                                     </div>
                                     <div class= "data2">
-                                        <%= form.label "Data de Término:"%>
-                                        <%=form.date_field :end_date, required: true%>
+                                        <%= form.label :end_date, "Data de Término:"%>
+                                        <%=form.date_field :end_date %>
                                     </div>
                             </div> 
                             <div class= "selecao">
                                 <h3> Local de partida: </h3>
-                                <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']], required:true %>
+                                <%= form.select :game_type, [['Selecione', ''], ['Online', 'online']] %>
                             </div>
-                            <div id="location_input_container">
-                                <%= form.label :location, "Local:" %>
-                                <%= form.text_field :location, id: 'location_input', required: true %>
-                              </div>
                         </div>
                         <div class="tab-content" id="tab-2">
                             <%= image_tag "championlist.png", style: "width: 125px;" %>
@@ -244,11 +240,11 @@
                                 <div class="tipo_visao">
                                     <div class="tpp">
                                     <%= form.radio_button :vision, 'tpp', id: 'tpp', class: 'input2' %>
-                                    <%= form.label :vision, 'Tpp', for: 'tpp', required: true %>
+                                    <%= form.label :vision, 'Tpp', for: 'tpp' %>
                                 </div>
                                 <div class="fpp">
                                     <%= form.radio_button :vision, 'fpp', id: 'fpp', class: 'input2' %>
-                                    <%= form.label :vision, 'Fpp', for: 'fpp', required: true %>
+                                    <%= form.label :vision, 'Fpp', for: 'fpp' %>
                                 </div>
                                   </div>
                                   <div class= "selecao1">
@@ -261,20 +257,20 @@
                                 <div class="tipo_partida">
                                     <div class="squad">
                                     <%= form.radio_button :team, 'squad', id: 'squad', class: 'input2' %>
-                                    <%= form.label :vision, 'Squad', for: 'squad', required: true %>
+                                    <%= form.label :vision, 'Squad', for: 'squad' %>
                                 </div>
                                 <div class="duo">
                                     <%= form.radio_button :team, 'duo', id: 'duo', class: 'input2' %>
-                                    <%= form.label :vision, 'Duo', for: 'duo', required: true %>
+                                    <%= form.label :vision, 'Duo', for: 'duo' %>
                                 </div>
                                 <div class="solo">
                                     <%= form.radio_button :team, 'solo', id: 'solo', class: 'input2' %>
-                                    <%= form.label :vision, 'Solo', for: 'solo', required: true %>
+                                    <%= form.label :vision, 'Solo', for: 'solo' %>
                                 </div>
                                   </div>
                                   <div class= "selecao1">
                                     <h3> Quantidade de partidas: </h3>
-                                    <%= form.select :match_total, [['Selecione', ''], ['6 partidas', '6'], ['8 partidas', '8'], ['10 partidas', '10']], required: true %>
+                                    <%= form.select :match_total, [['Selecione', ''], ['6 partidas', '6'], ['8 partidas', '8'], ['10 partidas', '10']] %>
                                 </div>
                             </div>
                     </div>    
@@ -282,27 +278,31 @@
                         <div class="tab-content" id="tab-3">
                             <%= image_tag "championlist.png", style: "width: 125px;" %>
                             <div class= "descricao">
-                                <%= form.label "Descrição"%>
-                                <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto", required: true %>
+                                <%= form.label :description, "Descrição"%>
+                                <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "champion_description" %>
                             <div class= "regras">
-                                <%= form.label "Regras"%>
-                                <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto", required: true %>
+                                <%= form.label :rules, "Regras"%>
+                                <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "champion_rules" %>
                             </div>  
                             </div>
                             <div class= "selecao2">
                                 <h3> Terá premiação? </h3>
-                                <%= form.select :premiation, [['Selecione', 'selecione'], ['Sim', 'sim'], ['Não', 'não']], required: true %>
+                                <%= form.select :premiation, [['Selecione', 'selecione'], ['Sim', 'sim'], ['Não', 'não']] %>
                             </div>
                         </div>
                         
                         <div class="tab-content" id="tab-4">
                             <%= image_tag "championlist.png", style: "width: 125px;" %>
                             <div class="image">
-                                <%= form.file_field :image, id: 'image_input', required:true %>
+                                <%= form.file_field :image, id: 'image_input' %>
+                             <% if @champion.present? %>
                                 <%= image_tag @champion.image.url(:medium), id: 'image_preview', style: 'max-width: 200px; display: block;' %>
+                            <% else %>
+                            <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
+                            <%end%>
                             </div>
                             <div class="actions">
-                                <%= form.submit "Atualizar Campeonato", type: "button",  class: "button2", required: true %>
+                                <%= form.submit "Atualizar Campeonato",  class: "button2" %>
                               </div>
                         </div>
                         <div class="progress__actions">
@@ -352,8 +352,8 @@
             }
 
             updateProgress();
-            const selectElement = document.getElementById('game_type_select');
-            const locationInputContainer = document.getElementById('location_input_container');
+            var selectElement = document.getElementById('champion_game_type');
+            var locationInputContainer = document.getElementById('location_input_container');
 
             selectElement.addEventListener('change', function() {
                 if (selectElement.value === 'presencial') {

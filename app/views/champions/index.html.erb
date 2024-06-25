@@ -53,7 +53,7 @@
         <h2>
             <%=champion.name%>
         </h2>
-        <p>Criado por: <%= champion.user.name %></p>
+        <p>Criado por: <%= link_to champion.user.name, perfil_path(champion.user)%></p>
     </div>
   <% end %>
 </ul>

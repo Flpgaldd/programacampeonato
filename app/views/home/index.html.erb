@@ -7,7 +7,8 @@
         <%= render 'shared/header' %>
         <%= content_tag :div, class: "body" do %>
                 <%= content_tag :div, class: "notices" do%>
-                    <h2>Noticías recentes</h2>
+                    <h2>Equipes</h2>
+                    <%= button_to "Equipes cadastradas", "/team", method: :get, class: "button2"%>
                 <%end%>
                 <%= content_tag :div, class: "body-2" do %>
                         <%= content_tag :div, class: "body-3" do%>
