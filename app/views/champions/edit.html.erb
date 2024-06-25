@@ -199,7 +199,7 @@
             </div>
         </div>
     <div class="tabela">
-        <%= form_with model: @champion, url: champions_update_path(@champion), html: { multipart: true }, method: :put, class: "form" do |form| %>
+        <%= form_with model: @champion, url: champions_update_path, html: { multipart: true }, method: :patch, class: "form" do |form| %>
                     <div class="tabs">
                         <% if @champion.present? %>
                             <% if @champion.errors.any? %>
@@ -216,7 +216,7 @@
                             <%= image_tag "championlist.png", style: "width: 125px;" %>
                             <div class= "nome">
                                 <%= form.label :name, "Nome do evento" %>
-                                <%= form.text_field :name, pattern: "[A-Za-z\s']+", required: true %>
+                                <%= form.text_field :name, required: true %>
                             </div>
                             <div class= "data">
                                     <div class= "data1">
@@ -295,7 +295,11 @@
                             <%= image_tag "championlist.png", style: "width: 125px;" %>
                             <div class="image">
                                 <%= form.file_field :image, id: 'image_input' %>
+                             <% if @champion.present? %>
                                 <%= image_tag @champion.image.url(:medium), id: 'image_preview', style: 'max-width: 200px; display: block;' %>
+                            <% else %>
+                            <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
+                            <%end%>
                             </div>
                             <div class="actions">
                                 <%= form.submit "Atualizar Campeonato",  class: "button2" %>

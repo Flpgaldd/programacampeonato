@@ -2,6 +2,7 @@
 require "pry"
 class ChampionsController < ApplicationController
   before_action :authorize
+  before_action :set_champion, only: [:edit, :update, :show]
   def new
     @champions = Champion.new
   end
@@ -23,26 +24,25 @@ class ChampionsController < ApplicationController
     "nextStep(#{back})"
   end
   def create
-    @champions = current_user.champions.new(championship_params)
-      if @champions.save
-        redirect_to @champions, flash: {success: "Campeonato criado com sucesso!!"}
+    @champion = current_user.champions.new(championship_params)
+      if @champion.save
+        redirect_to @champion, flash: {success: "Campeonato criado com sucesso!!"}
       else
         render :new
     end
   end
 
     def show
-      @champions = Champion.find(params[:id])
+      @champion
     end
 
     def edit
-       @champion = Champion.find(params[:id])
+       @champion
     end
 
     def update
-      @champions = Champion.find(params[:id])
-      if  @champions.update(championship_params)
-        redirect_to @champions, notice: 'Campeonato atualizado com sucesso.'
+      if  @champion.update(championship_params)
+        redirect_to @champion, notice: 'Campeonato atualizado com sucesso.'
       else
         render :edit
       end

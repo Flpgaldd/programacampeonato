@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title> Champions </title>
+        <title> champion </title>
         <style>
-            .imagem img{
-                width: 250px;   
-            }
             .button4{
                 display: flex;
                 justify-content: space-between;
@@ -14,32 +11,108 @@
                 width: 1700px;
                 margin-top: 10px;
                       }
+            .info{
+                display: flex;
+                flex-direction: row;
+                margin-top: 20px;
+                height: auto;
+                width: 1750px;
+                flex-wrap: nowrap;
+                align-content: center;
+                align-items: flex-start;
+                justify-content: space-between;
+            }
+            .detalhes{
+                width: 545.33px;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                align-content: flex-start;
+            
+            }
+            .times{
+                width: 545.33px;
+                font-size: 30px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                background: #ffdd9f;
+                box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
+                position: relative;
+                border-radius: 12px;
+                height: 497px;
+                
+            }
+            .imagem img{
+                margin-top: 20px;
+                width: 100px;
+            }
         </style>
     </head>
 <body>
     <%= render 'shared/header' %>
     <%= content_tag :div, class: "Classtwo" do %>
-    <div class="button4">
-            <%= button_to "Criar mais campeonatos", "/champions/new", method: :get, class: "button2"%>
-            <%= button_to "Campeonatos criados", "/champions/", method: :get, class: "button2"%>
-    </div>
-        <div class="imagem">
-            <%= image_tag @champions.image.url(:medium) %>
+    <div class="info">
+        <div class="detalhes">
+            <h2>Descrição:</h2>
+            <h3> <%= @champion.description %></h3>
+            <h2>Regras:</h2>
+            <h3> <%= @champion.rules %></h3>
+            <div class="premiacao"> 
+                <h2>Premiação:</h2>
+                <h3><%= @champion.premiation %></h3>
+            </div>
         </div>
-        <div class="Info"></div>
-            <h1><%= @champions.name %></h1>
-                <h3>Data de Início: <%= @champions.start_date %></h3>
-                <h3>Data de Término: <%= @champions.end_date %></h3>
-                <h3>Tipo de Jogo: <%= @champions.game_type %></h3>
-                <h3>Tipo de Visão: <%= @champions.vision %></h3>
-                <h3>Tipo de Time: <%= @champions.team %></h3>
-                <h3>Quantidade de Partidas: <%= @champions.match_total %></h3>
-                <h3>Premiação: <%= @champions.premiation %></h3>          
+            <div class="info2">
+                <div class="imagem">
+                    <%= image_tag @champion.image.url(:medium) %>
+                </div>                
+                <h1><%= @champion.name %></h1>
+                <div class="data1">
+                <div class="inicio">
+                    <h2>Data de Início:</h2>
+                    <h3> <%= @champion.start_date %></h3>
+                </div>
+                <div class="final">
+                    <h2>Data de Término:</h2>
+                    <h3><%= @champion.end_date %></h3>
+                </div>
+                </div>
+                <div class="typo">
+                    <div class="jogo">
+                            <h2>Tipo de Jogo:</h2>
+                            <h3><%= @champion.game_type %></h3>
+                        </div>
+                    <div class="time1">
+                        <h2>Tipo de Time: </h2>
+                        <h3><%= @champion.team %></h3>
+                    </div>
+                </div>
+                <div class="visao">
+                    <h2>Tipo de Visão: </h2>
+                    <h3><%= @champion.vision %></h3>
+                </div>
+                <div class="info3">
+                    <div class="partida">
+                        <h2>Quantidade de Partidas: </h2>
+                        <h3><%= @champion.match_total %></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="times">
+                <ul>
+                    <li>time</li>
+                    <li>time</li>
+                    <li>time</li>
+                    <li>time</li>
+                </ul>
+            </div>
+    </div>
     <%end%>
     <div class="button4">
-        <% if current_user == @champions.user %>
-            <%= button_to "Editar Campeonato", champions_edit_path(@champions),method: :get, class: "button2" %>
-        <%end%>
+            <% if current_user == @champion.user %>
+                <%= button_to "Editar Campeonato", champions_edit_path(@champion),method: :get, class: "button2" %>
+            <%end%>
     </div>  
     <%= render "shared/footer"%>    
 </body>
