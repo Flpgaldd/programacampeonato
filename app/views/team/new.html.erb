@@ -1,0 +1,128 @@
+<html>
+<head>
+    <title>
+        Times
+    </title>
+    <style>
+      .list_tm{ 
+        width: 611px;
+        height: auto;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: flex-start;
+        background: rgba(255, 255, 255, 0.768);
+        box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.2);
+        position: relative;
+        border-radius: 12px;
+    }
+    .list_tm h2{
+        margin-bottom: 0px;
+    }
+    .list_tm img{
+        background: rgba(255, 255, 255, 0.768);
+            box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.2);
+            position:relative;
+            border-radius: 12px;
+    }
+    .body4{
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    }
+    .image{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .nome2{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+    .descricao{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+    .descricao textarea{
+        border: 1px solid #11BFE8;
+    }
+    .redes-sociais{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 261px;
+        margin-bottom: 50px;
+    }
+    .body4{
+        height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    font-family: "inlander";
+    color: #003d7b;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    }
+    </style>
+</head>
+<body>
+    <%= render 'shared/header' %>
+<%= form_with model: @team, url: team_create_path, method: "post" do |form| %>
+    <div class="body4">
+        <h1>Faça o cadastro do seu time</h1>
+            <div class="list_tm">
+                <div class= "nome2">
+                    <%= form.label "Nome do time:" %>
+                    <%= form.text_field :name %>
+                </div>
+                <div class="image">
+                    <%= form.file_field :image, id: 'image_input'%>
+                    <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
+                </div>
+                <div class="descricao">
+                    <%= form.label "Descrição"%>
+                    <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                </div>
+                <div class="redes-sociais">
+                    <%= form.label "Site"%>
+                    <%= form.text_field :site %>
+                    <%= form.label "Instagram"%>
+                    <%= form.text_field :instagram %>
+                    <%= form.label "Facebook"%>
+                    <%= form.text_field :facebook %>
+                    <%= form.label "Linkedin"%>
+                    <%= form.text_field :linkedin %>
+                </div>
+                <%= form.submit "Encerrar criação do time", class: "button2" %>
+            </div>
+    </div>
+<%end%>
+<%= render "shared/footer"%>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const imageInput = document.getElementById('image_input');
+        const imagePreview = document.getElementById('image_preview');
+    
+        imageInput.addEventListener('change', function(event) {
+          const file = event.target.files[0];
+          if (file) {
+            const reader = new FileReader();
+            reader.onload = function(e) {
+              imagePreview.src = e.target.result;
+              imagePreview.style.display = 'block';
+            }
+            reader.readAsDataURL(file);
+          } else {
+            imagePreview.src = '';
+            imagePreview.style.display = 'none';
+          }
+        });
+      });   
+</script>
+</body>
+</html>
