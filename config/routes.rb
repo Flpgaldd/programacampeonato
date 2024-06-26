@@ -34,5 +34,11 @@ Rails.application.routes.draw do
 
   patch '/champions/update/:id', to: "champions#update", as: "champions_update"
 
-  get '/team', to: "team#equipe", as: "team"
+  get '/team/new', to: "team#new", as: "team_new"
+
+  post '/team/create', to: "team#create", as: "team_create"
+
+  get '/team/:id', to: "team#show", as: "team"
+
+  get '/team/', to: "team#index", as: "team_index"
 end

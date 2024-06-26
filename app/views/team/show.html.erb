@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title> champion </title>
+    </head>
+<body>
+    <%= render 'shared/header' %>
+        <div class="detalhes">
+            <h2>Descrição:</h2>
+            <h3> <%= @team.description %></h3>
+        </div>
+                <div class="imagem">
+                    <%= image_tag @team.image.url(:medium) %>          
+                <h1><%= @team.name %></h1>
+    <%= render "shared/footer"%>    
+</body>
+
+
+</html>
