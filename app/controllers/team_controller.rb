@@ -5,7 +5,7 @@ class TeamController < ApplicationController
   end
 
   def index
-    @champions = Champion.all
+    @teams = Team.all
   end
 
   def create

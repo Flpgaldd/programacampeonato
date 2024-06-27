@@ -5,13 +5,44 @@
     </head>
 <body>
     <%= render 'shared/header' %>
-        <div class="detalhes">
-            <h2>Descrição:</h2>
-            <h3> <%= @team.description %></h3>
+    <div class="body3">
+        <div class="list_team">
+            <div class="imagem1">
+                <%= image_tag @team.image.url(:medium) %>  
+            </div>
+            <h1><%= @team.name %></h1>  
+                <div class="detalhes">
+                    <h2>Descrição:</h2>
+                    <h3> <%= @team.description %></h3>
+                </div>
+                <div>
+                    <div class="redes-sociais">
+                        <div class="rede_social1">
+                        <h2>Site:</h2>
+                        <% if @team.site.present? %>
+                          <p><%= link_to @team.site, @team.site, target: "_blank" %></p>
+                        <% end %>
+                    
+                        <h2>Instragam:</h2>
+                        <% if @team.instagram.present? %>
+                          <p><%= link_to @team.instagram, @team.instagram, target: "_blank" %></p>
+                        <% end %>
+                    </div>
+                    <div class="rede_social2">
+                        <h2>Facebook:</h2>
+                        <% if @team.facebook.present? %>
+                          <p><%= link_to @team.facebook, @team.facebook, target: "_blank" %></p>
+                        <% end %>
+                    
+                        <h2>Linkedin:</h2>
+                        <% if @team.linkedin.present? %>
+                          <p><%= link_to @team.linkedin, @team.linkedin, target: "_blank" %></p>
+                        <% end %>
+                    </div>
+                      </div>
+                </div>
         </div>
-                <div class="imagem">
-                    <%= image_tag @team.image.url(:medium) %>          
-                <h1><%= @team.name %></h1>
+    </div>
     <%= render "shared/footer"%>    
 </body>
 

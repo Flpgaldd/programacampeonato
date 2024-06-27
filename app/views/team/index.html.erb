@@ -1,13 +1,60 @@
 <html>
     <head>
-<style>
-             
-</style>
+        <style>
+            .imagem img {
+                width: 80%; /* Define a largura da imagem, ajuste conforme necessário */
+                height: auto; /* Mantém a proporção da imagem */
+                display: block;
+                transition: transform 0.3s ease;
+                margin-left: 20px;
+                margin-top: 20px;
+            }
+            .imagem{
+                position: relative;
+                overflow: hidden;
+                cursor: pointer;
+                width: 200px;
+                height: 250px;
+            }
+            .imagem:hover img {
+                transform: scale(1.2); /* Ajuste o valor de escala conforme necessário */
+              }
+            .champion-container {
+                display: flex;
+                align-items: center;
+                margin-bottom: 20px;
+                height: 200px;
+            }
+    
+            .champion-container .campeonato1 {
+                margin-left: 20px; /* Espaçamento entre imagem e nome do campeonato */
+            }
+        </style>
 </head>
 <body>
    <%= render 'shared/header' %>
-   <h1>Aqui vai ser a lista de times</h1>
-   <%= button_to "Equipes cadastradas", "/team/new", method: :get, class: "button2"%>
+   <div class="lista2">
+        <h1>Times criados</h1>
+    </div> 
+   <div class="lista">   
+    <ul>
+      <% @teams.each do |team| %>
+      <li class="champion-container">
+        <div class="imagem zoom-image" onclick="window.location.href='<%= team_path(team) %>';">
+            <% if team.image.present? %>
+                <%= image_tag team.image.url(:medium), alt: team.name  %>
+            <% end %>
+        </div>
+      <div class="campeonato1" onclick="window.location.href='<%= team_path(team) %>';">
+            <h2>
+                <%=team.name%>
+            </h2>
+            <p>Criado por: <%= link_to team.owner.name, perfil_path(team.owner)%></p>
+        </div>
+      <% end %>
+    </ul>
+    </div> 
+   <%= button_to "Cadastrar equipes", "/team/new", method: :get, class: "button2"%>
 <%= render "shared/footer"%>
 </body>
 </html>
