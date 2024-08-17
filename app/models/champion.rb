@@ -11,7 +11,6 @@ class Champion < ActiveRecord::Base
     content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/bmp", "image/tiff"], message: "deve ser um arquivo JPG, JPEG, PNG, GIF, BMP ou TIFF." }
 
 
-
   private
 
 

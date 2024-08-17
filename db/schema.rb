@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_06_26_001945) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_12_222643) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -64,6 +64,15 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_001945) do
     t.index ["user_id"], name: "index_champions_on_user_id"
   end
 
+  create_table "memberships", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "team_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["team_id"], name: "index_memberships_on_team_id"
+    t.index ["user_id"], name: "index_memberships_on_user_id"
+  end
+
   create_table "owner_to_teams", force: :cascade do |t|
     t.string "Owner_id"
     t.string "references"
@@ -85,6 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_001945) do
     t.integer "image_file_size"
     t.datetime "image_updated_at"
     t.bigint "owner_id", null: false
+    t.string "invite_token"
     t.index ["owner_id"], name: "index_teams_on_owner_id"
   end
 
@@ -100,5 +110,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_06_26_001945) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "champions", "users"
+  add_foreign_key "memberships", "teams"
+  add_foreign_key "memberships", "users"
   add_foreign_key "teams", "users", column: "owner_id"
 end
