@@ -9,6 +9,7 @@ class TeamController < ApplicationController
   end
 
   def create
+    binding.pry
     @team = current_user.teams.new(team_params)
     if @team.save
       redirect_to @team, flash: { success: "Time criado com sucesso!!" }
@@ -32,6 +33,24 @@ class TeamController < ApplicationController
     else
       render :edit
     end
+  end
+
+    def invite
+      @team = Team.find_by(invite_token: params[:invite_token])
+      if @team.nil?
+        flash[:alert] = "Convite inválido."
+        redirect_to root_path
+      end
+    end
+  def join
+    @team = Team.find_by(invite_token: params[:invite_token])
+    if @team.users.exists?(id: current_user.id)
+      flash[:notice] = "Você já faz parte deste time."
+    else
+      @team.users << current_user
+      flash[:notice] = "Você entrou no time com sucesso."
+    end
+    redirect_to @team
   end
 
   private

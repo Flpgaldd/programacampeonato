@@ -41,4 +41,8 @@ Rails.application.routes.draw do
   get '/team/:id', to: "team#show", as: "team"
 
   get '/team/', to: "team#index", as: "team_index"
+
+  get '/membros/', to: "membros#index", as: "membros_index"
+
+   get 'teams/join/:invite_token', to: 'team#join', as: 'invite_team'
 end
