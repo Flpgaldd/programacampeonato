@@ -41,15 +41,15 @@
       <% @teams.each do |team| %>
       <li class="champion-container">
         <div class="imagem zoom-image" onclick="window.location.href='<%= team_path(team) %>';">
-            <% if team.image.present? %>
-                <%= image_tag team.image.url(:medium), alt: team.name  %>
+            <% if team.image.attached? %>
+             <%= image_tag (url_for(team.image) if team.image.attached?), alt: team.name %>
             <% end %>
         </div>
       <div class="campeonato1" onclick="window.location.href='<%= team_path(team) %>';">
             <h2>
                 <%=team.name%>
             </h2>
-            <p>Criado por: <%= link_to team.owner.name, perfil_path(team.owner)%></p>
+            <%# <p>Criado por: <%= link_to team.owner.name, perfil_path(team.owner)%></p> %>
         </div>
       <% end %>
     </ul>

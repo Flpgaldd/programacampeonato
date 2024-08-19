@@ -301,8 +301,8 @@
                             <%= image_tag "championlist.png", style: "width: 125px;" %>
                             <div class="image">
                                 <%= form.file_field :image, id: 'image_input' %>
-                             <% if @champion.present? %>
-                                <%= image_tag @champion.image.url(:medium), id: 'image_preview', style: 'max-width: 200px; display: block;' %>
+                             <% if @champion.image.attached? %>
+                                <%= image_tag url_for(@champion.image), id: 'image_preview', style: 'max-width: 200px; display: block;' %>                             
                             <% else %>
                             <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
                             <%end%>

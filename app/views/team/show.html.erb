@@ -32,16 +32,18 @@
           <div class="mt">
             <h1>Membros</h1>
             <div class="times">
-              <ul>
-                <% @team.users.each do |user| %>
-                <li><%= user.name %></li>
-              <% end %>
-              </ul>
+             <ul>
+                <% @team.users.each do |user| %> 
+                 <li><%= user.name %></li> 
+                <% end %> 
+              </ul> 
             </div>
           </div>
             <div class="list_team">
                 <div class="imagem1">
-                    <%= image_tag @team.image.url(:medium) %>  
+                  <% if @team.image.attached? %>
+                      <%= image_tag (url_for(@team.image) if @team.image.attached?), alt: @team.name %>
+                  <% end %>
                 </div>
                 <h1><%= @team.name %></h1>  
                     <div class="detalhes">
@@ -86,7 +88,7 @@
           <div class="modal1">
           <h2>Convite para o Time</h2>
           <p>Use o link abaixo para convidar outros membros para o time:</p>
-          <input type="text" id="invite-link" value="<%= team_invite_url(@team.invite_token) %>" readonly>
+          <input type="text" id="invite-link" value="<%= team_invite_url(@team.invite_token) %>" readonly> 
           <button id="copy-button" class="button5">Copiar Link</button>
         </div>
         </div>

@@ -45,8 +45,8 @@
   <% @champions.each do |champion| %>
   <li class="champion-container">
     <div class="imagem zoom-image" onclick="window.location.href='<%= champion_path(champion) %>';">
-        <% if champion.image.present? %>
-            <%= image_tag champion.image.url(:medium), alt: champion.name  %>
+        <% if champion.image.attached? %>
+             <%= image_tag (url_for(champion.image) if champion.image.attached?), alt: champion.name %>
         <% end %>
     </div>
   <div class="campeonato1" onclick="window.location.href='<%= champion_path(champion) %>';">

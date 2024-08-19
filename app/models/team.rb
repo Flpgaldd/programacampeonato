@@ -1,18 +1,12 @@
 class Team < ActiveRecord::Base
-  belongs_to :owner, class_name: 'User'
+  belongs_to :user
   has_many :memberships
   has_many :users, through: :memberships
 
   validate :validate_presence_of_fields
 
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-
-  validates_attachment :image, presence: true,
-    content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/bmp", "image/tiff"], message: "deve ser um arquivo JPG, JPEG, PNG, GIF, BMP ou TIFF." }
-
-  validates_attachment :image, content_type: {content_type: ["/\Aimage\/.*\z/"]}
-
-    before_create :generate_invite_token
+  has_one_attached :image
+  before_create :generate_invite_token
 
     private
 

@@ -25,10 +25,13 @@ class ChampionsController < ApplicationController
   end
   def create
     @champion = current_user.champions.new(championship_params)
-      if @champion.save
-        redirect_to @champion, flash: {success: "Campeonato criado com sucesso!!"}
-      else
-        render :new
+    if params[:champion][:image].present?
+      @champion.image.attach(params[:champion][:image])
+    end
+    if @champion.save
+      redirect_to @champion, flash: {success: "Campeonato criado com sucesso!!"}
+    else
+      render :new
     end
   end
 
@@ -41,7 +44,10 @@ class ChampionsController < ApplicationController
     end
 
     def update
-      if  @champion.update(championship_params)
+      if @champion.update(championship_params)
+        if params[:champion][:image].present?
+          @champion.image.attach(params[:champion][:image])
+        end
         redirect_to @champion, notice: 'Campeonato atualizado com sucesso.'
       else
         render :edit
@@ -50,7 +56,7 @@ class ChampionsController < ApplicationController
     private
 
     def championship_params
-      params.require(:champion).permit(:name, :start_date, :end_date, :game_type, :vision, :pontuation, :team, :match_total, :description, :rules, :premiation, :image )
+      params.require(:champion).permit(:name, :start_date, :end_date, :game_type, :vision, :pontuation, :team, :match_total, :description, :rules, :premiation)
     end
 
     def set_champion

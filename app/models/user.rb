@@ -1,6 +1,6 @@
 require 'pry'
 class User < ActiveRecord::Base
-  has_many :teams, foreign_key: 'owner_id'
+  has_many :teams, dependent: :destroy
   has_many :champions, dependent: :destroy
   has_many :memberships
   has_many :teams, through: :memberships

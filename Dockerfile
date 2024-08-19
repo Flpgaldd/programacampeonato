@@ -26,6 +26,12 @@ RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 
 RUN apt-get update && apt-get install -y libpq-dev
 
+RUN apt-get update && apt-get install -y imagemagick 
+
+RUN apt-get install -y libmagickcore-dev
+
+RUN apt-get install -y libmagickwand-dev
+
 # Install application gems
 COPY Gemfile Gemfile.lock ./
 RUN bundle install && \

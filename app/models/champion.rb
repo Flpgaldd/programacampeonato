@@ -5,11 +5,7 @@ class Champion < ActiveRecord::Base
   validate :validate_year
   validate :validate_end_date_after_start_date
 
-  has_attached_file :image, styles: { medium: "300x300>", thumb: "100x100>" }, default_url: "/images/:style/missing.png"
-
-  validates_attachment :image, presence: true,
-    content_type: { content_type: ["image/jpg", "image/jpeg", "image/png", "image/gif", "image/bmp", "image/tiff"], message: "deve ser um arquivo JPG, JPEG, PNG, GIF, BMP ou TIFF." }
-
+  has_one_attached :image
 
   private
 

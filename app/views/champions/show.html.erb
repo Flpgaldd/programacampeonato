@@ -65,7 +65,9 @@
         </div>
             <div class="info2">
                 <div class="imagem">
-                    <%= image_tag @champion.image.url(:medium) %>
+                 <% if @champion.image.attached? %>
+                    <%= image_tag url_for(@champion.image) %>
+                <% end %>
                 </div>                
                 <h1><%= @champion.name %></h1>
                 <div class="data1">

@@ -1,5 +1,6 @@
 require "pry"
 class TeamController < ApplicationController
+  before_action :authorize
   def new
     @team = Team.new
   end
@@ -9,8 +10,11 @@ class TeamController < ApplicationController
   end
 
   def create
-    binding.pry
-    @team = current_user.teams.new(team_params)
+    @team = Team.new(team_params)
+    @team.user_id = current_user.id
+    if params[:team][:image].present?
+      @team.image.attach(params[:team][:image])
+    end
     if @team.save
       redirect_to @team, flash: { success: "Time criado com sucesso!!" }
     else
@@ -29,19 +33,22 @@ class TeamController < ApplicationController
   def update
     @team = Team.find(params[:id])
     if @team.update(team_params)
+      if params[:team][:image].present?
+        @team.image.attach(params[:team][:image])
+      end
       redirect_to @team, flash: { success: "Time atualizado com sucesso!!" }
     else
       render :edit
     end
   end
 
-    def invite
-      @team = Team.find_by(invite_token: params[:invite_token])
-      if @team.nil?
-        flash[:alert] = "Convite inválido."
-        redirect_to root_path
-      end
+  def invite
+    @team = Team.find_by(invite_token: params[:invite_token])
+    if @team.nil?
+      flash[:alert] = "Convite inválido."
+      redirect_to root_path
     end
+  end
   def join
     @team = Team.find_by(invite_token: params[:invite_token])
     if @team.users.exists?(id: current_user.id)
