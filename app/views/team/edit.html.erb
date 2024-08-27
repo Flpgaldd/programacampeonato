@@ -72,21 +72,10 @@
 </head>
 <body>
     <%= render 'shared/header' %>
-<%= form_with model: @team, url: team_create_path, html: { multipart: true }, method: "post", class: "form" do |form| %>
+<%= form_with model: @team, url: team_update_path, html: { multipart: true }, method: :patch, class: "form" do |form| %>
     <div class="body4">
         <h1>Faça o cadastro do seu time</h1>
             <div class="list_tm">
-                <% if @team.present? %>
-                        <% if @team.errors.any? %>
-                            <div id="error_explanation", class="alert">
-                                <ul>
-                                    <% @team.errors.full_messages.each do |message| %>
-                                        <li><%= message %></li>
-                                    <% end %>
-                                </ul>
-                            </div> 
-                        <% end %>
-                    <% end %>
                 <div class= "nome2">
                     <%= form.label "Nome do time:" %>
                     <%= form.text_field :name %>

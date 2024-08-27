@@ -10,7 +10,11 @@
                 flex-wrap: nowrap;
                 width: 1700px;
                 margin-top: 10px;
+                height: 282px;
             }
+            .button7{
+              height:  131px;
+          }
             .times{
               width: 300px;
               font-size: 30px;
@@ -77,9 +81,16 @@
                         </div>
                     </div>
             </div>
+            <div class="button6">
+              <% if current_user == @team.user %>
             <div class="button4">
               <button id="invite-button">Enviar Convite</button>
           </div>
+          <div class="button7">
+              <%= button_to "Editar Time", team_edit_path(@team), method: :get, class: "button2" %>
+          </div>
+          <% end %>
+    </div>
         </div>
     </div>
     <div id="invite-modal" class="modal">
@@ -92,7 +103,7 @@
           <button id="copy-button" class="button5">Copiar Link</button>
         </div>
         </div>
-      </div>
+      </div>  
     <%= render "shared/footer"%>
     <script>
         // Obtém o modal

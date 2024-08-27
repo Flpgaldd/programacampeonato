@@ -1,5 +1,9 @@
 class Team < ActiveRecord::Base
+  has_many :team_champions
+  has_many :champions, through: :team_champions
+
   belongs_to :user
+
   has_many :memberships
   has_many :users, through: :memberships
 

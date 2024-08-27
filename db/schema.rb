@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_08_19_025510) do
+ActiveRecord::Schema[7.1].define(version: 2024_08_26_182233) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,22 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_025510) do
     t.index ["user_id"], name: "index_memberships_on_user_id"
   end
 
+  create_table "owner_to_teams", force: :cascade do |t|
+    t.string "Owner_id"
+    t.string "references"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "teamchampions", force: :cascade do |t|
+    t.bigint "team_id", null: false
+    t.bigint "champions_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["champions_id"], name: "index_teamchampions_on_champions_id"
+    t.index ["team_id"], name: "index_teamchampions_on_team_id"
+  end
+
   create_table "teams", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -97,5 +113,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_19_025510) do
   add_foreign_key "champions", "users"
   add_foreign_key "memberships", "teams"
   add_foreign_key "memberships", "users"
+  add_foreign_key "teamchampions", "champions", column: "champions_id"
+  add_foreign_key "teamchampions", "teams"
   add_foreign_key "teams", "users"
 end

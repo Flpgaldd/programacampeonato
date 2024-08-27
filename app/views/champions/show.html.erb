@@ -11,6 +11,15 @@
                 width: 1700px;
                 margin-top: 10px;
                       }
+                      .button5{
+                        display: flex;
+                        justify-content: space-between;
+                        flex-direction: column;
+                        flex-wrap: nowrap;
+                        width: 1700px;
+                        margin-top: 10px;
+                        align-items: flex-end;
+                              }
             .info{
                 display: flex;
                 flex-direction: row;
@@ -47,6 +56,39 @@
                 margin-top: 20px;
                 width: 100px;
             }
+            .modal {
+                display: none; /* Escondido por padrão */
+                position: fixed; 
+                z-index: 1; 
+                left: 0;
+                top: 0;
+                width: 100%; 
+                height: 100%; 
+                overflow: auto; 
+                background-color: rgba(0,0,0,0.4); /* Fundo semi-transparente */
+              }
+              
+              .modal-content {
+                background-color: #fff;
+                margin: 15% auto;
+                padding: 20px;
+                border: 1px solid #888;
+                width: 80%; /* Largura do modal */
+              }
+              
+              .close {
+                color: #aaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+              }
+              
+              .close:hover,
+              .close:focus {
+                color: black;
+                text-decoration: none;
+                cursor: pointer;
+              }
         </style>
     </head>
 <body>
@@ -103,13 +145,32 @@
             </div>
             <div class="times">
                 <ul>
-                    <li>time</li>
-                    <li>time</li>
-                    <li>time</li>
-                    <li>time</li>
+                    <% if @champion.teams %>
+                        <% @champion.teams.each do |team| %>  <!-- Supondo que `@championship` seja o campeonato atual -->
+                        <li><%= team.name %></li> <!-- Exibe o nome do time -->
+                    <%end%>
+                  <% end %>
                 </ul>
             </div>
     </div>
+    <div class="button5">
+        <button id="register-button">Cadastrar seu time</button>
+    </div>
+    <div id="teamModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+          <h2>Selecione seu time</h2>
+          <form id="team-form">
+            <label for="team">Escolha um time:</label>
+            <select id="team-select" name="team_id">
+              <% Team.all.each do |team| %>
+                <option value="<%= team.id %>"><%= team.name %></option>
+              <% end %>
+            </select>
+            <button type="submit">Cadastrar</button>
+          </form>
+        </div>
+      </div>
     <%end%>
     <div class="button4">
             <% if current_user == @champion.user %>
@@ -117,6 +178,27 @@
             <%end%>
     </div>  
     <%= render "shared/footer"%>    
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var modal = document.getElementById("teamModal");
+            var btn = document.getElementById("register-button");
+            var span = document.getElementsByClassName("close")[0];
+          
+            btn.onclick = function() {
+              modal.style.display = "block";
+            }
+          
+            span.onclick = function() {
+              modal.style.display = "none";
+            }
+          
+            window.onclick = function(event) {
+              if (event.target == modal) {
+                modal.style.display = "none";
+              }
+            }
+          });
+    </script>
 </body>
 
 

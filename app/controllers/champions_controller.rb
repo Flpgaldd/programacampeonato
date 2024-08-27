@@ -36,7 +36,8 @@ class ChampionsController < ApplicationController
   end
 
     def show
-      @champion
+      @champion = Champion.find(params[:id])
+      @teams = @champion.team
     end
 
     def edit

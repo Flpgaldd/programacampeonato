@@ -1,4 +1,7 @@
 class Champion < ActiveRecord::Base
+  has_many :team_champions
+  has_many :teams, through: :team_champions
+
   belongs_to :user
 
   validate :validate_presence_of_fields
