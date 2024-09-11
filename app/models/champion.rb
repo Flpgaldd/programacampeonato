@@ -1,6 +1,7 @@
+require "pry"
 class Champion < ActiveRecord::Base
-  has_many :team_champions
-  has_many :teams, through: :team_champions
+  has_many :teamchampions
+  has_many :teams, through: :teamchampions
 
   belongs_to :user
 

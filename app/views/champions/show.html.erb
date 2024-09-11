@@ -39,19 +39,6 @@
                 align-content: flex-start;
             
             }
-            .times{
-                width: 545.33px;
-                font-size: 30px;
-                display: flex;
-                flex-direction: row;
-                justify-content: center;
-                background: #ffdd9f;
-                box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
-                position: relative;
-                border-radius: 12px;
-                height: 497px;
-                
-            }
             .imagem img{
                 margin-top: 20px;
                 width: 100px;
@@ -93,6 +80,11 @@
     </head>
 <body>
     <%= render 'shared/header' %>
+    <% flash.each do |key, message| %>
+  <div class="alert alert-<%= key %>">
+    <%= message %>
+  </div>
+<% end %>
     <%= content_tag :div, class: "Classtwo" do %>
     <div class="info">
         <div class="detalhes">
@@ -147,34 +139,37 @@
                 <ul>
                     <% if @champion.teams %>
                         <% @champion.teams.each do |team| %>  <!-- Supondo que `@championship` seja o campeonato atual -->
-                        <li><%= team.name %></li> <!-- Exibe o nome do time -->
+                        <li><%= link_to team.name, team_path(team), class: "sem-sublinha" %></li>
                     <%end%>
                   <% end %>
                 </ul>
             </div>
     </div>
-    <div class="button5">
-        <button id="register-button">Cadastrar seu time</button>
-    </div>
-    <div id="teamModal" class="modal">
-        <div class="modal-content">
-          <span class="close">&times;</span>
-          <h2>Selecione seu time</h2>
-          <form id="team-form">
-            <label for="team">Escolha um time:</label>
-            <select id="team-select" name="team_id">
-              <% Team.all.each do |team| %>
-                <option value="<%= team.id %>"><%= team.name %></option>
-              <% end %>
-            </select>
-            <button type="submit">Cadastrar</button>
-          </form>
-        </div>
+    <% if @champion&.user == current_user %>
+      <div class="button5">
+          <button id="register-button">Cadastrar seu time</button>
       </div>
+      <div id="teamModal" class="modal">
+          <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Selecione seu time</h2>
+            <%= form_with url: champions_vs_team_path, method: :post do |form| %>
+            <%= form.hidden_field :champion_id, value: @champion.id %>
+              <label for="team">Escolha um time:</label>
+              <select id="team-select" name="team_id">
+                <% Team.all.each do |team| %>
+                  <option value="<%= team.id %>"><%= team.name %></option>
+                <% end %>
+              </select>
+              <button type="submit">Cadastrar</button>
+            <% end %>
+          </div>
+        </div>
+      <%end%>
     <%end%>
     <div class="button4">
             <% if current_user == @champion.user %>
-                <%= button_to "Editar Campeonato", champions_edit_path(@champion),method: :get, class: "button2" %>
+                <%= button_to "Editar Campeonato", champion_edit_path(@champion),method: :get, class: "button2" %>
             <%end%>
     </div>  
     <%= render "shared/footer"%>    

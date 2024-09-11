@@ -1,6 +1,6 @@
 class Team < ActiveRecord::Base
-  has_many :team_champions
-  has_many :champions, through: :team_champions
+  has_many :teamchampions
+  has_many :champions, through: :teamchampions
 
   belongs_to :user
 

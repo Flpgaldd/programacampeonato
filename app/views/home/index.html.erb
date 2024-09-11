@@ -16,13 +16,26 @@
                             <hr>
                         <%end%>
                     <h2>Clique aqui</h2>
-                    <%= button_to "Criar campeonatos", "/champions/new", method: :get, class: "button2", id: "createChampionshipButton" %>
+                    <%= button_to "Criar campeonatos", "/champion/new", method: :get, class: "button2", id: "createChampionshipButton" %>
                 <%end%>
         <%= content_tag :div, class: "Visualizar_campeonatos" do%>
             <h1> Campeonatos recentes </h1>
                 <div class="button3">
-                    <%= button_to "Campeonatos criados", "/champions", method: :get, class: "button2"%>
+                    <%= button_to "Campeonatos criados", "/champion", method: :get, class: "button2"%>
                 </div>
+                <div class="campeonatos">
+                    <ul>
+                      <% if @champions.present? %> <!-- Verifica se há campeonatos -->
+                        <% @champions.each do |champions| %> <!-- Itera sobre cada campeonato -->
+                          <li>
+                            <%= link_to champions.name, champion_path(champions), class: "sem-sublinha" %>
+                          </li>
+                        <% end %>
+                      <% else %>
+                        <li>Não há campeonatos disponíveis no momento.</li>
+                      <% end %>
+                    </ul>
+                  </div>
         <%end%>
         <% end %>
         <% if flash[:alert] %>

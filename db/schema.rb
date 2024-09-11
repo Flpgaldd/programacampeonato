@@ -78,10 +78,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_26_182233) do
 
   create_table "teamchampions", force: :cascade do |t|
     t.bigint "team_id", null: false
-    t.bigint "champions_id", null: false
+    t.bigint "champion_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["champions_id"], name: "index_teamchampions_on_champions_id"
+    t.index ["champion_id"], name: "index_teamchampions_on_champion_id"
     t.index ["team_id"], name: "index_teamchampions_on_team_id"
   end
 
@@ -113,7 +113,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_08_26_182233) do
   add_foreign_key "champions", "users"
   add_foreign_key "memberships", "teams"
   add_foreign_key "memberships", "users"
-  add_foreign_key "teamchampions", "champions", column: "champions_id"
+  add_foreign_key "teamchampions", "champions"
   add_foreign_key "teamchampions", "teams"
   add_foreign_key "teams", "users"
 end

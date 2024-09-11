@@ -26,6 +26,20 @@ class UsersController < ApplicationController
 
   end
 
+  def update
+    @user = User.find(params[:id])
+    @user.name = params[:user][:name]
+    @user.middle_name = params[:user][:middle_name]
+    if @user.save
+      if params[:user][:image].present?
+        @user.image.attach(params[:user][:image])
+      end
+      redirect_to perfil_path, flash: { success: "Time atualizado com sucesso!!" }
+    else
+      redirect_to perfil_edit_path(@user.id)
+    end
+  end
+
   private
 
   def authorize
@@ -33,6 +47,6 @@ class UsersController < ApplicationController
   end
 
   def user_params
-            params.require(:user).permit(:name, :middle_name, :email, :password)
+            params.require(:user).permit(:name, :middle_name, :email, :password, :image)
   end
 end

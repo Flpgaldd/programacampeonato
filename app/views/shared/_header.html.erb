@@ -204,6 +204,22 @@
         flex-direction: column;
         align-items: center;
         }
+        .foto_usuario img{
+            height: 70px;
+            border-radius: 50px;
+            background: black;
+        }
+        .foto_de_perfil1 img{
+            width: 140px;
+            height: 140px;
+            border-radius: 70px;
+            background: black;
+        }
+        .perfil{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
         .dropbtn {
         background-color: none;
         color: white;
@@ -556,6 +572,31 @@
             flex-direction: column;
             align-items: center;
         }
+        .times{
+            width: 545.33px;
+                font-size: 30px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                background: #ffdd9f;
+                box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
+                position: relative;
+                border-radius: 12px;
+                height: auto;
+        }
+        .campeonatos{
+            margin-top: 20px;
+                width: 545.33px;
+                font-size: 30px;
+                display: flex;
+                flex-direction: row;
+                justify-content: center;
+                background: #ffdd9f;
+                box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
+                position: relative;
+                border-radius: 12px;
+                height: auto;
+        }
         .partida{
             display: flex;
             flex-direction: column;
@@ -615,8 +656,10 @@
                     <%= content_tag :div, class: "nome_usuario" do %>
                             <%= content_tag :div, class: "foto_usuario" do %>
                             <a href="/perfil">
-                                <%= image_tag "Foto de perfil2.png", style: "width: 55px;" %>
-                            </a>
+                                <% if current_user.image.attached? %>
+                                    <%= image_tag url_for(current_user.image) %>
+                                <% end %>
+                              </a>
                             <div class="dropdown">
                                 <span  class="dropbtn"><%= current_user.name%></span>
                                 <i class="fa fa-caret-down"></i>
