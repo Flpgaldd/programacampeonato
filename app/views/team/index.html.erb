@@ -49,7 +49,7 @@
             <h2>
                 <%=team.name%>
             </h2>
-            <%# <p>Criado por: <%= link_to team.owner.name, perfil_path(team.owner)%></p> %>
+        <p>Criado por: <%= link_to team.user.name, perfil_path(team.user)%></p> 
         </div>
       <% end %>
     </ul>

@@ -21,18 +21,21 @@ Rails.application.routes.draw do
 
   get '/perfil', to: 'perfil#usuario', as: 'perfil'
 
+  get '/perfil/edit/:id', to: 'perfil#edit', as: 'perfil_edit'
 
-  get  '/champions/new', to: "champions#new", as: "champions_new"
+  patch '/users/update/:id', to: "users#update", as: 'users_update'
 
-  post '/champions', to: "champions#create", as: "champions"
+  get  '/champion/new', to: "champions#new", as: "champion_new"
 
-  get '/champions/:id', to: "champions#show", as: "champion"
+  post '/champion/create', to: "champions#create", as: "champion_create"
 
-  get '/champions/', to: "champions#index", as: "champions_index"
+  get '/champion/:id', to: "champions#show", as: "champion"
 
-  get '/champions/edit/:id', to: "champions#edit", as: "champions_edit"
+  get '/champion/', to: "champions#index", as: "champion_index"
 
-  patch '/champions/update/:id', to: "champions#update", as: "champions_update"
+  get '/champion/edit/:id', to: "champions#edit", as: "champion_edit"
+
+  patch '/champion/update/:id', to: "champions#update", as: "champion_update"
 
   get '/team/new', to: "team#new", as: "team_new"
 
@@ -42,7 +45,13 @@ Rails.application.routes.draw do
 
   get '/team/', to: "team#index", as: "team_index"
 
+  get '/team/edit/:id', to: "team#edit", as: "team_edit"
+
+  patch '/team/update/:id', to: "team#update", as: "team_update"
+
   get '/membros/', to: "membros#index", as: "membros_index"
 
-   get 'teams/join/:invite_token', to: 'team#join', as: 'invite_team'
+  get 'teams/join/:invite_token', to: 'team#join', as: 'invite_team'
+
+  post 'champions/team/', to: 'champions#jointeam', as: 'champions_vs_team'
 end

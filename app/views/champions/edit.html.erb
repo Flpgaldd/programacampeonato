@@ -205,7 +205,7 @@
             </div>
         </div>
     <div class="tabela">
-        <%= form_with model: @champion, url: champions_update_path, html: { multipart: true }, method: :patch, class: "form" do |form| %>
+        <%= form_with model: @champion, url: champion_update_path, html: { multipart: true }, method: :patch, class: "form" do |form| %>
                     <div class="tabs">
                         <% if @champion.present? %>
                             <% if @champion.errors.any? %>

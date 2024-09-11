@@ -4,7 +4,7 @@ class ChampionsController < ApplicationController
   before_action :authorize
   before_action :set_champion, only: [:edit, :update, :show]
   def new
-    @champions = Champion.new
+    @champion = Champion.new
   end
   def index
     @champions = Champion.all
@@ -15,6 +15,48 @@ class ChampionsController < ApplicationController
   def progress_classes
 
   end
+  def create
+    @champion = Champion.new(championship_params)
+    @champion.user_id = current_user.id
+    if params[:champion][:image].present?
+      @champion.image.attach(params[:champion][:image])
+    end
+
+    if @champion.save
+      redirect_to @champion, flash: {success: "Campeonato criado com sucesso!!"}
+    else
+      render :new
+    end
+  end
+
+
+
+  def jointeam
+    champion = Champion.find(params["champion_id"])
+    team = Team.find(params["team_id"])
+    if champion && team
+      unless champion.teams.include?(team)
+        # Cria uma nova associação para validar
+        team_champion = Teamchampion.new(team: team, champion: champion)
+        if team_champion.valid?  # Verifica se a validação passa
+          if champion.teams.count < 16
+            champion.teams << team
+            flash[:success] = "Time cadastrado com sucesso!!!"
+          else
+            flash[:alert] = "Erro ao cadastrar o time: limite de 16 times excedido"
+          end
+        else
+          flash[:alert] = team_champion.errors.full_messages.to_sentence
+        end
+      else
+        flash[:notice] = "O time já está cadastrado neste campeonato."
+      end
+    else
+      flash[:alert] = "Time ou campeonato não existe."
+    end
+
+    redirect_to champion
+  end
 
   def step_classes(index)
 
@@ -23,20 +65,9 @@ class ChampionsController < ApplicationController
   def next_step_js(back = true)
     "nextStep(#{back})"
   end
-  def create
-    @champion = current_user.champions.new(championship_params)
-    if params[:champion][:image].present?
-      @champion.image.attach(params[:champion][:image])
-    end
-    if @champion.save
-      redirect_to @champion, flash: {success: "Campeonato criado com sucesso!!"}
-    else
-      render :new
-    end
-  end
-
     def show
-      @champion
+      @champions = Champion.find(params[:id])
+      @teams = @champion.team
     end
 
     def edit

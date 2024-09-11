@@ -1,0 +1,82 @@
+<html>
+<head>
+    <title>
+        Edição de perfil
+    </title>
+    <script>
+        // Script para alternar a visibilidade da senha
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("senha").addEventListener("click", function() {
+      var senhaInput = document.getElementById("senha2");
+      if (senhaInput.type === "password") {
+          senhaInput.type = "text";
+      } else {
+          senhaInput.type = "password";
+      }
+  });
+});
+
+// Script para pré-visualizar a imagem selecionada
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById('profile_image_input').addEventListener('change', function(event) {
+      const input = event.target;
+      const preview = document.getElementById('profile_image_preview');
+
+      if (input.files && input.files[0]) {
+          const reader = new FileReader();
+
+          reader.onload = function(e) {
+              preview.src = e.target.result;
+              preview.style.display = 'block';
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById('image_input').addEventListener('change', function(event) {
+      const input = event.target;
+      const preview = document.getElementById('image_preview');
+
+      if (input.files && input.files[0]) {
+          const reader = new FileReader();
+
+          reader.onload = function(e) {
+              preview.src = e.target.result;
+              preview.style.display = 'block';
+          }
+
+          reader.readAsDataURL(input.files[0]);
+      }
+  });
+});
+  </script>
+</head>
+<body>
+    <%= render 'shared/header' %>
+    <%= content_tag :div, class: "cadastrar" do %>
+    <h1> Quero me cadastrar </h1>
+    <%= form_with model: @user, url: users_update_path(@user.id), html: { multipart: true }, method: :patch, class: "form" do |form| %>
+   <div class="row">
+    <%= form.file_field :image, id: 'image_input' %>
+  </div>
+  <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
+        <%= content_tag :div, class: "row" do %> 
+            <%= form.label "nome:" %>
+            <%= form.text_field :name, pattern: "[A-Za-z\s']+" %>
+        <% end %>
+       <%= content_tag :div, class: "row" do %> 
+            <%= form.label "Sobrenome:" %>
+            <%= form.text_field :middle_name, pattern: "[A-Za-z\s']+" %>
+        <% end %>
+        <%= content_tag :div, class: "row" do %> 
+            <%= form.submit "Encerrar edição", class: "register" %>
+        <%end%>
+    <% end %>
+<% end %>
+</div>
+    <%= render "shared/footer"%> 
+</body>
+</html>

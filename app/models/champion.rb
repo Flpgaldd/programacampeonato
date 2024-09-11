@@ -1,4 +1,8 @@
+require "pry"
 class Champion < ActiveRecord::Base
+  has_many :teamchampions
+  has_many :teams, through: :teamchampions
+
   belongs_to :user
 
   validate :validate_presence_of_fields

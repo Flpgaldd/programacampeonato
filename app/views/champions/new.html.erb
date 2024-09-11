@@ -204,119 +204,119 @@
         </div>
     </div>
 <div class="tabela">
-            <%= form_with model: @champions, url: champions_path, html: { multipart: true }, method: "post", class: "form" do |form| %>
-                <div class="tabs">
-                    <% if @champions.present? %>
-                        <% if @champions.errors.any? %>
-                            <div id="error_explanation", class="alert">
-                                <ul>
-                                    <% @champions.errors.full_messages.each do |message| %>
-                                        <li><%= message %></li>
-                                    <% end %>
-                                </ul>
-                            </div> 
-                        <% end %>
-                    <% end %>
-                    <div class="tab-content active" id="tab-1">
-                        <%= image_tag "championlist.png", style: "width: 125px;" %>
-                        <div class= "nome">
-                            <%= form.label "Nome do evento:" %>
-                            <%= form.text_field :name %>
+    <%= form_with model: @champion, local: true, url: champion_create_path, html: { multipart: true }, method: "post", class: "form" do |form| %>
+        <div class="tabs">
+            <% if @champion.present? %>
+                <% if @champion.errors.any? %>
+                    <div id="error_explanation", class="alert">
+                        <ul>
+                            <% @champion.errors.full_messages.each do |message| %>
+                                <li><%= message %></li>
+                            <% end %>
+                        </ul>
+                    </div> 
+                <% end %>
+            <% end %>
+            <div class="tab-content active" id="tab-1">
+                <%= image_tag "championlist.png", style: "width: 125px;" %>
+                <div class= "nome">
+                    <%= form.label "Nome do evento:" %>
+                    <%= form.text_field :name %>
+                </div>
+                <div class= "data">
+                        <div class= "data1">
+                            <%= form.label "Data de Início:"%>
+                            <%= form.date_field :start_date %>
                         </div>
-                        <div class= "data">
-                                <div class= "data1">
-                                    <%= form.label "Data de Início:"%>
-                                    <%= form.date_field :start_date %>
-                                </div>
-                                <div class= "data2">
-                                    <%= form.label "Data de Término:"%>
-                                    <%=form.date_field :end_date%>
-                                </div>
-                        </div> 
-                        <div class= "selecao">
-                            <h3> Local de partida: </h3>
-                            <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']] %>
+                        <div class= "data2">
+                            <%= form.label "Data de Término:"%>
+                            <%=form.date_field :end_date%>
                         </div>
-                        <div id="location_input_container">
-                            <%= form.label :location, "Local:" %>
-                            <%= form.text_field :location, id: 'location_input' %>
-                          </div>
+                </div> 
+                <div class= "selecao">
+                    <h3> Local de partida: </h3>
+                    <%= form.select :game_type, [['Selecione', ''], ['Online', 'online'], ['Presencial', 'presencial']] %>
+                </div>
+                <div id="location_input_container">
+                    <%= form.label :location, "Local:" %>
+                    <%= form.text_field :location, id: 'location_input' %>
                     </div>
-                    <div class="tab-content" id="tab-2">
-                        <%= image_tag "championlist.png", style: "width: 125px;" %>
-                        <div class= "selecao">
-                            <h3> Tipo de visão: </h3>
-                            <div class="tipo_visao">
-                                <div class="tpp">
-                                <%= form.radio_button :vision, 'tpp', id: 'tpp', class: 'input2' %>
-                                <%= form.label :vision, 'Tpp', for: 'tpp' %>
-                            </div>
-                            <div class="fpp">
-                                <%= form.radio_button :vision, 'fpp', id: 'fpp', class: 'input2' %>
-                                <%= form.label :vision, 'Fpp', for: 'fpp' %>
-                            </div>
-                              </div>
-                              <div class= "selecao1">
-                                <h3> Tipo de pontuação: </h3>
-                                <%= form.select :pontuation, [['Selecione', ''], ['Apartir da 8° posição', 'Apartir da 8° posição(Padrão)'], ['Apartir da 16° posição', 'Apartir da 16° posição']] %>
-                            </div>
-                        </div>
-                        <div class= "selecao">
-                            <h3> Tipo de partida: </h3>
-                            <div class="tipo_partida">
-                                <div class="squad">
-                                <%= form.radio_button :team, 'squad', id: 'squad', class: 'input2' %>
-                                <%= form.label :vision, 'Squad', for: 'squad' %>
-                            </div>
-                            <div class="duo">
-                                <%= form.radio_button :team, 'duo', id: 'duo', class: 'input2' %>
-                                <%= form.label :vision, 'Duo', for: 'duo' %>
-                            </div>
-                            <div class="solo">
-                                <%= form.radio_button :team, 'solo', id: 'solo', class: 'input2' %>
-                                <%= form.label :vision, 'Solo', for: 'solo' %>
-                            </div>
-                              </div>
-                              <div class= "selecao1">
-                                <h3> Quantidade de partidas: </h3>
-                                <%= form.select :match_total, [['Selecione', ''], ['6 partidas', '6'], ['8 partidas', '8'], ['10 partidas', '10']] %>
-                            </div>
-                        </div>
-                </div>    
-                
-                    <div class="tab-content" id="tab-3">
-                        <%= image_tag "championlist.png", style: "width: 125px;" %>
-                        <div class= "descricao">
-                            <%= form.label "Descrição"%>
-                            <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
-                        <div class= "regras">
-                            <%= form.label "Regras"%>
-                            <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
-                        </div>  
-                        </div>
-                        <div class= "selecao2">
-                            <h3> Terá premiação? </h3>
-                            <%= form.select :premiation, [['Selecione', 'selecione'], ['Sim', 'sim'], ['Não', 'não']] %>
-                        </div>
+            </div>
+            <div class="tab-content" id="tab-2">
+                <%= image_tag "championlist.png", style: "width: 125px;" %>
+                <div class= "selecao">
+                    <h3> Tipo de visão: </h3>
+                    <div class="tipo_visao">
+                        <div class="tpp">
+                        <%= form.radio_button :vision, 'tpp', id: 'tpp', class: 'input2' %>
+                        <%= form.label :vision, 'Tpp', for: 'tpp' %>
                     </div>
-                    
-                    <div class="tab-content" id="tab-4">
-                        <%= image_tag "championlist.png", style: "width: 125px;" %>
-                        <div class="image">
-                            <%= form.file_field :image, id: 'image_input' %>
-                            <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
-                        </div>
-                        <%= form.submit "Encerrar criação do evento", class: "button2" %>
+                    <div class="fpp">
+                        <%= form.radio_button :vision, 'fpp', id: 'fpp', class: 'input2' %>
+                        <%= form.label :vision, 'Fpp', for: 'fpp' %>
                     </div>
-                    <div class="progress__actions">
-                        <div class="btn" onclick="nextStep(false)">Back</div>
-                        <div class="botão1">
-                            <div class="btn" onclick="nextStep(true)">Next</div>
                         </div>
-
+                        <div class= "selecao1">
+                        <h3> Tipo de pontuação: </h3>
+                        <%= form.select :pontuation, [['Selecione', ''], ['Apartir da 8° posição', 'Apartir da 8° posição(Padrão)'], ['Apartir da 16° posição', 'Apartir da 16° posição']] %>
                     </div>
                 </div>
-            <%end%>
+                <div class= "selecao">
+                    <h3> Tipo de partida: </h3>
+                    <div class="tipo_partida">
+                        <div class="squad">
+                        <%= form.radio_button :team, 'squad', id: 'squad', class: 'input2' %>
+                        <%= form.label :vision, 'Squad', for: 'squad' %>
+                    </div>
+                    <div class="duo">
+                        <%= form.radio_button :team, 'duo', id: 'duo', class: 'input2' %>
+                        <%= form.label :vision, 'Duo', for: 'duo' %>
+                    </div>
+                    <div class="solo">
+                        <%= form.radio_button :team, 'solo', id: 'solo', class: 'input2' %>
+                        <%= form.label :vision, 'Solo', for: 'solo' %>
+                    </div>
+                        </div>
+                        <div class= "selecao1">
+                        <h3> Quantidade de partidas: </h3>
+                        <%= form.select :match_total, [['Selecione', ''], ['6 partidas', '6'], ['8 partidas', '8'], ['10 partidas', '10']] %>
+                    </div>
+                </div>
+        </div>    
+        
+            <div class="tab-content" id="tab-3">
+                <%= image_tag "championlist.png", style: "width: 125px;" %>
+                <div class= "descricao">
+                    <%= form.label "Descrição"%>
+                    <%= form.text_area :description, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                <div class= "regras">
+                    <%= form.label "Regras"%>
+                    <%= form.text_area :rules, rows: 4, cols: 50, style: "resize: none;", id: "texto" %>
+                </div>  
+                </div>
+                <div class= "selecao2">
+                    <h3> Terá premiação? </h3>
+                    <%= form.select :premiation, [['Selecione', 'selecione'], ['Sim', 'sim'], ['Não', 'não']] %>
+                </div>
+            </div>
+            
+            <div class="tab-content" id="tab-4">
+                <%= image_tag "championlist.png", style: "width: 125px;" %>
+                <div class="image">
+                    <%= form.file_field :image, id: 'image_input' %>
+                    <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
+                </div>
+                <%= form.submit "Encerrar criação do evento", class: "button2" %>
+            </div>
+            <div class="progress__actions">
+                <div class="btn" onclick="nextStep(false)">Back</div>
+                <div class="botão1">
+                    <div class="btn" onclick="nextStep(true)">Next</div>
+                </div>
+
+            </div>
+        </div>
+    <%end%>
 </div>
 <%= render "shared/footer"%>
     <script>

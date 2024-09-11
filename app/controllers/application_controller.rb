@@ -4,8 +4,8 @@ class ApplicationController < ActionController::Base
 
     def authorize
       unless current_user
-        flash[:alert]= "Você precisa estar logado para acessar esta página"
-        redirect_to root_path
+        flash[:alert]= "Você precisa estar logado/cadastrado para acessar a página"
+        redirect_to register_path
       end
     end
 end

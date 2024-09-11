@@ -8,7 +8,23 @@
 </head>
 <body>
     <%= render 'shared/header' %>
-    <h1><%= current_user.name%></h1>
+    <div class="perfil">
+        <div class="foto_de_perfil1">
+            <% if current_user.image.attached? %>
+                <%= image_tag url_for(current_user.image) %>
+            <% end %>
+        </div>
+        <h1><%= current_user.name%> <%= current_user.middle_name%></h1>
+        <h2>Time:</h2>
+        <% if current_user.teams.any? %>
+        <% current_user.teams.each do |team| %>
+            <h1><%= link_to team.name, team_path(team), class: "sem-sublinha" %></h1>
+        <% end %>
+    <% else %>
+        <p>Usuário não está em nenhum time</p>
+    <% end %>
+    </div>  
+    <%= button_to "Editar perfil", "/perfil/edit/:id", method: :get, class: "button2", id: "buttonEditChampion" %>
     <%= render "shared/footer"%>   
 </body>
 
