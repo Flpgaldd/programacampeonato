@@ -20,7 +20,7 @@
                 text-align: center;
             }
             .register{
-                color: yellow;
+                color: white;
                 background-color:#0C2D4D;
                 height: 50px;
                 width: 400px;
@@ -133,27 +133,28 @@
                 <%= form.file_field :image, id: 'image_input' %>
               </div>
               <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
-                    <%= content_tag :div, class: "row" do %> 
+                    <%= content_tag :div, class: "row1" do %> 
                         <%= form.label "nome:" %>
                         <%= form.text_field :name, pattern: "[A-Za-z\s']+" %>
                     <% end %>
-                   <%= content_tag :div, class: "row" do %> 
+                   <%= content_tag :div, class: "row2" do %> 
                         <%= form.label "Sobrenome:" %>
                         <%= form.text_field :middle_name, pattern: "[A-Za-z\s']+" %>
                     <% end %>
-                    <%= content_tag :div, class: "row" do %> 
+                    <%= content_tag :div, class: "row2" do %> 
                         <%= form.label "Email:" %>
-                        <%= form.email_field :email %>
+                        <%= form.email_field :email %>  
                     <% end %>
                     <%= content_tag :div, class: "row" do %> 
                         <%= form.label "Senha:" %>
                         <%= form.password_field :password, pattern: "[A-Za-z 0-9 s@.]+", id: "senha2" %>
                     <% end %>
-                    <input type="checkbox" id="senha" name="exibir_senha" value="1">
-                    <%= form.label :exibir_senha, "Exibir senha", for: "senha" %>
-                
-                    <%= content_tag :div, class: "row" do %> 
-                        <%= form.submit "Criar conta", class: "register" %>
+                    <%= content_tag :div, class: "input1" do %> 
+                        <input type="checkbox" id="senha" name="exibir_senha" value="1">
+                        <%= form.label :exibir_senha, "Exibir senha", for: "senha" %>
+                    <%end%>
+                    <%= content_tag :div, class: "row3" do %> 
+                        <%= form.submit "Criar conta", class: "button2" %>
                     <%end%>
                     <%= content_tag :div, class: "new_user" do %>
                     <p>Já tem uma conta? <%= link_to "Faça login", login_path %></p>

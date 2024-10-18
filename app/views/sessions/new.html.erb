@@ -6,17 +6,17 @@
         <% if flash[:alert] %>
         <div class="alert"><%= flash[:alert] %></div>
         <% end %>
-        <%= content_tag :div, class: "row" do %> 
+        <%= content_tag :div, class: "row1" do %> 
             <%= f.label "Email:" %>
             <%= f.email_field :email, pattern: "[A-Za-z0-9@.]+", required: true %>
         <% end %>   
 
-       <%= content_tag :div, class: "row" do %> 
+       <%= content_tag :div, class: "row2" do %> 
             <%= f.label "Senha:" %>
             <%= f.password_field :password, pattern: "[A-Za-z 0-9 s@.]+", minlength:8, id: "senha2", required: true %>
         <% end %>
-        <%= content_tag :div, class: "row" do %> 
-            <%= f.submit "Login", class: "register" %>
+        <%= content_tag :div, class: "row3" do %> 
+            <%= f.submit "Login", class: "button2" %>
         <%end%>
             <%= content_tag :div, class: "new_user" do %>
                 <p>Novo usuario? <%= link_to "Cadastre-se", new_user_path %></p>

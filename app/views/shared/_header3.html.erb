@@ -3,15 +3,17 @@
 <link href="https://fonts.cdnfonts.com/css/july-01" rel="stylesheet">
 <style>
     @import url('https://fonts.cdnfonts.com/css/common-pixel');
-.classOne{
-    margin-bottom:10px ;
-display: flex;
-flex-direction: row;
-align-items: center;
-justify-content: space-between;
-align-content: flex-start;
-background-color:  #f49d19;
-}
+    .classOne{
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        align-content: flex-start;
+        background-color: #ccba2e;
+        width: 1921px;
+        height: 70px;
+            }
 .Classtwo{
     display: flex;
 flex-direction: column;
@@ -52,7 +54,7 @@ flex-direction: column;
 align-items: center;
 }
 .button{
-color: yellow;
+color: white;
 background-color: #0C2D4D;
 height: 50px;
 width: 100px;
@@ -66,7 +68,7 @@ position: relative;
 }
 .roda-pe{
     margin-top: 20px;
-background-color: #f49d19;
+background-color: #ccba2e;
 -moz-column-gap: 20px;
 column-gap: 20px;
 display: flex;
@@ -75,7 +77,7 @@ padding: 32px;
 row-gap: 20px;
 }
 .footer1{
-background: #f49d19;
+background: #ccba2e;
 align-items: center;
 -moz-column-gap: 20px;
 column-gap: 20px;
@@ -91,13 +93,13 @@ flex-direction: column;
 flex-wrap: nowrap;
 }
 .hr1{
-color: #f49d19;
+color: #ccba2e;
 }
 .content{
 height: 100%;
 }
 .cadastrar{
-border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+border: 2px solid #ccba2e; /* Define a borda com 1 pixel de largura e cor cinza */
 padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
 padding-top: 0px;
 border-radius: 15px;
@@ -114,7 +116,7 @@ margin-top: 30px;
 text-align: center;
 }
 .login{
-border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+border: 2px solid #ccba2e; /* Define a borda com 1 pixel de largura e cor cinza */
 padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
 padding-top: 30px;
 border-radius: 15px;
@@ -191,7 +193,7 @@ font-size: 28px;
 }
 .cadastrar hr{
 border: 1px solid;
-border-color:#FFA500;
+border-color:#ccba2e;
 width: 119%;
 left: -40px;
 position: relative;
@@ -226,38 +228,65 @@ align-items: center;
         flex-direction: column;
         align-items: center;
     }
-.dropbtn {
-background-color: none;
-color: white;
-padding: 16px;
-font-size: 16px;
-border: none;
-cursor: pointer;
-}
-/* Estilo para o conteúdo do dropdown */
-.dropdown-content {
-display: none;
-position: absolute;
-background-color: #f9f9f9;
-min-width: 160px;
-box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-z-index: 1;
-}
-/* Estilo para os links dentro do dropdown */
-.dropdown-content a {
-color: black;
-padding: 12px 16px;
-text-decoration: none;
-display: block;
-}
-/* Estilo para os links quando o mouse passa por cima */
-.dropdown-content a:hover {
-background-color: #f1f1f1;
-}
-/* Mostra o conteúdo do dropdown quando o mouse passa por cima do botão */
-.dropdown:hover .dropdown-content {
-display: block;
-}
+    .dropdown-content {
+        position: absolute;
+        background-color: #ccba2e;
+        height: 220px; 
+        min-width: 160px;
+        box-shadow: #ccba2e;
+        z-index: 1;
+        left: 1675px;
+        margin-top: 0px;
+        max-height: 0;
+        overflow: hidden;
+        border-radius: 10px;
+        opacity: 0;
+        transition: max-height 0.5s ease, opacity 0.5s ease;
+        top: 8%;
+    }
+    
+    .dropdown-content.show {
+        max-height: 260px; /* Define a altura máxima quando visível */
+        opacity: 1; /* Visível quando a classe .show está aplicada */
+    }
+    
+    .dropdown-content a, .dropdown-content button {
+        color: rgb(255, 255, 255);
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+    }
+    
+    .dropdown-content button {
+        border-radius: 10px;
+        border: none;
+        background: none;
+        font-family: Arial, Helvetica, sans-serif;
+        width: auto;
+    }
+    
+    .dropdown-content hr {
+        cursor: none;
+    }
+    
+    .dropbtn {
+        background-color: none;
+        color: white;
+        padding: 16px;
+        font-size: 16px;
+        font-weight: bold;
+        border: none;
+        cursor: pointer;
+    }
+    
+    .dropbtn:hover {
+        background-color: none;
+        color: rgb(255, 255, 255);
+    }
+    .dropdown i{
+        color: white;
+        cursor: pointer;
+    }
 .alert{
 display: flex;
 justify-content: center;
@@ -280,13 +309,19 @@ justify-content: space-between;
 align-items: center;
 }
 .button2{
-    margin-top: 20px;
-color: black;
-background-color: #4acfd9;
+margin-top: 20px;
+color: white;
+background-color: #18aac0;
 width: 400px;
 height: 60px;
 font-size: 20px;
 font-family: Helvetica;
+border-radius: 15px;
+}
+.button2:hover{
+    cursor: pointer;
+    color: white;
+    background-color:  #1799ad;
 }
 .Visualizar_campeonatos{
 font-family: system-ui;
@@ -395,7 +430,7 @@ height: 100px;
 width: 400px;
 }
 .campeonato{
-border: 2px solid #FFA500;
+border: 2px solid #ccba2e;
 padding: 40px;
 padding-top: 0px;
 border-radius: 15px;
@@ -414,7 +449,7 @@ text-align: center;
 }
 .campeonato hr{
 border: 1px solid;
-border-color:#FFA500;
+border-color:#ccba2e;
 width: 100%;
 left: 0px;
 position: relative;
@@ -456,7 +491,7 @@ flex-direction: column;
         font-size: 20px;
     }
     .criadores a{
-        color: orange;
+        color: white;
         text-decoration: none;
         font-family: 'SpaceType', sans-serif;
     }
@@ -527,7 +562,7 @@ flex-wrap: nowrap;
     height: 35px;
 }
 .sair button{
-    color: #95acda;
+    color: white;
     position: relative;
     width: 199px;
     height: 35px;
@@ -540,7 +575,7 @@ flex-wrap: nowrap;
     height: 35px;
 }
 .perfil1 button{
-    color: #95acda;
+    color: white;
     position: relative;
     width: 199px;
     height: 35px;
@@ -553,24 +588,42 @@ flex-wrap: nowrap;
     height: 35px;
 }
 .torneios button{
-    color: #95acda;
+    color: white;
     position: relative;
     width: 199px;
     height: 35px;
 }
 .torneios button:hover{
     color:#ffffff;
-    background-color: #2f384c;
+    background-color: #908112;
+    cursor: pointer;
+}
+.visual{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: row;
+    height: 35px;
+}
+.visual button{
+    color: white;
+    position: relative;
+    width: 199px;
+    height: 35px;
+}
+.visual button:hover{
+    color:#ffffff;
+    background-color: #908112;
     cursor: pointer;
 }
 .sair button:hover{
     color:#ffffff;
-    background-color: #2f384c;
+    background-color: #908112;
     cursor: pointer;
 }
 .perfil1 button:hover{
     color:#ffffff;
-    background-color: #2f384c;
+    background-color: #908112;
     cursor: pointer;
 }
 .header2{
@@ -578,7 +631,7 @@ flex-wrap: nowrap;
     display: flex;
     font-family: system-ui;
     align-content: center;
-    justify-content: space-between;
+    justify-content: space-evenly;
     align-items: center;
     flex-direction: row;
     }
@@ -596,6 +649,9 @@ flex-wrap: nowrap;
     .header2 img:hover{
         transform: scale(1.1);
     }
+    .header2 img{
+        width: 78px;
+    }
     .header{
     width: 204px;
     height: 55px;
@@ -605,7 +661,7 @@ flex-wrap: nowrap;
     flex-wrap: nowrap;
     justify-content: space-between;
     align-items: center;
-    background-color: #f49d19;
+    background-color: #ccba2e;
     margin-right: 20px;
     }
     .header img{
@@ -633,6 +689,7 @@ flex-wrap: nowrap;
         }
         .foto_usuario img{
             height: 45px;
+            width: 45px;
             border-radius: 50px;
             background: black;
         }
@@ -657,153 +714,88 @@ flex-wrap: nowrap;
             flex-direction: column;
             align-items: center;
         }
-        
-        .dropdown-content {
-            position: absolute;
-            background-color: #1f2633;
-            height: 187px;  
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-            z-index: 1;
-            left: 1654px; /* Ajuste conforme necessário */
-            margin-top: 0px; /* Ajuste conforme necessário */
-            max-height: 0;
-            overflow: hidden;
-            border-radius: 10px;
-            opacity: 0;
-            transition: max-height 0.5s ease, opacity 0.5s ease;
-        }
-        
-        .dropdown-content.show {
-            max-height: 260px; /* Define a altura máxima quando visível */
-            opacity: 1; /* Visível quando a classe .show está aplicada */
-        }
-        
-        .dropdown-content a, .dropdown-content button {
-            padding: 12px 16px;
-            text-decoration: none;
-            display: block;
-        }
-        
-        .dropdown-content button {
-            border-radius: 10px;
-            border: none;
-            background: none;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-        
-        .dropdown-content hr {
-            cursor: none;
-        }
-        
-        .dropbtn {
-            background-color: none;
-            color: #dbdbdb;
-            padding: 16px;
-            font-size: 16px;
-            font-weight: bold;
-            border: none;
-            cursor: pointer;
-        }
-        
-        .dropbtn:hover {
-            background-color: none;
-            color: rgb(255, 255, 255);
-        }
-        .dropdown i{
-            color: white;
-            cursor: pointer;
-        }
-        .fa fa-caret-down{
-            color:#dbdbdb;
-        }
-        .fa fa-caret-down:hover{
-            background-color: none;
-            color: rgb(255, 255, 255);
-        }
 </style>
-    <header>
-        <%= content_tag :div, class: "classOne" do %>
-        <%= content_tag :div, class: "header2" do %>
-            <% if current_user %>
-                <a href="/home">
-                        <%= image_tag "championlist.png", style: "width: 125px;" %>
-                    </a>
-                    <a href="/champion"> Campeonatos </a>
-                    <a href="/team/"> Times </a>
-            <%else%>
-                <a href="/home">
-                    <%= image_tag "championlist.png", style: "width: 125px;" %>
+<header>
+    <%= content_tag :div, class: "classOne" do %>
+    <%= content_tag :div, class: "header2" do %>
+        <% if current_user %>
+            <a href="/home">
+                    <%= image_tag "championlist.png" %>
                 </a>
                 <a href="/champion"> Campeonatos </a>
                 <a href="/team/"> Times </a>
-                <a href="/login"> Login </a>
-            <%end%>
-        <% end %>
-            <%= content_tag :div, class: "header" do %>
-                <% if current_user %>
-                    <%= content_tag :div, class: "nome_usuario" do %>
-                            <%= content_tag :div, class: "foto_usuario" do %>
-                            <a href="/perfil">
-                                <% if current_user.image.attached? %>
-                                    <%= image_tag url_for(current_user.image) %>
-                                <% end %>
-                              </a>
-                            <%end%>
-                            <a href="/perfil" class="dropbtn">
-                                <%= current_user.name%>
-                            </a>
-                            <div class="dropdown">
-                                <i id="dropdown-toggle" class="fa fa-caret-down"></i>
-                                <div id="dropdown-menu" class="dropdown-content">
-                                    <div class="perfil1">
-                                        <%= button_to "Perfil", perfil_path, method: :get, form_class: "logout-form dropbtn"%>
-                                    </div>
-                                    <hr>
-                                    <div class="torneios">
-                                        <%= button_to "Torneios", champion_index_path, method: :get, form_class: "logout-form dropbtn"%>
-                                    </div>
-                                    <div class="torneios">
-                                        <%= button_to "Times", team_index_path, method: :get, form_class: "logout-form dropbtn"%>
-                                    </div>
-                                    <hr>
-                                    <div class="sair">
-                                        <%= button_to "Sair", sign_out_path, method: :delete, form_class: "logout-form dropbtn"%>
-                                    </div>
+        <%else%>
+            <a href="/home">
+                <%= image_tag "championlist.png" %>
+            </a>
+            <a href="/champion"> Campeonatos </a>
+            <a href="/team/"> Times </a>
+            <a href="/login"> Login </a>
+        <%end%>
+    <% end %>
+        <%= content_tag :div, class: "header" do %>
+            <% if current_user %>
+            <div class="dropdown">
+                <div id="dropdown-toggle" class="nome_usuario">
+                        <div class="foto_usuario">
+                            <% if current_user.image.attached? %>
+                                <%= image_tag url_for(current_user.image) %>
+                            <% end %>
+                        </div>
+                        <div class="dropbtn">
+                            <%= current_user.name%>
+                        </div>
+                            <div id="dropdown-menu" class="dropdown-content">
+                                <div class="perfil1">
+                                    <%= button_to "Perfil", perfil_path, method: :get, form_class: "logout-form "%>
+                                </div>
+                                <hr>
+                                <div class="torneios">
+                                    <%= button_to "Torneios", champion_index_path, method: :get, form_class: "logout-form "%>
+                                </div>
+                                <div class="torneios">
+                                    <%= button_to "Times", team_index_path, method: :get, form_class: "logout-form "%>
+                                </div>
+                                <div class="visual">
+                                    <%= button_to "Visualizar partidas", visual_index_path, method: :get, form_class: "logout-form "%>
+                                </div>
+                                <hr>
+                                <div class="sair">
+                                    <%= button_to "Sair", sign_out_path, method: :delete, form_class: "logout-form "%>
                                 </div>
                             </div>
-                    <%end%>
-                <% else %>
-                    <%= button_to "Criar conta", "/register", method: :get, class: "button" %>
-                <% end %>
-            <%end%>
-        <% end %>
-        <script>
-            document.addEventListener("DOMContentLoaded", function() {
-                const toggle = document.getElementById("dropdown-toggle");
-                const menu = document.getElementById("dropdown-menu");
-            
-                let menuVisible = false;
-            
-                toggle.addEventListener("click", function() {
-                    // Alterna a visibilidade do menu
-                    if (menuVisible) {
-                        menu.classList.remove("show");
-                        menuVisible = false;
-                    } else {
-                        menu.classList.add("show");
-                        menuVisible = true;
-                    }
-                });
-            
-                // Adiciona um evento de clique ao documento para fechar o menu
-                // Apenas se o menu estiver visível e o clique não for no ícone ou no menu
-                document.addEventListener("click", function(event) {
-                    if (menuVisible && !toggle.contains(event.target) && !menu.contains(event.target)) {
-                        menu.classList.remove("show");
-                        menuVisible = false;
-                    }
-                });
+                        </div>
+            <% else %>
+                <%= button_to "Criar conta", "/register", method: :get, class: "button2" %>
+            <% end %>
+        <%end%>
+    <% end %>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const toggle = document.getElementById("dropdown-toggle");
+            const menu = document.getElementById("dropdown-menu");
+        
+            let menuVisible = false;
+        
+            toggle.addEventListener("click", function() {
+                // Alterna a visibilidade do menu
+                if (menuVisible) {
+                    menu.classList.remove("show");
+                    menuVisible = false;
+                } else {
+                    menu.classList.add("show");
+                    menuVisible = true;
+                }
             });
-        </script>
+        
+            // Adiciona um evento de clique ao documento para fechar o menu
+            // Apenas se o menu estiver visível e o clique não for no ícone ou no menu
+            document.addEventListener("click", function(event) {
+                if (menuVisible && !toggle.contains(event.target) && !menu.contains(event.target)) {
+                    menu.classList.remove("show");
+                    menuVisible = false;
+                }
+            });
+        });
+    </script>
 </header>

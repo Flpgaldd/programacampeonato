@@ -10,6 +10,28 @@
   </head>
 
   <body>
+    <div id="loading-screen" class="loading-screen">
+      <div class="spinner"></div>
+    </div>
     <%= yield %>
   </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const loadingScreen = document.getElementById('loading-screen');
+  
+      // Exibe a tela de loading ao iniciar a troca de página
+      window.addEventListener('beforeunload', function() {
+        loadingScreen.style.visibility = 'visible';
+      });
+  
+      // Exibe a tela de loading durante a troca de página interna via links
+      document.querySelectorAll('a').forEach(function(link) {
+        link.addEventListener('click', function(e) {
+          if (link.href && !link.href.startsWith('#')) {
+            loadingScreen.style.visibility = 'visible';
+          }
+        });
+      });
+    });
+  </script>
 </html>

@@ -2,45 +2,164 @@
 <html>
     <head>
         <title> ChampionList </title>
+        <style>
+          .mySlides {
+            display: none;
+            position: relative;
+            width: 100%;
+          }
+          
+          /* Animação de fade para o efeito de troca suave */
+          .fade {
+            animation-name: fade;
+            animation-duration: 1.0s; /* Duração da transição */
+          }
+          
+          /* Definição da animação de fade */
+          @keyframes fade {
+            from { opacity: 0.2; } 
+            to { opacity: 1; }
+          }
+          
+          /* Estilo do conteúdo dentro dos slides */
+          .content {
+            position: absolute;
+            bottom: 20%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+          }
+          
+          /* Estilo para os botões e textos dentro do banner */
+          .content h1, .content p {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+          }
+          
+          .btn {
+            background-color: #04AA6D;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+          }
+          
+          .btn:hover {
+            background-color: #045e3c;
+          }
+          
+        </style>
     </head>
     <body>
-        <%= render 'shared/header' %>
+        <%= render 'shared/header'%>
+
+        <div class="slideshow-container">
+
+          <!-- Slide 1 -->
+          <div class="mySlides fade">
+            <div class="banner">
+              <%= content_tag :div, class: "body-2" do %>
+              <div>
+                <h1> Quer montar seu campeonato? </h1>
+                 <hr>
+              </div>
+              <div>
+                <h2>Clique aqui</h2>
+              </div>
+              <div>         
+                <%= button_to "Criar campeonatos", "/champion/new", method: :get, class: "button2", id: "createChampionshipButton" %>
+              </div>      
+              <%end%>
+          </div>
+          </div>
+        
+          <!-- Slide 2 -->
+          <div class="mySlides fade">
+            <div class="banner1">
+              <%= content_tag :div, class: "body-2" do %>
+              <div>
+                <h1> Monte seu time aqui!!! </h1>
+              </div>
+              <div>         
+                <%= button_to "Criar time", "/team/new", method: :get, class: "button2", id: "createChampionshipButton" %>
+              </div>      
+              <%end%>
+            </div>
+          </div>
+        
+          <!-- Slide 3 -->
+          <div class="mySlides fade">
+            <div class="banner2">
+              <%= content_tag :div, class: "body-2" do %>
+              <div>
+                <h1>Termine de editar seu perfil!!!</h1>
+              </div>
+              <div>         
+                <%= button_to "Acessar perfil", "/perfil", method: :get, class: "button2", id: "createChampionshipButton" %>
+              </div>      
+              <%end%>
+            </div>
+          </div>
+        
+        </div>
+        
+        <!-- Pontinhos de navegação -->
+        <div style="text-align:center">
+          <span class="dot" onclick="currentSlide(1)"></span> 
+          <span class="dot" onclick="currentSlide(2)"></span> 
+          <span class="dot" onclick="currentSlide(3)"></span> 
+        </div>
+
         <%= content_tag :div, class: "body" do %>
-                <%= content_tag :div, class: "notices" do%>
-                    <h2>Equipes</h2>
-                    <%= button_to "Equipes cadastradas", "/team/", method: :get, class: "button2"%>
-                <%end%>
-                <%= content_tag :div, class: "body-2" do %>
-                        <%= content_tag :div, class: "body-3" do%>
-                            <h1> Quer montar seu campeonato? </h1>
-                            <hr>
-                        <%end%>
-                    <h2>Clique aqui</h2>
-                    <%= button_to "Criar campeonatos", "/champion/new", method: :get, class: "button2", id: "createChampionshipButton" %>
-                <%end%>
-        <%= content_tag :div, class: "Visualizar_campeonatos" do%>
-            <h1> Campeonatos recentes </h1>
-                <div class="button3">
-                    <%= button_to "Campeonatos criados", "/champion", method: :get, class: "button2"%>
-                </div>
+      <h1>Campeonatos recentes</h1>
                 <div class="campeonatos">
-                    <ul>
-                      <% if @champions.present? %> <!-- Verifica se há campeonatos -->
-                        <% @champions.each do |champions| %> <!-- Itera sobre cada campeonato -->
-                          <li>
-                            <%= link_to champions.name, champion_path(champions), class: "sem-sublinha" %>
-                          </li>
-                        <% end %>
-                      <% else %>
-                        <li>Não há campeonatos disponíveis no momento.</li>
+                  <ul>
+                    <% if @champions.present? %> <!-- Verifica se há campeonatos -->
+                      <% @champions.each do |champions| %> <!-- Itera sobre cada campeonato -->
+                        <li>
+                          <%= link_to champions.name, champion_path(champions), class: "sem-sublinha" %>
+                        </li>
                       <% end %>
-                    </ul>
-                  </div>
-        <%end%>
+                    <% else %>
+                      <li>Não há campeonatos disponíveis no momento.</li>
+                    <% end %>
+                  </ul>
+                </div>
         <% end %>
         <% if flash[:alert] %>
             <div class="alert"><%= flash[:alert] %></div>
         <% end %>
         <%= render "shared/footer"%>
+        <script>
+          let slideIndex = 0;
+showSlides();
+
+function showSlides() {
+  let i;
+  let slides = document.getElementsByClassName("mySlides");
+  let dots = document.getElementsByClassName("dot");
+  for (i = 0; i < slides.length; i++) {
+    slides[i].style.display = "none";  
+  }
+  slideIndex++;
+  if (slideIndex > slides.length) {slideIndex = 1}    
+  for (i = 0; i < dots.length; i++) {
+    dots[i].className = dots[i].className.replace(" active", "");
+  }
+  slides[slideIndex-1].style.display = "block";  
+  dots[slideIndex-1].className += " active";
+  setTimeout(showSlides, 4000); // Muda a cada 4 segundos
+}
+
+function plusSlides(n) {
+  showSlides(slideIndex += n);
+}
+
+function currentSlide(n) {
+  showSlides(slideIndex = n);
+}
+        </script>
     </body>
 </html>

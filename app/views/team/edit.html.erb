@@ -74,7 +74,7 @@
     <%= render 'shared/header' %>
 <%= form_with model: @team, url: team_update_path, html: { multipart: true }, method: :patch, class: "form" do |form| %>
     <div class="body4">
-        <h1>Faça o cadastro do seu time</h1>
+        <h1></h1>
             <div class="list_tm">
                 <div class= "nome2">
                     <%= form.label "Nome do time:" %>
@@ -98,7 +98,7 @@
                     <%= form.label "Linkedin"%>
                     <%= form.text_field :linkedin %>
                 </div>
-                <%= form.submit "Encerrar criação do time", class: "button2" %>
+                <%= form.submit "Encerrar edição", class: "button2" %>
             </div>
     </div>
 <%end%>

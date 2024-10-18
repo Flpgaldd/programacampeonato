@@ -2,15 +2,23 @@
 <link href="https://fonts.cdnfonts.com/css/spacetype" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/july-01" rel="stylesheet">
 <style>
+    a{
+        text-decoration: none;
+    }
+    * {
+    padding: 0;
+}
     @import url('https://fonts.cdnfonts.com/css/common-pixel');
         .classOne{
-            margin-bottom: 10px;
+    margin-bottom: 0px;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     align-content: flex-start;
-    background-color: #f49d19;
+    background-color: #d4aa00;
+    width: 1921px;
+    height: 70px;
         }
         .Classtwo{
         display: flex;
@@ -21,49 +29,50 @@
          }
          .Classtwo h1{
             text-transform: capitalize;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: monospace;
          }
          .Classtwo h2{
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: monospace;
             margin-bottom: 5px;
          }
          .Classtwo h3{
             margin-top: 0px;
             color: #f49d19;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-family: monospace;
          }
         .Classtwo button{
-                color: yellow;
-                background-color: #0C2D4D;
+                color: white;
+                background-color: #11BFE8;
                 font-size: 20px;
                 font-family: Helvetica;
-                border-color: #11BFE8;
+                border-color: none;
                 height: 60px;
                 width: 300px;
                 border-radius: 5px;
                 box-shadow: none;
             }
         .button:hover button{
-            color: yellow;
             background-color:  #2b84dd;
         }
         .body{
             height: 100%;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: center;
             background-color: white;
-            font-family: "inlander";
+            font-family: monospace;
             color: #003d7b;
             flex-wrap: nowrap;
             justify-content: space-around;
             width: auto;
         }
         .body-2{
+            height: 200px;
             width: 555px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            justify-content: space-around;
         }
         .notices{
             display: flex;
@@ -72,7 +81,6 @@
             width: 555px;
         }
         .button{
-        color: yellow;
         background-color: #0C2D4D;
         height: 50px;
         width: 100px;
@@ -86,7 +94,7 @@
         }
         .roda-pe{
             margin-top: 20px;
-        background-color: #f49d19;
+        background-color: #d4aa00;
         -moz-column-gap: 20px;
         column-gap: 20px;
         display: flex;
@@ -95,12 +103,12 @@
         row-gap: 20px;
         }
         .footer1{
-        background: #f49d19;
+        background: #d4aa00;
         align-items: center;
         -moz-column-gap: 20px;
         column-gap: 20px;
         display: flex;
-        height: 350px;
+        height: 530px;
         margin-left: auto;
         margin-right: auto;
         max-width: 3000px;
@@ -111,13 +119,13 @@
         flex-wrap: nowrap;
         }
         .hr1{
-        color: #f49d19;
+        color: #d4aa00;
         }
         .content{
         height: 100%;
         }
         .cadastrar{
-        border: 2px solid #FFA500; /* Define a borda com 1 pixel de largura e cor cinza */
+        border: 2px solid #d4aa00; /* Define a borda com 1 pixel de largura e cor cinza */
         padding: 40px; /* Adiciona um preenchimento interno de 20 pixels */
         padding-top: 0px;
         border-radius: 15px;
@@ -156,7 +164,6 @@
         font-family: Helvetica;
         }
         .register{
-        color: yellow;
         background-color:#0C2D4D;
         height: 50px;
         width: 400px;
@@ -169,7 +176,29 @@
         justify-content: space-between;
         margin-bottom: 5px;
         margin-top: 15px;
-        align-items: center;}
+        align-items: center;
+    }
+    .row1{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        margin-top: 15px;
+        align-items: center;
+    }
+    .row2{
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 5px;
+        margin-top: 15px;
+        align-items: center;
+    }
+    .row3{
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
+        margin-top: 15px;
+        align-items: center;
+    }
         label{
         font-size: 20px;
         }
@@ -179,6 +208,19 @@
         width: 300px;
         border-radius: 5px;
         box-shadow: none;
+        }
+        .input1 input{
+        border-color: #11BFE8;
+        height: 25px;
+        width: 26px;
+        border-radius: 5px;
+        box-shadow: none;
+        }
+        .input1{
+            display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: center;
         }
         .cadastrar h1{
         display: flex;
@@ -203,8 +245,9 @@
         flex-direction: row;
         align-items: center;
         box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
-        width: 140px;
+        width: 144px;
         border-radius: 10px;
+        cursor: pointer;
         }
         .nome_usuario a{
             text-decoration: none;
@@ -216,6 +259,7 @@
         }
         .foto_usuario img{
             height: 45px;
+            width: 45px;
             border-radius: 50px;
             background: black;
         }
@@ -243,18 +287,19 @@
         
         .dropdown-content {
             position: absolute;
-            background-color: #1f2633;
-            height: 187px;  
+            background-color: #d4aa00; 
+            height: 220px; 
             min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+            box-shadow: #d4aa00 ;
             z-index: 1;
-            left: 1654px; /* Ajuste conforme necessário */
+            left: 1675px; /* Ajuste conforme necessário */
             margin-top: 0px; /* Ajuste conforme necessário */
             max-height: 0;
             overflow: hidden;
             border-radius: 10px;
             opacity: 0;
             transition: max-height 0.5s ease, opacity 0.5s ease;
+            top: 8%;
         }
         
         .dropdown-content.show {
@@ -283,7 +328,7 @@
         
         .dropbtn {
             background-color: none;
-            color: #dbdbdb;
+            color: white;
             padding: 16px;
             font-size: 16px;
             font-weight: bold;
@@ -299,13 +344,7 @@
             color: white;
             cursor: pointer;
         }
-        .fa fa-caret-down{
-            color:#dbdbdb;
-        }
-        .fa fa-caret-down:hover{
-            background-color: none;
-            color: rgb(255, 255, 255);
-        }
+     
         .alert{
         display: flex;
         justify-content: center;
@@ -323,7 +362,7 @@
         display: flex;
         font-family: system-ui;
         align-content: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
         align-items: center;
         flex-direction: row;
         }
@@ -341,6 +380,9 @@
         .header2 img:hover{
             transform: scale(1.1);
         }
+        .header2 img{
+            width: 78px;
+        }
         .header{
         width: 204px;
         height: 55px;
@@ -350,7 +392,7 @@
         flex-wrap: nowrap;
         justify-content: space-between;
         align-items: center;
-        background-color: #f49d19;
+        background-color: #d4aa00;
         margin-right: 20px;
         }
         .header img{
@@ -360,20 +402,22 @@
             transform: scale(1.1);
         }
         .button2{
-        color: yellow;
-        background-color: #0C2D4D;
+        color: white;
+        background-color:#18aac0;
+        border: none;
         height: 50px;
-        width: 150  px;
+        width: 150px;
         font-size: 20px;
         font-family: Helvetica;
-        border-radius: 10%;
+        border-radius: 25px;
         }
         .button2:hover{
-            color: yellow;
-            background-color:  #2b84dd;
+            color: white;
+            background-color:  #1799ad;
+            cursor: pointer;
         }
         .Visualizar_campeonatos{
-            font-family: system-ui;
+            font-family: monospace;
         display: flex;
         width: 555px;
         flex-direction: column;
@@ -440,13 +484,15 @@
         margin-bottom: 20px;
         }
         .tabs{
-        left: -40px;
-        width: 119%;
-        height: 7%;
-        margin-bottom: 20px;
-        background: #F8D89D;
-        position:relative;
-        border-radius: 12px;
+            margin-top: 100px;
+            width: 800px;
+            height: auto;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            background: rgb(255, 255, 255);
+            box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            border-radius: 12px;
         }
         .tab-content {
         display: none;
@@ -457,13 +503,46 @@
         .tabs button{
         width: 125px;
         height: 35px;
-        border-color: #FFB938;
+        border-color: #d4aa00;
         background: #F8D89D;
         position: relative;
         border-radius: 12px;
         }
         .tabs button:hover {
-        background-color: #FFC107; /* Altere a cor de fundo no hover */
+        background-color: #d4aa00; /* Altere a cor de fundo no hover */
+        }
+        .tab-content {
+            display: none;
+            padding: 10px;
+            width: 50%;
+            text-align: center;
+            margin: 0 auto;
+        }
+        .tab-content.active {
+            height: 425px;
+            align-items: center;
+            width: 400px;
+        }
+        .tabela{
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+        }
+        .tab-content.active h1{
+            font-size: 50px;
+            margin-bottom: 50px;
+        }
+        .data2{
+            margin-bottom: 30px;
+        }
+        #location_input_container {
+            display: none;
+        }
+        .image img{
+            background: rgba(255, 255, 255, 0.768);
+            box-shadow: 2px 4px 8px 6px rgba(0, 0, 0, 0.2);
+            position:relative;
+            border-radius: 12px;
         }
         .descricao textarea{
         height: 120px;
@@ -478,7 +557,7 @@
         width: 400px;
         }
         .campeonato{
-        border: 2px solid #FFA500;
+        border: 2px solid #d4aa00;
         padding: 40px;
         padding-top: 0px;
         border-radius: 15px;
@@ -497,7 +576,7 @@
         }
         .campeonato1{
             margin-bottom: 5px;
-            border: 2px solid #FFA500;
+            border: 2px solid #d4aa00;
             padding: 40px;
             padding-top: 0px;
             border-radius: 40px;
@@ -511,7 +590,7 @@
             transition: transform 0.3s ease;
             }
             .campeonato1:hover{
-                color: #f49d19;
+                color: #d4aa00;
                 background-color: #ffdd9f;
                 transform: scale(1.2);
             }
@@ -535,7 +614,7 @@
             }
         .campeonato hr{
         border: 1px solid;
-        border-color:#FFA500;
+        border-color:#d4aa00;
         width: 100%;
         left: 0px;
         position: relative;
@@ -573,11 +652,16 @@
             transform: scale(1.2); 
         }
         .criadores{
+            display: flex;
+            justify-content: center;
+            flex-direction: row;
+            width: 2000px;
+            background-color:transparent;
             font-family: monospace;
-            font-size: 20px;
+             font-size: 20px;
         }
         .criadores a{
-            color: orange;
+            color: white;
             text-decoration: none;
             font-family: 'SpaceType', sans-serif;
         }
@@ -608,7 +692,7 @@
             width: 475px;
             height: auto;
             border-radius: 10px;
-            color: #FFA500;
+            color: #d4aa00;
             background-color: #ffdd9f;
         }
         .info2 h3{
@@ -676,7 +760,7 @@
                 height: auto;
         }
         .campeonatos{
-            margin-top: 20px;
+                margin-top: 20px;
                 width: 545.33px;
                 font-size: 30px;
                 display: flex;
@@ -687,6 +771,9 @@
                 position: relative;
                 border-radius: 12px;
                 height: auto;
+        }
+        .campeonatos a{
+            text-decoration: none;
         }
         .partida{
             display: flex;
@@ -742,7 +829,7 @@
             height: 35px;
         }
         .sair button{
-            color: #95acda;
+            color: white;
             position: relative;
             width: 199px;
             height: 35px;
@@ -755,7 +842,7 @@
             height: 35px;
         }
         .perfil1 button{
-            color: #95acda;
+            color: white;
             position: relative;
             width: 199px;
             height: 35px;
@@ -768,39 +855,135 @@
             height: 35px;
         }
         .torneios button{
-            color: #95acda;
+            color: white;
             position: relative;
             width: 199px;
             height: 35px;
         }
         .torneios button:hover{
             color:#ffffff;
-            background-color: #2f384c;
+            background-color: #908112;
+            cursor: pointer;
+        }
+        .visual{
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            flex-direction: row;
+            height: 35px;
+        }
+        .visual button{
+            color: white;
+            position: relative;
+            width: 199px;
+            height: 35px;
+        }
+        .visual button:hover{
+            color:#ffffff;
+            background-color: #908112;
             cursor: pointer;
         }
         .sair button:hover{
             color:#ffffff;
-            background-color: #2f384c;
+            background-color: #908112;
             cursor: pointer;
         }
         .perfil1 button:hover{
             color:#ffffff;
-            background-color: #2f384c;
+            background-color: #908112;
             cursor: pointer;
         }
+        .banner{
+            width: 1921px;
+            height: 500px;
+            background: linear-gradient(90deg, #ccba2e, #2eafcc); /* Gradiente de duas cores */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 36px;
+            font-family: Arial, sans-serif;
+        }
+        .banner h1{
+            font-size: 25px;
+        }
+        .banner h2{
+            font-size: 25px;
+        }
+        .banner1{
+            width: 1921px;
+            height: 500px;
+            background: linear-gradient(90deg, #2eafcc,#ccba2e); /* Gradiente de duas cores */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 36px;
+            font-family: Arial, sans-serif;
+        }
+        .banner1 h1{
+            font-size: 25px;
+        }
+        .banner1 h2{
+            font-size: 25px;
+        }
+        .banner2{
+            width: 1921px;
+            height: 500px;
+            background: linear-gradient(90deg, #34dbd0, #ccba2e); /* Gradiente de duas cores */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 36px;
+            font-family: Arial, sans-serif;
+        }
+        .banner2 h1{
+            font-size: 25px;
+        }
+        .banner2 h2{
+            font-size: 25px;
+        }
+        .perfil a{
+            color: #d4aa00;
+            font-size: 30px;
+            font-family: monospace;
+        }
+        .perfil a:hover{
+            color: #d4aa00;
+        }
+        .video-container {
+            width: 1100px;
+            height: 700px;
+          }
+          .video-container iframe {
+            width: 100%;
+            height: 100%;
+          }
+          .video1{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            align-content: center;
+            flex-wrap: nowrap;
+            flex-direction: column;
+          }
+          .video1 h1{
+            color: #003d7b;
+          }
     </style>
     <header>
         <%= content_tag :div, class: "classOne" do %>
         <%= content_tag :div, class: "header2" do %>
             <% if current_user %>
                 <a href="/home">
-                        <%= image_tag "championlist.png", style: "width: 125px;" %>
+                        <%= image_tag "championlist.png" %>
                     </a>
                     <a href="/champion"> Campeonatos </a>
                     <a href="/team/"> Times </a>
             <%else%>
                 <a href="/home">
-                    <%= image_tag "championlist.png", style: "width: 125px;" %>
+                    <%= image_tag "championlist.png" %>
                 </a>
                 <a href="/champion"> Campeonatos </a>
                 <a href="/team/"> Times </a>
@@ -809,39 +992,38 @@
         <% end %>
             <%= content_tag :div, class: "header" do %>
                 <% if current_user %>
-                    <%= content_tag :div, class: "nome_usuario" do %>
-                            <%= content_tag :div, class: "foto_usuario" do %>
-                            <a href="/perfil">
+                <div class="dropdown">
+                    <div id="dropdown-toggle" class="nome_usuario">
+                            <div class="foto_usuario">
                                 <% if current_user.image.attached? %>
                                     <%= image_tag url_for(current_user.image) %>
                                 <% end %>
-                              </a>
-                            <%end%>
-                            <a href="/perfil" class="dropbtn">
+                            </div>
+                            <div class="dropbtn">
                                 <%= current_user.name%>
-                            </a>
-                            <div class="dropdown">
-                                <i id="dropdown-toggle" class="fa fa-caret-down"></i>
+                            </div>
                                 <div id="dropdown-menu" class="dropdown-content">
                                     <div class="perfil1">
-                                        <%= button_to "Perfil", perfil_path, method: :get, form_class: "logout-form dropbtn"%>
+                                        <%= button_to "Perfil", perfil_path, method: :get, form_class: "logout-form "%>
                                     </div>
                                     <hr>
                                     <div class="torneios">
-                                        <%= button_to "Torneios", champion_index_path, method: :get, form_class: "logout-form dropbtn"%>
+                                        <%= button_to "Torneios", champion_index_path, method: :get, form_class: "logout-form "%>
                                     </div>
                                     <div class="torneios">
-                                        <%= button_to "Times", team_index_path, method: :get, form_class: "logout-form dropbtn"%>
+                                        <%= button_to "Times", team_index_path, method: :get, form_class: "logout-form "%>
+                                    </div>
+                                    <div class="visual">
+                                        <%= button_to "Visualizar partidas", visual_index_path, method: :get, form_class: "logout-form "%>
                                     </div>
                                     <hr>
                                     <div class="sair">
-                                        <%= button_to "Sair", sign_out_path, method: :delete, form_class: "logout-form dropbtn"%>
+                                        <%= button_to "Sair", sign_out_path, method: :delete, form_class: "logout-form "%>
                                     </div>
                                 </div>
                             </div>
-                    <%end%>
                 <% else %>
-                    <%= button_to "Criar conta", "/register", method: :get, class: "button" %>
+                    <%= button_to "Criar conta", "/register", method: :get, class: "button2" %>
                 <% end %>
             <%end%>
         <% end %>

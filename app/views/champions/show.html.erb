@@ -147,7 +147,7 @@
     </div>
     <% if @champion&.user == current_user %>
       <div class="button5">
-          <button id="register-button">Cadastrar seu time</button>
+          <button id="register-button", class="button2">Cadastrar seu time</button>
       </div>
       <div id="teamModal" class="modal">
           <div class="modal-content">
@@ -161,7 +161,7 @@
                   <option value="<%= team.id %>"><%= team.name %></option>
                 <% end %>
               </select>
-              <button type="submit">Cadastrar</button>
+              <button class="button2" type="submit">Cadastrar</button>
             <% end %>
           </div>
         </div>

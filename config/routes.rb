@@ -54,4 +54,6 @@ Rails.application.routes.draw do
   get 'teams/join/:invite_token', to: 'team#join', as: 'invite_team'
 
   post 'champions/team/', to: 'champions#jointeam', as: 'champions_vs_team'
+
+  get '/visualizar/', to: "visualizar#index", as: "visual_index"
 end

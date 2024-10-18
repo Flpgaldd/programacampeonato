@@ -2,16 +2,23 @@
 <link href="https://fonts.cdnfonts.com/css/spacetype" rel="stylesheet">
 <link href="https://fonts.cdnfonts.com/css/july-01" rel="stylesheet">
 <style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
     @import url('https://fonts.cdnfonts.com/css/common-pixel');
-         .classOne{
-                height: 100px;
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: space-between;
-                align-content: flex-start;
-                background-color:  #f49d19;
-             }
+    .classOne{
+        margin-bottom: 10px;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+        align-content: flex-start;
+        background-color: #ccba2e;
+        width: 1921px;
+        height: 70px;
+            }
         .body{
             height: 100%;
             display: flex;
@@ -58,13 +65,13 @@
                 font-size: 20px;
             }
             .criadores a{
-                color: orange;
+                color: white;
                 text-decoration: none;
                 font-family: 'SpaceType', sans-serif;
             }
         .roda-pe{
             color:  black ;
-            background-color: #FFBD59;
+            background-color: #ccba2e;
             height: 110px;
             width: 2000px
              }
@@ -121,6 +128,24 @@
                     background-color: #2f384c;
                     cursor: pointer;
                 }
+                .visual{
+                    display: flex;
+                    justify-content: flex-start;
+                    align-items: center;
+                    flex-direction: row;
+                    height: 35px;
+                }
+                .visual button{
+                    color: white;
+                    position: relative;
+                    width: 199px;
+                    height: 35px;
+                }
+                .visual button:hover{
+                    color:#ffffff;
+                    background-color: #908112;
+                    cursor: pointer;
+                }
                 .sair button:hover{
                     color:#ffffff;
                     background-color: #2f384c;
@@ -136,7 +161,7 @@
                     display: flex;
                     font-family: system-ui;
                     align-content: center;
-                    justify-content: space-between;
+                    justify-content: space-evenly;
                     align-items: center;
                     flex-direction: row;
                     }
@@ -154,6 +179,9 @@
                     .header2 img:hover{
                         transform: scale(1.1);
                     }
+                    .header2 img{
+                        width: 78px;
+                    }
                     .header{
                     width: 204px;
                     height: 55px;
@@ -163,7 +191,7 @@
                     flex-wrap: nowrap;
                     justify-content: space-between;
                     align-items: center;
-                    background-color: #f49d19;
+                    background-color: #ccba2e;
                     margin-right: 20px;
                     }
                     .header img{
@@ -191,6 +219,7 @@
                         }
                         .foto_usuario img{
                             height: 45px;
+                            width: 45px;
                             border-radius: 50px;
                             background: black;
                         }
@@ -219,7 +248,7 @@
                         .dropdown-content {
                             position: absolute;
                             background-color: #1f2633;
-                            height: 187px;  
+                            height: 220px;   
                             min-width: 160px;
                             box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                             z-index: 1;
@@ -285,13 +314,13 @@
         <%= content_tag :div, class: "header2" do %>
             <% if current_user %>
                 <a href="/home">
-                        <%= image_tag "championlist.png", style: "width: 125px;" %>
+                        <%= image_tag "championlist.png"%>
                     </a>
                     <a href="/champion"> Campeonatos </a>
                     <a href="/team/"> Times </a>
             <%else%>
                 <a href="/home">
-                    <%= image_tag "championlist.png", style: "width: 125px;" %>
+                    <%= image_tag "championlist.png"%>
                 </a>
                 <a href="/champion"> Campeonatos </a>
                 <a href="/team/"> Times </a>
@@ -323,6 +352,9 @@
                                     </div>
                                     <div class="torneios">
                                         <%= button_to "Times", team_index_path, method: :get, form_class: "logout-form dropbtn"%>
+                                    </div>
+                                    <div class="visual">
+                                        <%= button_to "Visualizar partidas", visual_index_path, method: :get, form_class: "logout-form "%>
                                     </div>
                                     <hr>
                                     <div class="sair">
