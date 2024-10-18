@@ -57,22 +57,21 @@ document.addEventListener("DOMContentLoaded", function() {
 <body>
     <%= render 'shared/header' %>
     <%= content_tag :div, class: "cadastrar" do %>
-    <h1> Quero me cadastrar </h1>
     <%= form_with model: @user, url: users_update_path(@user.id), html: { multipart: true }, method: :patch, class: "form" do |form| %>
    <div class="row">
     <%= form.file_field :image, id: 'image_input' %>
   </div>
   <%= image_tag '', id: 'image_preview', style: 'max-width: 200px; display: none;' %>
-        <%= content_tag :div, class: "row" do %> 
+        <%= content_tag :div, class: "row1" do %> 
             <%= form.label "nome:" %>
             <%= form.text_field :name, pattern: "[A-Za-z\s']+" %>
         <% end %>
-       <%= content_tag :div, class: "row" do %> 
+       <%= content_tag :div, class: "row2" do %> 
             <%= form.label "Sobrenome:" %>
             <%= form.text_field :middle_name, pattern: "[A-Za-z\s']+" %>
         <% end %>
-        <%= content_tag :div, class: "row" do %> 
-            <%= form.submit "Encerrar edição", class: "register" %>
+        <%= content_tag :div, class: "row3" do %> 
+            <%= form.submit "Encerrar edição", class: "button2" %>
         <%end%>
     <% end %>
 <% end %>

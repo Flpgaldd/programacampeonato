@@ -87,7 +87,7 @@
             <div class="button6">
               <% if current_user == @team.user %>
             <div class="button4">
-              <button id="invite-button">Enviar Convite</button>
+              <button id="invite-button", class="button2">Enviar Convite</button>
           </div>
           <div class="button7">
               <%= button_to "Editar Time", team_edit_path(@team), method: :get, class: "button2" %>

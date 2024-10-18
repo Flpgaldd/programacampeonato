@@ -14,11 +14,13 @@
             margin-top: 20px;
         }
         .imagem{
+            display: flex;
+            align-items: center;
             position: relative;
             overflow: hidden;
             cursor: pointer;
             width: 250px;
-            height: 250px;
+            height: 259px;
         }
         .imagem:hover img {
             transform: scale(1.2); /* Ajuste o valor de escala conforme necessário */
@@ -57,7 +59,8 @@
     </div>
   <% end %>
 </ul>
-</div>  
+</div>
+<%= button_to "Criar campeonato", "/champion/new", method: :get, class: "button2", id: "createChampionshipButton" %>  
     <%= render "shared/footer"%>
 </body>
 </html>
